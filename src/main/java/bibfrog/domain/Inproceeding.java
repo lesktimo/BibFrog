@@ -9,7 +9,8 @@ public class Inproceeding extends Reference {
     private int month;
     private String bookTitle;
     private String note;
-    private String Address;
+    private String address;
+    private String publisher;
 
     public String getEditor() {
         return editor;
@@ -68,12 +69,18 @@ public class Inproceeding extends Reference {
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
     public void setAddress(String Address) {
-        this.Address = Address;
+        this.address = Address;
     }
 
-    
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }  
 }
