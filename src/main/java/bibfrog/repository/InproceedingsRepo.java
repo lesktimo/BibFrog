@@ -5,6 +5,6 @@ import bibfrog.domain.Inproceeding;
 
 
 
-//public interface InproceedingsRepo extends JpaRepository<Inproceeding, Long>{
-//    
-//}
+public interface InproceedingsRepo extends JpaRepository<Inproceeding, Long>{
+    
+}

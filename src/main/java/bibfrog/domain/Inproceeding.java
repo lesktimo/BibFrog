@@ -1,5 +1,8 @@
 package bibfrog.domain;
 
+
+
+
 public class Inproceeding extends Reference {
 
     private String editor;
