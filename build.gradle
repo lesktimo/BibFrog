@@ -29,11 +29,13 @@ jar {
 }
 repositories {
     mavenCentral()
+    maven { url "https://repository.jboss.org/nexus/content/repositories/releases" }
 }
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
+    
     // tag::jetty[]
     compile("org.springframework.boot:spring-boot-starter-web") {
         exclude module: "spring-boot-starter-tomcat"
@@ -42,6 +44,10 @@ dependencies {
     // end::jetty[]
     // tag::actuator[]
     compile("org.springframework.boot:spring-boot-starter-actuator")
+    
+    compile("com.h2database:h2")
+    
+    compile ('org.springframework.data:spring-data-jpa:1.11.1.RELEASE')
     // end::actuator[]
     testCompile("junit:junit")
 }
