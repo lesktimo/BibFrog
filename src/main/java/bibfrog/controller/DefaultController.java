@@ -11,4 +11,5 @@ public class DefaultController {
     public String defaultMapping() {
         return "redirect:/inpro/add";
     }
+    
 }
