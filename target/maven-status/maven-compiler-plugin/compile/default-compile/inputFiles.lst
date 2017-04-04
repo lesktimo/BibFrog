@@ -1,5 +1,8 @@
-/home/tokito/NetBeansProjects/bibfrog/src/main/java/bibfrog/App.java
-/home/tokito/NetBeansProjects/bibfrog/src/main/java/bibfrog/domain/Reference.java
-/home/tokito/NetBeansProjects/bibfrog/src/main/java/bibfrog/controller/InproceedingsController.java
-/home/tokito/NetBeansProjects/bibfrog/src/main/java/bibfrog/domain/Inproceeding.java
-/home/tokito/NetBeansProjects/bibfrog/src/main/java/bibfrog/repositories/InproceedingsRepo.java
+/home/baruch/projects/nimetonsammakko/src/main/java/bibfrog/controller/DefaultController.java
+/home/baruch/projects/nimetonsammakko/src/main/java/bibfrog/controller/InproceedingsController.java
+/home/baruch/projects/nimetonsammakko/src/main/java/bibfrog/domain/Inproceeding.java
+/home/baruch/projects/nimetonsammakko/src/main/java/bibfrog/domain/Book.java
+/home/baruch/projects/nimetonsammakko/src/main/java/bibfrog/domain/Reference.java
+/home/baruch/projects/nimetonsammakko/src/main/java/bibfrog/repositories/InproceedingsRepo.java
+/home/baruch/projects/nimetonsammakko/src/main/java/bibfrog/Main.java
+/home/baruch/projects/nimetonsammakko/src/main/java/bibfrog/domain/Article.java
