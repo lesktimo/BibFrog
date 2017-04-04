@@ -1,0 +1,5 @@
+bibfrog/controller/InproceedingsController.class
+bibfrog/App.class
+bibfrog/domain/Reference.class
+bibfrog/domain/Inproceeding.class
+bibfrog/repositories/InproceedingsRepo.class

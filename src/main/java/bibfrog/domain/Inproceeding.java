@@ -1,9 +1,13 @@
 package bibfrog.domain;
 
+import javax.persistence.Entity;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
 
 
-public class Inproceeding extends Reference {
+@Entity
+public class Inproceeding extends AbstractPersistable<Long> {
+    
 
     private String editor;
     private int startPage;
