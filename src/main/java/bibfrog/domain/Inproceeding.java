@@ -1,13 +1,9 @@
 package bibfrog.domain;
 
 import javax.persistence.Entity;
-import org.springframework.data.jpa.domain.AbstractPersistable;
-
-
 
 @Entity
-public class Inproceeding extends AbstractPersistable<Long> {
-    
+public class Inproceeding extends Reference {
 
     private String editor;
     private int startPage;
@@ -89,5 +85,11 @@ public class Inproceeding extends AbstractPersistable<Long> {
 
     public void setPublisher(String publisher) {
         this.publisher = publisher;
-    }  
+    }
+
+    @Override
+    public String toString() {
+        return "Inproceeding{" + "editor=" + editor + ", startPage=" + startPage + ", endPage=" + endPage + ", organization=" + organization + ", month=" + month + ", bookTitle=" + bookTitle + ", note=" + note + ", address=" + address + ", publisher=" + publisher + '}';
+    }
+    
 }

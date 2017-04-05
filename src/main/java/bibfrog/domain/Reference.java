@@ -1,6 +1,8 @@
 package bibfrog.domain;
 
-public abstract class Reference {
+import org.springframework.data.jpa.domain.AbstractPersistable;
+
+public abstract class Reference extends AbstractPersistable<Long>{
 
     private String[] authors;
     private String title;
