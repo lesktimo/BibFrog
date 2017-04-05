@@ -1,6 +1,6 @@
 .register-photo {
   background:#f1f7fc;
-  padding:80px 0;
+  padding:2% 0;
 }
 
 .register-photo .image-holder {
@@ -13,16 +13,16 @@
 .register-photo .form-container {
   display:table;
   max-width:900px;
-  width:90%;
+  width:95%;
   margin:0 auto;
   box-shadow:1px 1px 5px rgba(0,0,0,0.1);
 }
 
 .register-photo form {
   display:table-cell;
-  width:400px;
+  width:300px;
   background-color:#ffffff;
-  padding:40px 60px;
+  padding:0px 60px;
   color:#505e6c;
 }
 
@@ -47,7 +47,8 @@
   outline:none;
   color:inherit;
   text-indent:6px;
-  height:40px;
+  height:30px;
+  width: 270px;
 }
 
 .register-photo form .checkbox {
@@ -81,5 +82,10 @@
   color:#6f7a85;
   opacity:0.9;
   text-decoration:none;
+}
+
+.lbl {
+    font-size: 10px;
+    text-decoration: #122b40;
 }
 

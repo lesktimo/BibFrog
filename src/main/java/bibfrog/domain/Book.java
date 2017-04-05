@@ -6,6 +6,6 @@
 package bibfrog.domain;
 
 
-public class Book extends Reference{
+public class Book implements Reference{
     
 }
