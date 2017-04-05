@@ -1,7 +1,5 @@
-# nimetonsammakko
-Ohtu miniprojekti
+# BibFrog [![Build Status](https://travis-ci.org/lesktimo/nimetonsammakko.svg?branch=master)](https://travis-ci.org$
 
-https://tree.taiga.io/project/w4ldo-nimetonsammakko/backlog
+* BibTex reference manager
+* [Taiga Backlog][(https://tree.taiga.io/project/w4ldo-nimetonsammakko/backlog)
 
-[![Build 
-Status](https://travis-ci.org/lesktimo/nimetonsammakko.svg?branch=master)](https://travis-ci.org/lesktimo/nimetonsammakko)
