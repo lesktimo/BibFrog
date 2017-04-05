@@ -1,8 +1,0 @@
-bibfrog/controller/DefaultController.class
-bibfrog/domain/Article.class
-bibfrog/domain/Inproceeding.class
-bibfrog/domain/Book.class
-bibfrog/controller/InproceedingsController.class
-bibfrog/repositories/InproceedingsRepo.class
-bibfrog/Main.class
-bibfrog/domain/Reference.class
