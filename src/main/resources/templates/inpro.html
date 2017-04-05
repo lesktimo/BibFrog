@@ -22,7 +22,7 @@
                         <a th:if="${#fields.hasErrors('title')}" th:errors="*{title}">title errors</a>
                     </div>
                     <div class="form-group">
-                        <label class="lbl">Book Title:<input class="form-control" type="text" th:field="*{bookTitle}" name="bookTitle" placeholder=" Advanced Learning Technologies, ICALT" /></label>
+                        <label class="lbl">Book Title:<input class="form-control" type="text" th:field="*{bookTitle}" name="bookTitle" placeholder="Advanced Learning Technologies, ICALT" /></label>
                         <a th:if="${#fields.hasErrors('bookTitle')}" th:errors="*{bookTitle}">booktitle errors</a>
                     </div>
                     <div class="form-group">
@@ -38,7 +38,7 @@
                         <a th:if="${#fields.hasErrors('publisher')}" th:errors="*{publisher}">publisher errors</a>
                     </div>
                     <div class="form-group">
-                        <label class="lbl">Address:<input class="form-control" type="text" th:field="*{address}" name="address" placeholder="Beijing, China (optional)" /></label>
+                        <label class="lbl">Address:<input class="form-control" type="text" th:field="*{address}" name="address" placeholder="Piscataway, NJ 08854-4141 USA (optional)" /></label>
                         <a th:if="${#fields.hasErrors('address')}" th:errors="*{address}">address errors</a>
                         <div class="form-group">
                             <button class="btn btn-primary btn-block" type="submit">Add</button>

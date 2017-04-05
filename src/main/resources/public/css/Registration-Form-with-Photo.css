@@ -4,15 +4,15 @@
 }
 
 .register-photo .image-holder {
-  display:table-cell;
-  width:auto;
+  display: table-cell;
+  width: 100%;
   background:url(/img/meeting.jpg);
-  background-size:cover;
+  background-size: cover;
 }
 
 .register-photo .form-container {
-  display:table;
-  max-width:900px;
+  display: table;
+  max-width:1200px;
   width:95%;
   margin:0 auto;
   box-shadow:1px 1px 5px rgba(0,0,0,0.1);
@@ -22,7 +22,7 @@
   display:table-cell;
   width:300px;
   background-color:#ffffff;
-  padding:0px 60px;
+  padding:0px 40px;
   color:#505e6c;
 }
 
@@ -48,7 +48,7 @@
   color:inherit;
   text-indent:6px;
   height:30px;
-  width: 270px;
+  width: 535px;
 }
 
 .register-photo form .checkbox {
