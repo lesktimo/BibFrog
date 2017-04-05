@@ -48,7 +48,8 @@
   color:inherit;
   text-indent:6px;
   height:30px;
-  width: 535px;
+  width: 390px;
+  font-size: 10px;
 }
 
 .register-photo form .checkbox {
@@ -85,7 +86,7 @@
 }
 
 .lbl {
-    font-size: 10px;
+    font-size: 9px;
     text-decoration: #122b40;
 }
 
