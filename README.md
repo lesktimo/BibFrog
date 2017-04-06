@@ -2,4 +2,5 @@
 
 * BibTex reference manager
 * [Taiga Backlog](https://tree.taiga.io/project/w4ldo-nimetonsammakko/backlog)
+* [BibFrog](http://bibfrog.herokuapp.com/)
 
