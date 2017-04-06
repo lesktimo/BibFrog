@@ -10,9 +10,11 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
     //required fields
     private String[] authors;
     @NotNull
-    private String title, bookTitle;
+    private String title;
     @NotNull
-    private int year;
+    private String bookTitle;
+    @NotNull
+    private int publishYear;
     //optional fields
     private String editor, address, organization, publisher, note;
     private int volume, startPage, endPage, publishMonth;
@@ -115,11 +117,11 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
     }
     
     public int getYear() {
-        return year;
+        return publishYear;
     }
     
     public void setYear(int year) {
-        this.year = year;
+        this.publishYear = year;
     }
     
     public int getVolume() {
@@ -152,7 +154,7 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
         for (String author : authors) {
             printBuilder += author + ", ";
         }
-        return "Inproceeding{" + "authors=" + printBuilder.substring(0, printBuilder.length() - 2).concat("]") + ", title=" + title + ", bookTitle=" + bookTitle + ", year=" + year + ", editor=" + editor + ", address=" + address + ", organization=" + organization + ", publisher=" + publisher + ", note=" + note + ", volume=" + volume + ", startPage=" + startPage + ", endPage=" + endPage + ", publishMonth=" + publishMonth + '}';
+        return "Inproceeding{" + "authors=" + printBuilder.substring(0, printBuilder.length() - 2).concat("]") + ", title=" + title + ", bookTitle=" + bookTitle + ", year=" + publishYear + ", editor=" + editor + ", address=" + address + ", organization=" + organization + ", publisher=" + publisher + ", note=" + note + ", volume=" + volume + ", startPage=" + startPage + ", endPage=" + endPage + ", publishMonth=" + publishMonth + '}';
     }
     
 }
