@@ -2,6 +2,7 @@ package bibfrog.controller;
 
 import bibfrog.domain.Inproceeding;
 import bibfrog.repositories.InproceedingsRepo;
+import bibfrog.service.ExportService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,9 @@ public class InproceedingsController {
 
     @Autowired
     private InproceedingsRepo inproRepo;
+    
+    @Autowired
+    private ExportService exportService;
 
     @RequestMapping(value = "/inpro/add", method = RequestMethod.GET)
     public String addInproceeding(Model model) {
