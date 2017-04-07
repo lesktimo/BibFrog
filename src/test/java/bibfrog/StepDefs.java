@@ -4,6 +4,7 @@ import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import java.io.File;
 import javax.annotation.PostConstruct;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -21,7 +22,8 @@ public class StepDefs {
 
     @PostConstruct
     public void initDriver() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver");
+        File driverFile = new File("chromedriver");
+        System.setProperty("webdriver.chrome.driver", driverFile.getAbsolutePath());
 
     }
 
