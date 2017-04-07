@@ -1,8 +1,6 @@
 language: java
 jdk:
- - oraclejdk8         
-addons:
-  firefox: "45.8.0"
+ - oraclejdk8
 deploy:
   provider: heroku
   api_key:
