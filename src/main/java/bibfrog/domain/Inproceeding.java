@@ -15,6 +15,12 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
     private String bookTitle;
     @NotNull
     private int publishYear;
+    @NotNull
+    private String referenceKey;
+
+    
+    
+    
     //optional fields
     private String editor, address, organization, publisher, note;
     private int volume, startPage, endPage, publishMonth;
@@ -148,13 +154,33 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
         this.givenAuthors = givenAuthors;
     }
     
-    @Override
-    public String toString() {
-        String printBuilder = "[";
+    public int getPublishYear() {
+        return publishYear;
+    }
+
+    public void setPublishYear(int publishYear) {
+        this.publishYear = publishYear;
+    }
+
+    public String getReferenceKey() {
+        return referenceKey;
+    }
+
+    public void setReferenceKey(String referenceKey) {
+        this.referenceKey = referenceKey;
+    }
+    
+    public String authorString(){
+        String printBuilder = "";
         for (String author : authors) {
             printBuilder += author + ", ";
         }
-        return "Inproceeding{" + "authors=" + printBuilder.substring(0, printBuilder.length() - 2).concat("]") + ", title=" + title + ", bookTitle=" + bookTitle + ", year=" + publishYear + ", editor=" + editor + ", address=" + address + ", organization=" + organization + ", publisher=" + publisher + ", note=" + note + ", volume=" + volume + ", startPage=" + startPage + ", endPage=" + endPage + ", publishMonth=" + publishMonth + '}';
+        return  printBuilder.substring(0, printBuilder.length() - 2);
+    }
+    
+    @Override
+    public String toString() {
+        return "Inproceeding{" + "authors= [" + this.authorString() + "] , title=" + title + ", bookTitle=" + bookTitle + ", year=" + publishYear + ", editor=" + editor + ", address=" + address + ", organization=" + organization + ", publisher=" + publisher + ", note=" + note + ", volume=" + volume + ", startPage=" + startPage + ", endPage=" + endPage + ", publishMonth=" + publishMonth + '}';
     }
     
 }
