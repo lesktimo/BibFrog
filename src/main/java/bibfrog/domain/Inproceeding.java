@@ -15,95 +15,90 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
     private String bookTitle;
     @NotNull
     private int publishYear;
-    @NotNull
     private String referenceKey;
-
-    
-    
-    
     //optional fields
     private String editor, address, organization, publisher, note;
     private int volume, startPage, endPage, publishMonth;
     //helper building the array
     @NotNull
     private String givenAuthors;
-    
+
     public String getEditor() {
         return editor;
     }
-    
+
     public void setEditor(String editor) {
         this.editor = editor;
     }
-    
+
     public int getStartPage() {
         return startPage;
     }
-    
+
     public void setStartPage(int startPage) {
         this.startPage = startPage;
     }
-    
+
     public int getEndPage() {
         return endPage;
     }
-    
+
     public void setEndPage(int endPage) {
         this.endPage = endPage;
     }
-    
+
     public String getOrganization() {
         return organization;
     }
-    
+
     public void setOrganization(String organization) {
         this.organization = organization;
     }
-    
+
     public int getMonth() {
         return publishMonth;
     }
-    
+
     public void setMonth(int month) {
         this.publishMonth = month;
     }
-    
+
     public String getBookTitle() {
         return bookTitle;
     }
-    
+
     public void setBookTitle(String bookTitle) {
         this.bookTitle = bookTitle;
     }
-    
+
     public String getNote() {
         return note;
     }
-    
+
     public void setNote(String note) {
         this.note = note;
     }
-    
+
     public String getAddress() {
         return address;
     }
-    
+
     public void setAddress(String Address) {
         this.address = Address;
     }
-    
+
     public String getPublisher() {
         return publisher;
     }
-    
+
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
-    
+
     public String[] getAuthors() {
         return authors;
     }
-    
+
     public void setAuthors() {
         if (this.givenAuthors.contains(",")) {
             this.authors = this.givenAuthors.trim().split(",");
@@ -113,47 +108,47 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
             this.authors = helper;
         }
     }
-    
+
     public String getTitle() {
         return title;
     }
-    
+
     public void setTitle(String title) {
         this.title = title;
     }
-    
+
     public int getYear() {
         return publishYear;
     }
-    
+
     public void setYear(int year) {
         this.publishYear = year;
     }
-    
+
     public int getVolume() {
         return volume;
     }
-    
+
     public void setVolume(int volume) {
         this.volume = volume;
     }
-    
+
     public int getPublishMonth() {
         return publishMonth;
     }
-    
+
     public void setPublishMonth(int publishMonth) {
         this.publishMonth = publishMonth;
     }
-    
+
     public String getGivenAuthors() {
         return givenAuthors;
     }
-    
+
     public void setGivenAuthors(String givenAuthors) {
         this.givenAuthors = givenAuthors;
     }
-    
+
     public int getPublishYear() {
         return publishYear;
     }
@@ -169,18 +164,18 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
     public void setReferenceKey(String referenceKey) {
         this.referenceKey = referenceKey;
     }
-    
-    public String authorString(){
+
+    public String authorString() {
         String printBuilder = "";
         for (String author : authors) {
             printBuilder += author + ", ";
         }
-        return  printBuilder.substring(0, printBuilder.length() - 2);
+        return printBuilder.substring(0, printBuilder.length() - 2);
     }
-    
+
     @Override
     public String toString() {
         return "Inproceeding{" + "authors= [" + this.authorString() + "] , title=" + title + ", bookTitle=" + bookTitle + ", year=" + publishYear + ", editor=" + editor + ", address=" + address + ", organization=" + organization + ", publisher=" + publisher + ", note=" + note + ", volume=" + volume + ", startPage=" + startPage + ", endPage=" + endPage + ", publishMonth=" + publishMonth + '}';
     }
-    
+
 }
