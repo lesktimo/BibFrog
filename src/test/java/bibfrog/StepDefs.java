@@ -4,16 +4,25 @@ import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import java.io.File;
+import javax.annotation.PostConstruct;
 import static org.junit.Assert.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxBinary;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
 
 public class StepDefs {
 
-    WebDriver driver = new ChromeDriver();
     String baseUrl = "http://bibfrog.herokuapp.com";
+
+    File pathBinary = new File("firefox/firefox");
+    FirefoxBinary firefoxBinary = new FirefoxBinary(pathBinary);
+    FirefoxProfile firefoxProfile = new FirefoxProfile();
+    WebDriver driver = new FirefoxDriver(firefoxBinary, firefoxProfile);
 
     @Given("^add inproceeding is selected$")
     public void login_selected() throws Throwable {
