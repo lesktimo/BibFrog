@@ -12,5 +12,5 @@ tehdään user storyjä
 
 sprint blacklog:
 1. As a user I want to add inproceeding to the system, so that so that it's easy
-2. As a user I want to be able to list references so I can read the easily
+2. As a user I want to be able to list references so I can read the easily 
 
