@@ -12,7 +12,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 public class StepDefs {
 
-    String baseUrl = "http://localhost:8080";
+    String baseUrl = "http://127.0.0.1:8080";
 
     WebDriver driver = new HtmlUnitDriver();
 
