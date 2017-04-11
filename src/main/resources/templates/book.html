@@ -20,8 +20,8 @@
                             <a th:if="${#fields.hasErrors('author')}" th:errors="*{author}">author errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Year:<input class="form-control" type="number" id="year" name="year" placeholder="2015" /></label>
-                            <!--<a th:if="${#fields.hasErrors('year')}" th:errors="*{year}">year errors</a>-->
+                            <label class="lbl">Year:<input class="form-control" type="number" th:field="*{publishYear}" name="publishYear" placeholder="2013" /></label>
+                            <a th:if="${#fields.hasErrors('publishYear')}" th:errors="*{publishYear}">year errors</a>
                         </div>
                         <div class="form-group">
                             <label class="lbl">Publisher:<input class="form-control" type="text" th:field="*{publisher}" name="publisher" placeholder="IEEE (optional)" /></label>

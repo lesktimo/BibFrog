@@ -12,7 +12,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 public class StepDefs {
 
-    String baseUrl = "http://127.0.0.1:8080";
+    String baseUrl = "http://localhost:8080";
 
     WebDriver driver = new HtmlUnitDriver();
 
@@ -29,7 +29,7 @@ public class StepDefs {
         element.sendKeys(inproceeding);
         element = driver.findElement(By.name("bookTitle"));
         element.sendKeys(book);
-        element = driver.findElement(By.name("year"));
+        element = driver.findElement(By.name("publishYear"));
         element.sendKeys(year);
         element = driver.findElement(By.name("givenAuthors"));
         element.sendKeys(authors);
@@ -43,7 +43,7 @@ public class StepDefs {
         element.sendKeys(inproceeding);
         element = driver.findElement(By.name("bookTitle"));
         element.sendKeys(book);
-        element = driver.findElement(By.name("year"));
+        element = driver.findElement(By.name("publishYear"));
         element.sendKeys(year);
         element = driver.findElement(By.name("givenAuthors"));
         element.sendKeys(authors);
