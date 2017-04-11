@@ -2,7 +2,7 @@ language: java
 jdk:
  - oraclejdk8
 before_script:
- - chmod +x "~/.m2/repository/bibfrog/bibfrog/1.0-SNAPSHOT/bibfrog-1.0-SNAPSHOT.jar"
+ - sudo chmod +x "~/.m2/repository/bibfrog/bibfrog/1.0-SNAPSHOT/bibfrog-1.0-SNAPSHOT.jar"
  - java -jar "~/.m2/repository/bibfrog/bibfrog/1.0-SNAPSHOT/bibfrog-1.0-SNAPSHOT.jar" &
  - sleep 10s
 deploy:
