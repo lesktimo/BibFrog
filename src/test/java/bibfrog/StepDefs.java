@@ -12,14 +12,8 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 public class StepDefs {
 
-<<<<<<< HEAD
     String baseUrl = "http://localhost:8080";
-=======
 
-    
-    String baseUrl = "http://bibfrog.herokuapp.com";
-
->>>>>>> 60127a807f067fac38693ddf4b5e43ec75497ff0
     WebDriver driver = new HtmlUnitDriver();
 
     @Given("^add inproceeding is selected$")
