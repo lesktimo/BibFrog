@@ -1,5 +1,6 @@
 package bibfrog.domain;
 
+import java.util.HashMap;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -19,9 +20,29 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
     //optional fields
     private String editor, address, organization, publisher, note;
     private int volume, startPage, endPage, publishMonth;
+    
+    
+    
     //helper building the array
     @NotNull
     private String givenAuthors;
+    
+    
+    public HashMap<String, String> optionalFields(){
+        
+        HashMap<String, String> optionalFields = new HashMap();
+        optionalFields.put("editor", editor);
+        optionalFields.put("address", address);
+        optionalFields.put("organization", organization);
+        optionalFields.put("publisher", publisher);
+        optionalFields.put("note", note);
+        optionalFields.put("volume", volume + "");
+        optionalFields.put("startpage", startPage + "");
+        optionalFields.put("endpage", endPage + "");
+        optionalFields.put("publishmonth", publishMonth + "");
+        
+        return optionalFields;
+    }
 
     public String getEditor() {
         return editor;
