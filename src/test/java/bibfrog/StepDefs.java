@@ -5,16 +5,33 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.springframework.boot.context.embedded.LocalServerPort;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class StepDefs {
+
 
     
     String baseUrl = "http://bibfrog.herokuapp.com";
+
     WebDriver driver = new HtmlUnitDriver();
+
+    @LocalServerPort
+    private Integer port;
+
+    @Before
+    public void setUp() {
+        baseUrl = "http://localhost:" + port;
+    }
 
     @Given("^add inproceeding is selected$")
     public void login_selected() throws Throwable {
