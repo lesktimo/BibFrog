@@ -12,6 +12,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 public class StepDefs {
 
+    
     String baseUrl = "http://bibfrog.herokuapp.com";
     WebDriver driver = new HtmlUnitDriver();
 
