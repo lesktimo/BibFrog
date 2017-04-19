@@ -4,6 +4,7 @@ package bibfrog.service;
 import bibfrog.domain.Article;
 import bibfrog.domain.Book;
 import bibfrog.domain.Inproceeding;
+import bibfrog.domain.Reference;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -46,8 +47,8 @@ public class ExportService {
         return bibtex;
     }
     
-    public String addOptionalFieldsToBibtex ( Inproceeding inpro) {
-        HashMap<String, String> optionalFields = inpro.optionalFields();
+    public String addOptionalFieldsToBibtex ( Reference ref) {
+        HashMap<String, String> optionalFields = ref.optionalFields();
         String inproTex = "";
         
         for (Entry entry : optionalFields.entrySet()) {
@@ -61,7 +62,17 @@ public class ExportService {
     
     
     public String createBibtexFromBookFile (Book book){
-        return "";
+        
+        String bibtex = "@inproceedings{" + book.getReferenceKey() + ","
+                + "\n   author = {" + book.getAuthor() + "},"
+                + "\n   title = {" + book.getTitle() + "},"
+                + "\n   booktitle = {" + book.getPublisher() + "},"
+                + "\n   year = {" + book.getPublishYear() + "}";
+        
+        bibtex += addOptionalFieldsToBibtex(book);
+        
+        bibtex += "\n}";        
+        return bibtex;
     }
     
     public String createBibtexFromArticleFile(Article article){

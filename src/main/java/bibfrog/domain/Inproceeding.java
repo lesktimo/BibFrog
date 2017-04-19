@@ -25,22 +25,6 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
     @NotNull
     private String givenAuthors;
 
-    public HashMap<String, String> optionalFields() {
-
-        HashMap<String, String> optionalFields = new HashMap();
-        optionalFields.put("editor", editor);
-        optionalFields.put("address", address);
-        optionalFields.put("organization", organization);
-        optionalFields.put("publisher", publisher);
-        optionalFields.put("note", note);
-        optionalFields.put("volume", volume + "");
-        optionalFields.put("startpage", startPage + "");
-        optionalFields.put("endpage", endPage + "");
-        optionalFields.put("publishmonth", publishMonth + "");
-
-        return optionalFields;
-    }
-
     public String getEditor() {
         return editor;
     }
@@ -194,6 +178,22 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
     @Override
     public String toString() {
         return "Inproceeding{" + "authors= [" + this.authorString() + "] , title=" + title + ", bookTitle=" + bookTitle + ", year=" + publishYear + ", editor=" + editor + ", address=" + address + ", organization=" + organization + ", publisher=" + publisher + ", note=" + note + ", volume=" + volume + ", startPage=" + startPage + ", endPage=" + endPage + ", publishMonth=" + publishMonth + '}';
+    }
+
+    @Override
+    public HashMap<String, String> optionalFields() {
+        HashMap<String, String> optionalFields = new HashMap();
+        optionalFields.put("editor", editor);
+        optionalFields.put("address", address);
+        optionalFields.put("organization", organization);
+        optionalFields.put("publisher", publisher);
+        optionalFields.put("note", note);
+        optionalFields.put("volume", volume + "");
+        optionalFields.put("startpage", startPage + "");
+        optionalFields.put("endpage", endPage + "");
+        optionalFields.put("publishmonth", publishMonth + "");
+
+        return optionalFields;
     }
 
 }
