@@ -16,11 +16,6 @@ public class InproceedingTest {
     }
     
     @Test
-    public void toStringworks() {
-        
-    }
-    
-    @Test
     public void setAuthorsWorksWithMultipleAuthors() {
         inpro.setGivenAuthors("Kermit The Frog, Saku Sammakko, Pepe The Frog");
         inpro.setAuthors();
