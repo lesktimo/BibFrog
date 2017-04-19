@@ -18,19 +18,23 @@ public class StepDefs {
 
     @Given("^add inproceeding is selected$")
     public void add_inproceeding_selected() throws Throwable {
-        driver.get(baseUrl + "/inpro/add");
-//        WebElement element = driver.findElement(By.name("Add improceeding"));      
-//        element.click();          
+        driver.get(baseUrl);
+        WebElement element = driver.findElement(By.name("createInproceeding"));
+        element.click();
     }
 
     @Given("^add book is selected$")
     public void add_book_selected() throws Throwable {
-        driver.get(baseUrl + "/book/add");
+        driver.get(baseUrl);
+        WebElement element = driver.findElement(By.name("createBook"));
+        element.click();
     }
 
     @Given("^add article is selected$")
     public void add_article_selected() throws Throwable {
-        driver.get(baseUrl + "/article/add");
+        driver.get(baseUrl);
+        WebElement element = driver.findElement(By.name("createArticle"));
+        element.click();
     }
 
     @When("^correct input for title \"([^\"]*)\", correct booktitle \"([^\"]*)\", correct year \"([^\"]*)\" and correct Authors \"([^\"]*)\" are given$")
@@ -60,6 +64,7 @@ public class StepDefs {
         element = driver.findElement(By.className("btn"));
         element.submit();
     }
+
     @When("^correct input for publisher \"([^\"]*)\", correct title \"([^\"]*)\", correct year \"([^\"]*)\" and correct Authors \"([^\"]*)\" are given$")
     public void correct_inputs_for_book_are_given(String inproceeding, String book, String year, String authors) throws Throwable {
         WebElement element = driver.findElement(By.name("publisher"));
@@ -87,6 +92,7 @@ public class StepDefs {
         element = driver.findElement(By.className("btn"));
         element.submit();
     }
+
     @When("^correct input for title \"([^\"]*)\", correct journal \"([^\"]*)\", correct year \"([^\"]*)\" and correct Authors \"([^\"]*)\" are given$")
     public void correct_inputs_for_article_are_given(String inproceeding, String book, String year, String authors) throws Throwable {
         WebElement element = driver.findElement(By.name("title"));
@@ -124,6 +130,7 @@ public class StepDefs {
     public void inproceeding_is_not_added() throws Throwable {
         assertTrue(driver.getPageSource().contains("an inproceeding."));
     }
+
     @Then("^a new book is added to the site and a list of books is shown$")
     public void book_is_added() throws Throwable {
         assertTrue(driver.getPageSource().contains("books"));
@@ -133,6 +140,7 @@ public class StepDefs {
     public void book_is_not_added() throws Throwable {
         assertTrue(driver.getPageSource().contains("a book."));
     }
+
     @Then("^a new article is added to the site and a list of articles is shown$")
     public void article_is_added() throws Throwable {
         assertTrue(driver.getPageSource().contains("articles"));
