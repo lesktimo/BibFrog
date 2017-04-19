@@ -1,9 +1,0 @@
-language: java
-jdk:
- - oraclejdk8
-before_script: chmod +x target/*.jar && java -jar /target/*.jar
-deploy:
-  provider: heroku
-  api_key:
-    secure: da05675c-e520-446d-8a18-97d28928a5c8
-  app: bibfrog

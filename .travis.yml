@@ -1,7 +1,10 @@
 language: java
 jdk:
  - oraclejdk8
-before_script: chmod +x target/*.jar || java -jar /target/*.jar
+before_script:
+ - sudo chmod +x "*.jar"
+ - java -jar "*.jar" &
+ - sleep 10s
 deploy:
   provider: heroku
   api_key:
