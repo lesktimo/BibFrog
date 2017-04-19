@@ -3,12 +3,17 @@ package bibfrog.domain;
 import java.util.HashMap;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import javax.validation.constraints.NotNull;
 
 @Entity
 public class Article extends AbstractPersistable<Long> implements Reference {
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> bb12aa41d5fc98d80819b877bd5fefcdcb041e36
 //    @article{article,
 //  author  = {Peter Adams}, 
 //  title   = {The title of the work},

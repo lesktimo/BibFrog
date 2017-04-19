@@ -112,9 +112,12 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
     public void setAuthors() {
         if (this.givenAuthors.contains(",")) {
             this.authors = this.givenAuthors.trim().split(",");
+            for (int i = 0; i < authors.length; i++) {
+                authors[i] = authors[i].trim();
+            }
         } else {
             String[] helper = {""};
-            helper[0] = this.givenAuthors;
+            helper[0] = this.givenAuthors.trim();
             this.authors = helper;
         }
     }
@@ -205,7 +208,6 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
         optionalFields.put("publisher", publisher);
         optionalFields.put("series", series);
         optionalFields.put("note", note);
-        optionalFields.put("edition", edition);
         optionalFields.put("volume", volume + "");
         optionalFields.put("startpage", startPage + "");
         optionalFields.put("endpage", endPage + "");
