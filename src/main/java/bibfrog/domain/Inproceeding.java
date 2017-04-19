@@ -20,16 +20,13 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
     //optional fields
     private String editor, address, organization, publisher, note;
     private int volume, startPage, endPage, publishMonth;
-    
-    
-    
+
     //helper building the array
     @NotNull
     private String givenAuthors;
-    
-    
-    public HashMap<String, String> optionalFields(){
-        
+
+    public HashMap<String, String> optionalFields() {
+
         HashMap<String, String> optionalFields = new HashMap();
         optionalFields.put("editor", editor);
         optionalFields.put("address", address);
@@ -40,7 +37,7 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
         optionalFields.put("startpage", startPage + "");
         optionalFields.put("endpage", endPage + "");
         optionalFields.put("publishmonth", publishMonth + "");
-        
+
         return optionalFields;
     }
 
@@ -104,8 +101,8 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
         return address;
     }
 
-    public void setAddress(String Address) {
-        this.address = Address;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getPublisher() {
