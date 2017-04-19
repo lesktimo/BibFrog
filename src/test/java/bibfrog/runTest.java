@@ -6,8 +6,8 @@ import org.junit.ClassRule;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(format = {"pretty", "html:target/cucumber"},
-        features = "src/test/resources/bibfrog")
+@CucumberOptions(plugin = {"pretty"})
 public class runTest {
-    
+    @ClassRule
+    public static ServerRule server = new ServerRule(8080);
 }
