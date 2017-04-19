@@ -1,5 +1,5 @@
 
-package bibfrog;
+package bibfrog_JUnit;
 
 import bibfrog.domain.Inproceeding;
 import org.junit.Before;

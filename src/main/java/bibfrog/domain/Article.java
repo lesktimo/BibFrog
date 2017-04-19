@@ -9,11 +9,6 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class Article extends AbstractPersistable<Long> implements Reference {
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> bb12aa41d5fc98d80819b877bd5fefcdcb041e36
 //    @article{article,
 //  author  = {Peter Adams}, 
 //  title   = {The title of the work},
