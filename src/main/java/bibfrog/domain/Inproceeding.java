@@ -20,29 +20,10 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
     //optional fields
     private String editor, address, organization, publisher, note;
     private int volume, startPage, endPage, publishMonth;
-    
-    
-    
+
     //helper building the array
     @NotNull
     private String givenAuthors;
-    
-    
-    public HashMap<String, String> optionalFields(){
-        
-        HashMap<String, String> optionalFields = new HashMap();
-        optionalFields.put("editor", editor);
-        optionalFields.put("address", address);
-        optionalFields.put("organization", organization);
-        optionalFields.put("publisher", publisher);
-        optionalFields.put("note", note);
-        optionalFields.put("volume", volume + "");
-        optionalFields.put("startpage", startPage + "");
-        optionalFields.put("endpage", endPage + "");
-        optionalFields.put("publishmonth", publishMonth + "");
-        
-        return optionalFields;
-    }
 
     public String getEditor() {
         return editor;
@@ -104,8 +85,8 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
         return address;
     }
 
-    public void setAddress(String Address) {
-        this.address = Address;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getPublisher() {
@@ -197,6 +178,22 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
     @Override
     public String toString() {
         return "Inproceeding{" + "authors= [" + this.authorString() + "] , title=" + title + ", bookTitle=" + bookTitle + ", year=" + publishYear + ", editor=" + editor + ", address=" + address + ", organization=" + organization + ", publisher=" + publisher + ", note=" + note + ", volume=" + volume + ", startPage=" + startPage + ", endPage=" + endPage + ", publishMonth=" + publishMonth + '}';
+    }
+
+    @Override
+    public HashMap<String, String> optionalFields() {
+        HashMap<String, String> optionalFields = new HashMap();
+        optionalFields.put("editor", editor);
+        optionalFields.put("address", address);
+        optionalFields.put("organization", organization);
+        optionalFields.put("publisher", publisher);
+        optionalFields.put("note", note);
+        optionalFields.put("volume", volume + "");
+        optionalFields.put("startpage", startPage + "");
+        optionalFields.put("endpage", endPage + "");
+        optionalFields.put("publishmonth", publishMonth + "");
+
+        return optionalFields;
     }
 
 }
