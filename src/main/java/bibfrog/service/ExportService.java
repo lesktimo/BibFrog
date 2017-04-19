@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class ExportService {
  
     
-    public void createInproceedingFile(String bibtex) throws IOException{
+    public void createFile(String bibtex) throws IOException{
         
         
         File file = new File("bibtex.bib");
@@ -60,12 +60,12 @@ public class ExportService {
     
     
     
-    public void createBookFile (Book book){
-        
+    public String createBibtexFromBookFile (Book book){
+        return "";
     }
     
-    public void createArticleFile(Article article){
-        
+    public String createBibtexFromArticleFile(Article article){
+        return "";
     }
     
     
