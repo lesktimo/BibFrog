@@ -17,8 +17,6 @@ public class ExportService {
  
     
     public void createFile(String bibtex) throws IOException{
-        
-        
         File file = new File("bibtex.bib");
         file.createNewFile();
         
@@ -32,18 +30,13 @@ public class ExportService {
     
     
     public String createBibtexFromInproceeding(Inproceeding inpro) {
-        
         String bibtex = "@inproceedings{" + inpro.getReferenceKey() + ","
                 + "\n   author = {" + inpro.authorString() + "},"
                 + "\n   title = {" + inpro.getTitle() + "},"
                 + "\n   booktitle = {" + inpro.getBookTitle() + "},"
                 + "\n   year = {" + inpro.getPublishYear() + "}";
-        
         bibtex += addOptionalFieldsToBibtex(inpro);
-        
         bibtex += "\n}";
-        
-        
         return bibtex;
     }
     
