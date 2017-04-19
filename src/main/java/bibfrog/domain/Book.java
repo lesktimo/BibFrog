@@ -15,8 +15,12 @@ public class Book extends AbstractPersistable<Long> implements Reference {
     private int publishYear;
     //optional fields
     private int volume, edition, publishMonth;
-    private String series, address, note;
+    private String series, address, note, referenceKey;
 
+    public String getReferenceKey() {
+        return referenceKey;
+    }
+    
     public String getAuthor() {
         return author;
     }

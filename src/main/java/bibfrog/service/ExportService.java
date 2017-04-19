@@ -55,7 +55,17 @@ public class ExportService {
     
     
     public String createBibtexFromBookFile (Book book){
-        return "";
+        
+        String bibtex = "@Books{" + book.getReferenceKey() + ","
+                + "\n   author = {" + book.getAuthor() + "},"
+                + "\n   title = {" + book.getTitle() + "},"
+                + "\n   booktitle = {" + book.getPublisher() + "},"
+                + "\n   year = {" + book.getPublishYear() + "}";
+        
+        bibtex += addOptionalFieldsToBibtex(book);
+        
+        bibtex += "\n}";        
+        return bibtex;
     }
     
     public String createBibtexFromArticleFile(Article article){
