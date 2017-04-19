@@ -32,6 +32,22 @@
                             <a th:if="${#fields.hasErrors('edition')}" th:errors="*{edition}">edition errors</a>
                         </div>
                         <div class="form-group">
+                            <label class="lbl">Volume:<input class="form-control" type="number" th:field="*{volume}" name="volume" placeholder="7" /></label>
+                            <a th:if="${#fields.hasErrors('volume')}" th:errors="*{volume}">volume errors</a>
+                        </div>
+                        <div class="form-group">
+                            <label class="lbl">Series:<input class="form-control" type="text" th:field="*{series}" name="series" placeholder="Name of the set of Books (optional)" /></label>
+                            <a th:if="${#fields.hasErrors('series')}" th:errors="*{series}">series errors</a>
+                        </div>
+                        <div class="form-group">
+                            <label class="lbl">Month:<input class="form-control" type="number" th:field="*{publishMonth}" name="publishMonth" placeholder="7" /></label>
+                            <a th:if="${#fields.hasErrors('publishMonth')}" th:errors="*{publishMont}">month errors</a>
+                        </div>
+                        <div class="form-group">
+                            <label class="lbl">Note:<input class="form-control" type="text" th:field="*{note}" name="note" placeholder="Additional notes (optional)" /></label>
+                            <a th:if="${#fields.hasErrors('note')}" th:errors="*{note}">note errors</a>
+                        </div>
+                        <div class="form-group">
                             <label class="lbl">Address:<input class="form-control" type="text" th:field="*{address}" name="address" placeholder="Piscataway, NJ 08854-4141 USA (optional)" /></label>
                             <a th:if="${#fields.hasErrors('address')}" th:errors="*{address}">address errors</a>
                             <div class="form-group">
