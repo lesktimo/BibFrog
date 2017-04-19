@@ -63,7 +63,7 @@ public class ExportService {
     
     public String createBibtexFromBookFile (Book book){
         
-        String bibtex = "@inproceedings{" + book.getReferenceKey() + ","
+        String bibtex = "@Books{" + book.getReferenceKey() + ","
                 + "\n   author = {" + book.getAuthor() + "},"
                 + "\n   title = {" + book.getTitle() + "},"
                 + "\n   booktitle = {" + book.getPublisher() + "},"
