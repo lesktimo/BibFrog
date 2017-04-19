@@ -20,9 +20,7 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
     //optional fields
     private String editor, address, organization, publisher, note;
     private int volume, startPage, endPage, publishMonth;
-    
-    
-    
+
     //helper building the array
     @NotNull
     private String givenAuthors;
@@ -87,8 +85,8 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
         return address;
     }
 
-    public void setAddress(String Address) {
-        this.address = Address;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getPublisher() {
@@ -194,7 +192,7 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
         optionalFields.put("startpage", startPage + "");
         optionalFields.put("endpage", endPage + "");
         optionalFields.put("publishmonth", publishMonth + "");
-        
+
         return optionalFields;
     }
 
