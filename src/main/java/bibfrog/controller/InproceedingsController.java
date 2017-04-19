@@ -5,8 +5,12 @@ import bibfrog.repositories.InproceedingsRepo;
 import bibfrog.service.ExportService;
 import java.io.File;
 import java.io.IOException;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -48,12 +52,23 @@ public class InproceedingsController {
     }
     
     @RequestMapping(value ="/inpro/{id}/download", method = RequestMethod.GET)
-    public void downloadInpro(@PathVariable Long id) throws IOException {
+    public void downloadInpro(@PathVariable Long id, HttpServletRequest request,
+            HttpServletResponse response) throws IOException {
+        
+        final HttpHeaders headers = new HttpHeaders();
+        
+        ServletContext context = request.getServletContext();
+        String appPath = context.getRealPath("");
+        
+        String filePath = appPath + "/bibtex.bib";
+        
         Inproceeding inpro = inproRepo.findOne(id);
         String bibtex = exportService.createBibtexFromInproceeding(inpro);
         exportService.createFile(bibtex);
         
-        File inproFile = new File("filepath tähän");
+        File inproFile = new File(filePath);
+        
+        
         
         
         
