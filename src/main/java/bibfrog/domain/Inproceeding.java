@@ -24,7 +24,9 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
     //helper building the array
     @NotNull
     private String givenAuthors;
-
+    
+    
+        
     public String getEditor() {
         return editor;
     }
