@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" th:include="index :: base">
+    <head>
+        <title>BibFrog</title>
+    </head>
+    <body>
+        <div th:fragment="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Articles</h2>
+                        <ul>
+                            <li th:each="article : ${articleList}">
+                                <b th:text="${article}">article</b>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -44,8 +44,12 @@
                             <a th:if="${#fields.hasErrors('edition')}" th:errors="*{edition}">edition errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Month:<input class="form-control" type="text" th:field="*{publishMonth}" name="publishMonth" placeholder="1" /></label>
+                            <label class="lbl">Month:<input class="form-control" type="number" th:field="*{publishMonth}" name="publishMonth" placeholder="1" /></label>
                             <a th:if="${#fields.hasErrors('publishMonth')}" th:errors="*{publishMonth}">Month errors</a>
+                        </div>
+                        <div class="form-group">
+                            <label class="lbl">Pages:<input class="form-control" type="text" th:field="*{pages}" name="pages" placeholder="1-2" /></label>
+                            <a th:if="${#fields.hasErrors('pages')}" th:errors="*{pages}">page errors</a>
                         </div>
                         <div class="form-group">
                             <label class="lbl">Note:<input class="form-control" type="text" th:field="*{note}" name="note" placeholder="Additional notes (optional)" /></label>

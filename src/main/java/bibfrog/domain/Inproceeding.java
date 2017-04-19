@@ -18,8 +18,8 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
     private int publishYear;
     private String referenceKey;
     //optional fields
-    private String editor, address, organization, publisher, series, note;
-    private int volume, startPage, endPage, publishMonth, edition;
+    private String editor, address, pages, organization, publisher, series, note;
+    private int volume, publishMonth, edition;
 
     //helper building the array
     @NotNull
@@ -33,20 +33,12 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
         this.editor = editor;
     }
 
-    public int getStartPage() {
-        return startPage;
+    public String getPages() {
+        return pages;
     }
 
-    public void setStartPage(int startPage) {
-        this.startPage = startPage;
-    }
-
-    public int getEndPage() {
-        return endPage;
-    }
-
-    public void setEndPage(int endPage) {
-        this.endPage = endPage;
+    public void setPages(String pages) {
+        this.pages = pages;
     }
 
     public String getOrganization() {
@@ -196,7 +188,7 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
 
     @Override
     public String toString() {
-        return "Inproceeding{" + "authors= [" + this.authorString() + "] , title=" + title + ", bookTitle=" + bookTitle + ", year=" + publishYear + ", editor=" + editor + ", address=" + address + ", organization=" + organization + ", publisher=" + publisher + ", note=" + note + ", volume=" + volume + ", startPage=" + startPage + ", endPage=" + endPage + ", publishMonth=" + publishMonth + '}';
+        return "Inproceeding{" + "authors= [" + this.authorString() + "] , title=" + title + ", bookTitle=" + bookTitle + ", year=" + publishYear + ", editor=" + editor + ", address=" + address + ", organization=" + organization + ", publisher=" + publisher + ", note=" + note + ", volume=" + volume + ", pages=" + pages + ", publishMonth=" + publishMonth + '}';
     }
 
     @Override
@@ -209,8 +201,7 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
         optionalFields.put("series", series);
         optionalFields.put("note", note);
         optionalFields.put("volume", volume + "");
-        optionalFields.put("startpage", startPage + "");
-        optionalFields.put("endpage", endPage + "");
+        optionalFields.put("pages", pages + "");
         optionalFields.put("publishmonth", publishMonth + "");
 
         return optionalFields;

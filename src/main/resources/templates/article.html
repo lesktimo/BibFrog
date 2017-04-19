@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" th:include="index :: base">
+    <head>
+        <title>BibFrog</title>
+    </head>
+    <body>
+        <div th:fragment="content">
+            <div class="register-photo">
+                <div class="form-container">
+                    <div class="image-holder"></div>
+                    <form method="post" th:object="${article}">
+                        <h2 class="text-center"><strong>Create</strong> an article.</h2>
+
+                        <div class="form-group">
+                            <label class="lbl">Title:<input class="form-control" type="text" th:field="*{title}" name="title" placeholder="Operating Systems: Internal Design and Principles" /></label>
+                            <a th:if="${#fields.hasErrors('title')}" th:errors="*{title}">title errors</a>
+                        </div>
+                        <div class="form-group">
+                            <label class="lbl">Author:<input class="form-control" type="text" th:field="*{author}" name="author" placeholder="William Stallings" /></label>
+                            <a th:if="${#fields.hasErrors('author')}" th:errors="*{author}">author errors</a>
+                        </div>
+                        <div class="form-group">
+                            <label class="lbl">Year:<input class="form-control" type="number" th:field="*{publishYear}" name="publishYear" placeholder="2013" /></label>
+                            <a th:if="${#fields.hasErrors('publishYear')}" th:errors="*{publishYear}">year errors</a>
+                        </div>
+                        <div class="form-group">
+                            <label class="lbl">Journal:<input class="form-control" type="text" th:field="*{journal}" name="journal" placeholder="Journal" /></label>
+                            <a th:if="${#fields.hasErrors('journal')}" th:errors="*{journal}">journal errors</a>
+                        </div>
+                        <div class="form-group">
+                            <label class="lbl">Number:<input class="form-control" type="number" th:field="*{number}" name="number" placeholder="7" /></label>
+                            <a th:if="${#fields.hasErrors('number')}" th:errors="*{number}">number errors</a>
+                        </div>
+                        <div class="form-group">
+                            <label class="lbl">Volume:<input class="form-control" type="number" th:field="*{volume}" name="volume" placeholder="7" /></label>
+                            <a th:if="${#fields.hasErrors('volume')}" th:errors="*{volume}">volume errors</a>
+                        </div>
+                        <div class="form-group">
+                            <label class="lbl">Series:<input class="form-control" type="text" th:field="*{series}" name="series" placeholder="Name of the set of Books (optional)" /></label>
+                            <a th:if="${#fields.hasErrors('series')}" th:errors="*{series}">series errors</a>
+                        </div>
+                        <div class="form-group">
+                            <label class="lbl">Month:<input class="form-control" type="number" th:field="*{publishMonth}" name="publishMonth" placeholder="7" /></label>
+                            <a th:if="${#fields.hasErrors('publishMonth')}" th:errors="*{publishMont}">month errors</a>
+                        </div>
+                        <div class="form-group">
+                            <label class="lbl">Note:<input class="form-control" type="text" th:field="*{note}" name="note" placeholder="Additional notes (optional)" /></label>
+                            <a th:if="${#fields.hasErrors('note')}" th:errors="*{note}">note errors</a>
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-block" type="submit">Add</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

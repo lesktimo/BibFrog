@@ -1,9 +1,7 @@
 package bibfrog.domain;
 
 import java.util.HashMap;
-
 import javax.persistence.Entity;
-import javax.validation.constraints.NotNull;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import javax.validation.constraints.NotNull;
 
@@ -23,21 +21,39 @@ public class Article extends AbstractPersistable<Long> implements Reference {
 //}
     
     @NotNull
-    private String article, title, journal;
+    private String author, title, journal;
     
     @NotNull
-    private int year;
+    private int publishYear;
     
     //optional fields
-    private String note, pages, referenceKey;
-    private int volume, number, month;
+    private String note, pages, referenceKey, series;
+    private int volume, number, publishMonth;
 
-    public String getArticle() {
-        return article;
+    public String getSeries() {
+        return series;
     }
 
-    public void setArticle(String article) {
-        this.article = article;
+    public void setSeries(String series) {
+        this.series = series;
+    }
+
+    public int getPublishMonth() {
+        return publishMonth;
+    }
+
+    public void setPublishMonth(int publishMonth) {
+        this.publishMonth = publishMonth;
+    }
+
+    
+    
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String article) {
+        this.author = article;
     }
 
     public String getTitle() {
@@ -56,12 +72,12 @@ public class Article extends AbstractPersistable<Long> implements Reference {
         this.journal = journal;
     }
 
-    public int getYear() {
-        return year;
+    public int getPublishYear() {
+        return publishYear;
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public void setPublishYear(int year) {
+        this.publishYear = year;
     }
 
     public String getNote() {
@@ -103,16 +119,6 @@ public class Article extends AbstractPersistable<Long> implements Reference {
     public void setNumber(int number) {
         this.number = number;
     }
-
-    public int getMonth() {
-        return month;
-    }
-
-    public void setMonth(int month) {
-        this.month = month;
-    }
-
-    
     
     @Override
     public HashMap<String, String> optionalFields() {
@@ -120,7 +126,7 @@ public class Article extends AbstractPersistable<Long> implements Reference {
         optionalFields.put("volume", "" + volume);
         optionalFields.put("number", "" + number);
         optionalFields.put("pages", pages);
-        optionalFields.put("month", month + "");
+        optionalFields.put("month", publishMonth + "");
         optionalFields.put("note", note);
         
 

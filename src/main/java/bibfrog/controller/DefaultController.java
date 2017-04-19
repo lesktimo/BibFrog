@@ -9,7 +9,7 @@ public class DefaultController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String defaultMapping() {
-        return "redirect:/inpro/add";
+        return "home";
     }
     
 }
