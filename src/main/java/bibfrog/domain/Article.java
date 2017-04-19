@@ -7,7 +7,6 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class Article extends AbstractPersistable<Long> implements Reference {
-    
 //    @article{article,
 //  author  = {Peter Adams}, 
 //  title   = {The title of the work},
@@ -19,7 +18,6 @@ public class Article extends AbstractPersistable<Long> implements Reference {
 //  note    = {An optional note}, 
 //  volume  = 4
 //}
-    
     @NotNull
     private String author, title, journal;
     
@@ -119,7 +117,7 @@ public class Article extends AbstractPersistable<Long> implements Reference {
     public void setNumber(int number) {
         this.number = number;
     }
-    
+
     @Override
     public HashMap<String, String> optionalFields() {
         HashMap<String, String> optionalFields = new HashMap();
@@ -128,7 +126,6 @@ public class Article extends AbstractPersistable<Long> implements Reference {
         optionalFields.put("pages", pages);
         optionalFields.put("month", publishMonth + "");
         optionalFields.put("note", note);
-        
 
         return optionalFields;
     }
