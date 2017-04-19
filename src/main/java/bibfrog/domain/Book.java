@@ -1,5 +1,6 @@
 package bibfrog.domain;
 
+import java.util.HashMap;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -99,6 +100,11 @@ public class Book extends AbstractPersistable<Long> implements Reference {
     @Override
     public String toString() {
         return "Book{" + "author=" + author + ", title=" + title + ", publisher=" + publisher + ", publishYear=" + publishYear + ", volume=" + volume + ", edition=" + edition + ", publishMonth=" + publishMonth + ", series=" + series + ", address=" + address + ", note=" + note + '}';
+    }
+
+    @Override
+    public HashMap<String, String> optionalFields() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
