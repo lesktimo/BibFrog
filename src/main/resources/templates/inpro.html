@@ -36,11 +36,11 @@
                             <a th:if="${#fields.hasErrors('volume')}" th:errors="*{volume}">volume errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Series:<input class="form-control" type="text" th:field="*{series}" name="series" placeholder="Name of the set of Books" /></label>
+                            <label class="lbl">Series:<input class="form-control" type="text" th:field="*{series}" name="series" placeholder="Name of the set of Books (optional)" /></label>
                             <a th:if="${#fields.hasErrors('series')}" th:errors="*{series}">series errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Organization:<input class="form-control" type="text" th:field="*{organization}" name="organization" placeholder="Sponsors" /></label>
+                            <label class="lbl">Organization:<input class="form-control" type="text" th:field="*{organization}" name="organization" placeholder="Sponsors (optional)" /></label>
                             <a th:if="${#fields.hasErrors('edition')}" th:errors="*{edition}">edition errors</a>
                         </div>
                         <div class="form-group">
@@ -48,7 +48,7 @@
                             <a th:if="${#fields.hasErrors('publishMonth')}" th:errors="*{publishMonth}">Month errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Note:<input class="form-control" type="text" th:field="*{note}" name="note" placeholder="Additional notes" /></label>
+                            <label class="lbl">Note:<input class="form-control" type="text" th:field="*{note}" name="note" placeholder="Additional notes (optional)" /></label>
                             <a th:if="${#fields.hasErrors('volume')}" th:errors="*{volume}">volume errors</a>
                         </div>
                         <div class="form-group">
