@@ -24,7 +24,7 @@ public class InproceedingsController {
 
     @Autowired
     private InproceedingsRepo inproRepo;
-    
+
     @Autowired
     private ExportService exportService;
 
@@ -50,29 +50,24 @@ public class InproceedingsController {
         model.addAttribute("inproList", inproRepo.findAll());
         return "inpros";
     }
-    
-    @RequestMapping(value ="/inpro/{id}/download", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/inpro/{id}/download", method = RequestMethod.GET)
     public void downloadInpro(@PathVariable Long id, HttpServletRequest request,
             HttpServletResponse response) throws IOException {
-        
+
         final HttpHeaders headers = new HttpHeaders();
-        
+
         ServletContext context = request.getServletContext();
         String appPath = context.getRealPath("");
-        
+
         String filePath = appPath + "/bibtex.bib";
-        
+
         Inproceeding inpro = inproRepo.findOne(id);
         String bibtex = exportService.createBibtexFromInproceeding(inpro);
         exportService.createFile(bibtex);
-        
+
         File inproFile = new File(filePath);
-        
-        
-        
-        
-        
-        
+
     }
 
 }

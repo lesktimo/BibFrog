@@ -29,32 +29,6 @@ public class ExportService {
 
     }
 
-    
-//    public void scandicChecker(String bibtex) throws FileNotFoundException, IOException{
-//    
-//    BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(bibtex),Charset.forName("UTF-8")));
-//    int c;
-//    while((c = reader.read()) != -1) {
-//    char character = (char) c;
-//    if(c=='ö') {
-//        Character.toString(character);
-//        
-//        //replace with \"o        
-//    } else if(c=='ä') {
-//        
-//       //replace with \"a     
-//    } else if(c=='å') {
-//        //replace with \aa
-//    } else if(c=='Ö') {
-//        //replace with \"O    
-//    } else if(c=='Ä') {
-//        //replace with \"a
-//    } else if(c=='Å') {
-//        //replace with \AA
-//    }
-//    }
-//    }
-
     public String createBibtexFromInproceeding(Inproceeding inpro) {
         String bibtex = "@inproceedings{" + inpro.getReferenceKey() + ","
                 + "\n   author = {" + inpro.authorString() + "},"
