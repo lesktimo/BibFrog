@@ -1,18 +1,14 @@
 package bibfrog.domain;
 
 import java.util.HashMap;
-<<<<<<< HEAD
+
 import javax.persistence.Entity;
 import org.springframework.data.jpa.domain.AbstractPersistable;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Article extends AbstractPersistable<Long> implements Reference {
-=======
-import javax.validation.constraints.NotNull;
 
-public class Article implements Reference {
-    
-    
 //    @article{article,
 //  author  = {Peter Adams}, 
 //  title   = {The title of the work},
@@ -24,17 +20,15 @@ public class Article implements Reference {
 //  note    = {An optional note}, 
 //  volume  = 4
 //}
-    
     @NotNull
     private String article, title, journal;
-    
+
     @NotNull
     private int year;
-    
+
     //optional fields
     private String note, pages, referenceKey;
     private int volume, number, month;
->>>>>>> 0d0e56eb41d4dc0e0466a682b5362ad4195f2f4a
 
     public String getArticle() {
         return article;
@@ -116,8 +110,6 @@ public class Article implements Reference {
         this.month = month;
     }
 
-    
-    
     @Override
     public HashMap<String, String> optionalFields() {
         HashMap<String, String> optionalFields = new HashMap();
@@ -126,7 +118,6 @@ public class Article implements Reference {
         optionalFields.put("pages", pages);
         optionalFields.put("month", month + "");
         optionalFields.put("note", note);
-        
 
         return optionalFields;
     }
