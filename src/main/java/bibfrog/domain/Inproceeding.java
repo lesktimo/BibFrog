@@ -18,8 +18,8 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
     private int publishYear;
     private String referenceKey;
     //optional fields
-    private String editor, address, organization, publisher, note;
-    private int volume, startPage, endPage, publishMonth;
+    private String editor, address, organization, publisher, series, note;
+    private int volume, startPage, endPage, publishMonth, edition;
 
     //helper building the array
     @NotNull
@@ -55,6 +55,14 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
 
     public void setOrganization(String organization) {
         this.organization = organization;
+    }
+
+    public int getEdition() {
+        return edition;
+    }
+
+    public void setEdition(int edition) {
+        this.edition = edition;
     }
 
     public int getMonth() {
@@ -155,6 +163,14 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
         return publishYear;
     }
 
+    public String getSeries() {
+        return series;
+    }
+
+    public void setSeries(String series) {
+        this.series = series;
+    }
+
     public void setPublishYear(int publishYear) {
         this.publishYear = publishYear;
     }
@@ -187,7 +203,9 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
         optionalFields.put("address", address);
         optionalFields.put("organization", organization);
         optionalFields.put("publisher", publisher);
+        optionalFields.put("series", series);
         optionalFields.put("note", note);
+        optionalFields.put("edition", edition);
         optionalFields.put("volume", volume + "");
         optionalFields.put("startpage", startPage + "");
         optionalFields.put("endpage", endPage + "");
