@@ -6,15 +6,9 @@ import bibfrog.service.ExportService;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class InproceedingsController {
+public class InproceedingsController extends ReferanceController {
 
     @Autowired
     private InproceedingsRepo inproRepo;
@@ -67,27 +61,9 @@ public class InproceedingsController {
         return new HttpEntity<>(bytes, createHeaders(inproFile, fileName));
     }
 
-    private File getFilePathForBytes(String filePath) {
-        return new File(filePath);
-    }
-
     private void createFileForDownloading(Long id) throws IOException {
         Inproceeding inpro = inproRepo.findOne(id);
         String bibtex = exportService.createBibtexFromInproceeding(inpro);
         exportService.createFile(bibtex);
     }
-
-    private Path createPath(File inproFile) {
-        return Paths.get(inproFile.getPath());
-    }
-
-    private HttpHeaders createHeaders(File inproFile, String fileName) {
-        final HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.TEXT_PLAIN);
-        headers.set(HttpHeaders.CONTENT_DISPOSITION,
-                "attachment; filename=" + fileName + ".bib".replace(".txt", ""));
-        headers.setContentLength(inproFile.length());
-        return headers;
-    }
-
 }

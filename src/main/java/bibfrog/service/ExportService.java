@@ -62,7 +62,7 @@ public class ExportService {
         String inproTex = "";
 
         for (Entry entry : optionalFields.entrySet()) {
-            if (entry.getValue() != null && !entry.getValue().equals("0")) {
+            if (entry.getValue() != null && !entry.getValue().equals("") && !entry.getValue().equals("0")) {
                 inproTex += ",\n" + entry.getKey() + " = {" + entry.getValue() + "}";
             }
         }
