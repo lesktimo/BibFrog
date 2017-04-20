@@ -3,7 +3,7 @@ package bibfrog.service;
 public class ScandicService {
 
     public String scandicChecker(String bibtex) {
-//    String myName = "domanokz";
+
         int i = 0;
         int j = 0;
         String newScandicBibtex = "";
