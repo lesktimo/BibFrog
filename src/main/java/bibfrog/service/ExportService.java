@@ -1,13 +1,6 @@
 package bibfrog.service;
 
-<<<<<<< HEAD
-import bibfrog.domain.Article;
-import bibfrog.domain.Book;
-import bibfrog.domain.Inproceeding;
-import bibfrog.domain.Reference;
-=======
 import bibfrog.domain.*;
->>>>>>> c43853f9411410d740f7fee5b9e7b8c83ca90630
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -29,10 +22,10 @@ public class ExportService {
 
     public String createBibtexFromInproceeding(Inproceeding inpro) {
         String bibtex = "@inproceedings{" + inpro.getReferenceKey() + ","
-                + "\n   author = {" + inpro.authorString() + "},"
-                + "\n   title = {" + inpro.getTitle() + "},"
-                + "\n   booktitle = {" + inpro.getBookTitle() + "},"
-                + "\n   year = {" + inpro.getPublishYear() + "}";
+                + "\nauthor = {" + inpro.authorString() + "},"
+                + "\ntitle = {" + inpro.getTitle() + "},"
+                + "\nbooktitle = {" + inpro.getBookTitle() + "},"
+                + "\nyear = {" + inpro.getPublishYear() + "}";
         bibtex += addOptionalFieldsToBibtex(inpro);
         bibtex += "\n}";
         return bibtex;
@@ -69,8 +62,8 @@ public class ExportService {
         String inproTex = "";
 
         for (Entry entry : optionalFields.entrySet()) {
-            if (entry.getValue() != null) {
-                inproTex += ",\n    " + entry.getKey() + "= {" + entry.getValue() + "}";
+            if (entry.getValue() != null && !entry.getValue().equals("0")) {
+                inproTex += ",\n" + entry.getKey() + " = {" + entry.getValue() + "}";
             }
         }
         return inproTex;
