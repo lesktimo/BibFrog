@@ -31,23 +31,11 @@ public class ExportService {
         return bibtex;
     }
 
-    public String addOptionalFieldsToBibtex(Reference ref) {
-        HashMap<String, String> optionalFields = ref.optionalFields();
-        String inproTex = "";
-
-        for (Entry entry : optionalFields.entrySet()) {
-            if (entry.getValue() != null) {
-                inproTex += ",\n    " + entry.getKey() + "= {" + entry.getValue() + "}";
-            }
-        }
-        return inproTex;
-    }
-
     public String createBibtexFromBookFile(Book book) {
         String bibtex = "@book{" + book.getReferenceKey() + ","
                 + "\n   author = {" + book.getAuthor() + "},"
                 + "\n   title = {" + book.getTitle() + "},"
-                + "\n   booktitle = {" + book.getPublisher() + "},"
+                + "\n   publisher = {" + book.getPublisher() + "},"
                 + "\n   year = {" + book.getPublishYear() + "}";
 
         bibtex += addOptionalFieldsToBibtex(book);
@@ -69,4 +57,15 @@ public class ExportService {
         return bibtex;
     }
 
+    public String addOptionalFieldsToBibtex(Reference ref) {
+        HashMap<String, String> optionalFields = ref.optionalFields();
+        String inproTex = "";
+
+        for (Entry entry : optionalFields.entrySet()) {
+            if (entry.getValue() != null) {
+                inproTex += ",\n    " + entry.getKey() + "= {" + entry.getValue() + "}";
+            }
+        }
+        return inproTex;
+    }
 }
