@@ -4,6 +4,10 @@ import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.Scanner;
 import static org.junit.Assert.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
@@ -119,6 +123,23 @@ public class StepDefs {
         element.sendKeys(authors);
         element = driver.findElement(By.className("btn"));
         element.submit();
+    }
+
+    @When("^download button is pressed$")
+    public void download_button_is_pressed() {
+        WebElement element = driver.findElement(By.className("btn"));
+        element.click();
+    }
+    @Then("^a file with correct authors \"([^\"]*)\" is exported$")
+    public void a_file_with_correct_author(String author) throws FileNotFoundException {
+        File file = new File("src/bibtex.bib");
+        Scanner reader = new Scanner(file);
+        String fileData = "";
+        while (reader.hasNextLine()) {
+            fileData += reader.nextLine();
+        }
+        System.out.println(fileData);
+        assertTrue(fileData.contains(author));
     }
 
     @Then("^a new inproceeding is added to the site and a list of inproceedings is shown$")
