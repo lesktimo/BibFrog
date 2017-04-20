@@ -4,13 +4,24 @@ import bibfrog.domain.Inproceeding;
 import bibfrog.repositories.InproceedingsRepo;
 import bibfrog.service.ExportService;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import javax.validation.Valid;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -52,21 +63,25 @@ public class InproceedingsController {
     }
 
     @RequestMapping(value = "/inpro/{id}/download", method = RequestMethod.GET)
-    public void downloadInpro(@PathVariable Long id, HttpServletRequest request,
+    public HttpEntity<byte[]> downloadInpro(@PathVariable Long id, HttpServletRequest request,
             HttpServletResponse response) throws IOException {
-
-        final HttpHeaders headers = new HttpHeaders();
-
-        ServletContext context = request.getServletContext();
-        String appPath = context.getRealPath("");
-
-        String filePath = appPath + "/bibtex.bib";
-
+        
         Inproceeding inpro = inproRepo.findOne(id);
         String bibtex = exportService.createBibtexFromInproceeding(inpro);
         exportService.createFile(bibtex);
-
+        
+        final HttpHeaders headers = new HttpHeaders();
+        String filePath = "src/bibtex.bib";
         File inproFile = new File(filePath);
+        
+        headers.setContentType(MediaType.TEXT_PLAIN);
+        headers.set(HttpHeaders.CONTENT_DISPOSITION, 
+                "attachment; filename=bibtex.bib".replace(".txt", ""));
+        headers.setContentLength(inproFile.length());
+        Path path = Paths.get(inproFile.getPath()); 
+        byte[] bytes = Files.readAllBytes(path);
+        
+        return new HttpEntity<>(bytes, headers);
 
     }
 
