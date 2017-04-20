@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class BooksController {
@@ -54,12 +55,11 @@ public class BooksController {
     }
 
     @RequestMapping(value = "/book/{id}/download", method = RequestMethod.GET)
-    public HttpEntity<byte[]> downloadInpro(@PathVariable Long id, HttpServletRequest request,
-            HttpServletResponse response) throws IOException {
+    public HttpEntity<byte[]> downloadInpro(@PathVariable Long id, @RequestParam String fileName) throws IOException {
         createFileForDownloading(id);
         File bookFile = getFilePathForBytes("src/bibtex.bib");
         byte[] bytes = Files.readAllBytes(createPath(bookFile));
-        return new HttpEntity<>(bytes, createHeaders(bookFile));
+        return new HttpEntity<>(bytes, createHeaders(bookFile, fileName));
     }
 
     private File getFilePathForBytes(String filePath) {
@@ -77,11 +77,11 @@ public class BooksController {
         return Paths.get(bookFile.getPath());
     }
 
-    private HttpHeaders createHeaders(File bookFile) {
+    private HttpHeaders createHeaders(File bookFile, String fileName) {
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.TEXT_PLAIN);
         headers.set(HttpHeaders.CONTENT_DISPOSITION,
-                "attachment; filename=bibtex.bib".replace(".txt", ""));
+                "attachment; filename="+fileName+".bib".replace(".txt", ""));
         headers.setContentLength(bookFile.length());
         return headers;
     }
