@@ -200,7 +200,7 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
         optionalFields.put("series", series);
         optionalFields.put("note", note);
         optionalFields.put("volume", volume + "");
-        optionalFields.put("pages", pages + "");
+        optionalFields.put("pages", pages);
         optionalFields.put("publishmonth", publishMonth + "");
         return optionalFields;
     }

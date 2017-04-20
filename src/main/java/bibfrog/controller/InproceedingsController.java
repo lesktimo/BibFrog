@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class InproceedingsController {
@@ -56,12 +57,12 @@ public class InproceedingsController {
     }
 
     @RequestMapping(value = "/inpro/{id}/download", method = RequestMethod.GET)
-    public HttpEntity<byte[]> downloadInpro(@PathVariable Long id, HttpServletRequest request,
-            HttpServletResponse response) throws IOException {
+    public HttpEntity<byte[]> downloadInpro(@PathVariable Long id, @RequestParam String fileName) throws IOException {
+        if (fileName.isEmpty()) {fileName = "fugyou";}
         createFileForDownloading(id);
         File inproFile = getFilePathForBytes("src/bibtex.bib");
         byte[] bytes = Files.readAllBytes(createPath(inproFile));
-        return new HttpEntity<>(bytes, createHeaders(inproFile));
+        return new HttpEntity<>(bytes, createHeaders(inproFile, fileName));
     }
 
     private File getFilePathForBytes(String filePath) {
@@ -79,11 +80,11 @@ public class InproceedingsController {
         return path;
     }
 
-    private HttpHeaders createHeaders(File inproFile) {
+    private HttpHeaders createHeaders(File inproFile, String fileName) {
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.TEXT_PLAIN);
         headers.set(HttpHeaders.CONTENT_DISPOSITION,
-                "attachment; filename=bibtex.bib".replace(".txt", ""));
+                "attachment; filename="+ fileName +".bib".replace(".txt", ""));
         headers.setContentLength(inproFile.length());
         return headers;
     }
