@@ -116,7 +116,6 @@ public class Article extends AbstractPersistable<Long> implements Reference {
         optionalFields.put("pages", pages);
         optionalFields.put("month", publishMonth + "");
         optionalFields.put("note", note);
-
         return optionalFields;
     }
 

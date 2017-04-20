@@ -115,8 +115,6 @@ public class Book extends AbstractPersistable<Long> implements Reference {
         optionalFields.put("series", series);
         optionalFields.put("address", address);
         optionalFields.put("note", note);
-        
-
         return optionalFields;
     }
 
