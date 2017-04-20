@@ -130,7 +130,7 @@ public class StepDefs {
         WebElement element = driver.findElement(By.className("btn"));
         element.click();
     }
-    @Then("^a file with correct authors \"([^\"]*)\" is exported$")
+    @Then("^a file with correct author \"([^\"]*)\" is exported$")
     public void a_file_with_correct_author(String author) throws FileNotFoundException {
         File file = new File("src/bibtex.bib");
         Scanner reader = new Scanner(file);
