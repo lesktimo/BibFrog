@@ -15,16 +15,8 @@ public class Article extends AbstractPersistable<Long> implements Reference {
     private int publishYear;
 
     //optional fields
-    private String note, pages, referenceKey, series;
+    private String note, pages, referenceKey;
     private int volume, number, publishMonth;
-
-    public String getSeries() {
-        return series;
-    }
-
-    public void setSeries(String series) {
-        this.series = series;
-    }
 
     public int getPublishMonth() {
         return publishMonth;

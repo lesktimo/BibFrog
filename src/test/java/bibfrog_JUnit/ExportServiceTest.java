@@ -47,7 +47,7 @@ public class ExportServiceTest {
                 + "publisher = {Publisher},\n"
                 + "year = {2017}\n"
                 + "}";
-        assertEquals(expected, es.createBibtexFromBookFile(book));
+        assertEquals(expected, es.createBibtexFromBook(book));
     }
 
     @Test
@@ -59,7 +59,7 @@ public class ExportServiceTest {
                 + "journal = {Journal},\n"
                 + "year = {2017}\n"
                 + "}";
-        assertEquals(expected, es.createBibtexFromArticleFile(article));
+        assertEquals(expected, es.createBibtexFromArticle(article));
     }
 
     @Test
@@ -76,8 +76,31 @@ public class ExportServiceTest {
                 + "pages = {1--2},\n"
                 + "month = {8}\n"
                 + "}";
-        assertEquals(expected, es.createBibtexFromArticleFile(article));
+        assertEquals(expected, es.createBibtexFromArticle(article));
     }
+    
+//    @Test
+//    public void everyOptionalFieldIsAddedCorrectly() {
+//        Article article = setArticle();
+//        article.setVolume(1);
+//        article.setNumber(2);
+//        article.setPages("1--2");
+//        article.setPublishMonth(8);
+//        article.setNote("Note");
+//        
+//        String expected = "@article{KEY,\n"
+//                + "author = {Author},\n"
+//                + "title = {Title},\n"
+//                + "journal = {Journal},\n"
+//                + "year = {2017},\n"
+//                + "volume = {1},\n"
+//                + "number = {2},\n"
+//                + "pages = {1--2},\n"
+//                + "month = {8},\n"
+//                + "note = {Note}\n"
+//                + "}";
+//        assertEquals(expected, es.createBibtexFromArticle(article));
+//    }
 
     private Article setArticle() {
         Article article = new Article();
