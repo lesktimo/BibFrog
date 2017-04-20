@@ -68,3 +68,9 @@
     margin-bottom:20px;
 }
 
+#downloadForm{
+    position: relative;
+    left: 64.5%;
+    max-width: 200px;
+}
+
