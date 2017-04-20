@@ -101,6 +101,10 @@ public class Book extends AbstractPersistable<Long> implements Reference {
         this.note = note;
     }
 
+    public void setReferenceKey(String referenceKey) {
+        this.referenceKey = referenceKey;
+    }
+
     @Override
     public String toString() {
         return "Book{" + "author=" + author + ", title=" + title + ", publisher=" + publisher + ", publishYear=" + publishYear + ", volume=" + volume + ", edition=" + edition + ", publishMonth=" + publishMonth + ", series=" + series + ", address=" + address + ", note=" + note + '}';

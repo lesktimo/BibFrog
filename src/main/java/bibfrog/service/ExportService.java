@@ -33,10 +33,10 @@ public class ExportService {
 
     public String createBibtexFromBookFile(Book book) {
         String bibtex = "@book{" + book.getReferenceKey() + ","
-                + "\n   author = {" + book.getAuthor() + "},"
-                + "\n   title = {" + book.getTitle() + "},"
-                + "\n   publisher = {" + book.getPublisher() + "},"
-                + "\n   year = {" + book.getPublishYear() + "}";
+                + "\nauthor = {" + book.getAuthor() + "},"
+                + "\ntitle = {" + book.getTitle() + "},"
+                + "\npublisher = {" + book.getPublisher() + "},"
+                + "\nyear = {" + book.getPublishYear() + "}";
 
         bibtex += addOptionalFieldsToBibtex(book);
 
@@ -46,10 +46,10 @@ public class ExportService {
 
     public String createBibtexFromArticleFile(Article article) {
         String bibtex = "@article{" + article.getReferenceKey() + ","
-                + "\n   author = {" + article.getAuthor() + "},"
-                + "\n   title = {" + article.getTitle() + "},"
-                + "\n   journal = {" + article.getJournal() + "},"
-                + "\n   year = {" + article.getPublishYear() + "}";
+                + "\nauthor = {" + article.getAuthor() + "},"
+                + "\ntitle = {" + article.getTitle() + "},"
+                + "\njournal = {" + article.getJournal() + "},"
+                + "\nyear = {" + article.getPublishYear() + "}";
 
         bibtex += addOptionalFieldsToBibtex(article);
 
