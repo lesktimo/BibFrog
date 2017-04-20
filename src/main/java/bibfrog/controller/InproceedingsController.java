@@ -65,8 +65,7 @@ public class InproceedingsController {
     }
 
     private File getFilePathForBytes(String filePath) {
-        File inproFile = new File(filePath);
-        return inproFile;
+        return new File(filePath);
     }
 
     private void createFileForDownloading(Long id) throws IOException {
