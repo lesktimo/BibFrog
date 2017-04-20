@@ -10,10 +10,10 @@ public class Article extends AbstractPersistable<Long> implements Reference {
 
     @NotNull
     private String author, title, journal;
-    
+
     @NotNull
     private int publishYear;
-    
+
     //optional fields
     private String note, pages, referenceKey, series;
     private int volume, number, publishMonth;
@@ -34,8 +34,6 @@ public class Article extends AbstractPersistable<Long> implements Reference {
         this.publishMonth = publishMonth;
     }
 
-    
-    
     public String getAuthor() {
         return author;
     }
@@ -118,5 +116,4 @@ public class Article extends AbstractPersistable<Long> implements Reference {
         optionalFields.put("note", note);
         return optionalFields;
     }
-
 }

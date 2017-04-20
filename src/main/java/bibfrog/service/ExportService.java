@@ -1,13 +1,6 @@
 package bibfrog.service;
 
-<<<<<<< HEAD
-import bibfrog.domain.Article;
-import bibfrog.domain.Book;
-import bibfrog.domain.Inproceeding;
-import bibfrog.domain.Reference;
-=======
 import bibfrog.domain.*;
->>>>>>> c43853f9411410d740f7fee5b9e7b8c83ca90630
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ExportService {
-    
+
     public void createFile(String bibtex) throws IOException {
         File file = new File("src/bibtex.bib");
         file.createNewFile();
