@@ -1,9 +1,13 @@
 package bibfrog.service;
 
+<<<<<<< HEAD
 import bibfrog.domain.Article;
 import bibfrog.domain.Book;
 import bibfrog.domain.Inproceeding;
 import bibfrog.domain.Reference;
+=======
+import bibfrog.domain.*;
+>>>>>>> c43853f9411410d740f7fee5b9e7b8c83ca90630
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -21,7 +25,6 @@ public class ExportService {
         fileWriter.write(bibtex);
         fileWriter.flush();
         fileWriter.close();
-
     }
 
     public String createBibtexFromInproceeding(Inproceeding inpro) {
@@ -31,6 +34,32 @@ public class ExportService {
                 + "\n   booktitle = {" + inpro.getBookTitle() + "},"
                 + "\n   year = {" + inpro.getPublishYear() + "}";
         bibtex += addOptionalFieldsToBibtex(inpro);
+        bibtex += "\n}";
+        return bibtex;
+    }
+
+    public String createBibtexFromBookFile(Book book) {
+        String bibtex = "@book{" + book.getReferenceKey() + ","
+                + "\n   author = {" + book.getAuthor() + "},"
+                + "\n   title = {" + book.getTitle() + "},"
+                + "\n   publisher = {" + book.getPublisher() + "},"
+                + "\n   year = {" + book.getPublishYear() + "}";
+
+        bibtex += addOptionalFieldsToBibtex(book);
+
+        bibtex += "\n}";
+        return bibtex;
+    }
+
+    public String createBibtexFromArticleFile(Article article) {
+        String bibtex = "@article{" + article.getReferenceKey() + ","
+                + "\n   author = {" + article.getAuthor() + "},"
+                + "\n   title = {" + article.getTitle() + "},"
+                + "\n   journal = {" + article.getJournal() + "},"
+                + "\n   year = {" + article.getPublishYear() + "}";
+
+        bibtex += addOptionalFieldsToBibtex(article);
+
         bibtex += "\n}";
         return bibtex;
     }
@@ -46,23 +75,4 @@ public class ExportService {
         }
         return inproTex;
     }
-
-    public String createBibtexFromBookFile(Book book) {
-
-        String bibtex = "@Books{" + book.getReferenceKey() + ","
-                + "\n   author = {" + book.getAuthor() + "},"
-                + "\n   title = {" + book.getTitle() + "},"
-                + "\n   booktitle = {" + book.getPublisher() + "},"
-                + "\n   year = {" + book.getPublishYear() + "}";
-
-        bibtex += addOptionalFieldsToBibtex(book);
-
-        bibtex += "\n}";
-        return bibtex;
-    }
-
-    public String createBibtexFromArticleFile(Article article) {
-        return "";
-    }
-
 }

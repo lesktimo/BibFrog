@@ -73,7 +73,7 @@
     <!-- File Length -->
 
     <module name='FileLength'>
-        <property name='max' value='200' />
+        <property name='max' value='250' />
     </module>
 
 </module>
