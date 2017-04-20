@@ -26,7 +26,7 @@ public class ScandicService {
                 j = i + 1;
                 //replace with \"O    
             } else if (c == 'Ä') {
-                newScandicBibtex += bibtex.substring(j, i) + "\\\"a";
+                newScandicBibtex += bibtex.substring(j, i) + "\\\"A";
                 j = i + 1;
                 //replace with \"a
             } else if (c == 'Å') {
