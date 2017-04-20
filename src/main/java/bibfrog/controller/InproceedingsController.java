@@ -4,11 +4,14 @@ import bibfrog.domain.Inproceeding;
 import bibfrog.repositories.InproceedingsRepo;
 import bibfrog.service.ExportService;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
@@ -54,19 +57,21 @@ public class InproceedingsController {
     @RequestMapping(value = "/inpro/{id}/download", method = RequestMethod.GET)
     public void downloadInpro(@PathVariable Long id, HttpServletRequest request,
             HttpServletResponse response) throws IOException {
-
-        final HttpHeaders headers = new HttpHeaders();
-
-        ServletContext context = request.getServletContext();
-        String appPath = context.getRealPath("");
-
-        String filePath = appPath + "/bibtex.bib";
-
+        
         Inproceeding inpro = inproRepo.findOne(id);
         String bibtex = exportService.createBibtexFromInproceeding(inpro);
         exportService.createFile(bibtex);
+        
+        //final HttpHeaders headers = new HttpHeaders();
+        ServletContext context = request.getServletContext();
+        String appPath = context.getRealPath("");
+        String filePath = appPath + "/bibtex.bib";
 
         File inproFile = new File(filePath);
+        InputStream is = new FileInputStream(inproFile);
+        
+        IOUtils.copy(is, response.getOutputStream());
+        response.flushBuffer();
 
     }
 
