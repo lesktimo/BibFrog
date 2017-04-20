@@ -47,7 +47,7 @@ public class ExportServiceTest {
                 + "publisher = {Publisher},\n"
                 + "year = {2017}\n"
                 + "}";
-        assertEquals(expected, es.createBibtexFromBookFile(book));
+        assertEquals(expected, es.createBibtexFromBook(book));
     }
 
     @Test
@@ -59,7 +59,7 @@ public class ExportServiceTest {
                 + "journal = {Journal},\n"
                 + "year = {2017}\n"
                 + "}";
-        assertEquals(expected, es.createBibtexFromArticleFile(article));
+        assertEquals(expected, es.createBibtexFromArticle(article));
     }
 
     @Test
@@ -76,7 +76,7 @@ public class ExportServiceTest {
                 + "pages = {1--2},\n"
                 + "month = {8}\n"
                 + "}";
-        assertEquals(expected, es.createBibtexFromArticleFile(article));
+        assertEquals(expected, es.createBibtexFromArticle(article));
     }
 
     private Article setArticle() {

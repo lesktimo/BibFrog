@@ -58,7 +58,7 @@ public class ArticlesController extends ReferanceController {
 
     private void createFileForDownloading(Long id) throws IOException {
         Article article = articleRepo.findOne(id);
-        String bibtex = exportService.createBibtexFromArticleFile(article);
+        String bibtex = exportService.createBibtexFromArticle(article);
         exportService.createFile(bibtex);
     }
 

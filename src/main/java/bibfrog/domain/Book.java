@@ -114,10 +114,10 @@ public class Book extends AbstractPersistable<Long> implements Reference {
     public HashMap<String, String> optionalFields() {
         HashMap<String, String> optionalFields = new HashMap();
         optionalFields.put("volume", "" + volume);
-        optionalFields.put("edition", "" + edition);
-        optionalFields.put("publishmonth", publishMonth + "");
         optionalFields.put("series", series);
         optionalFields.put("address", address);
+        optionalFields.put("edition", "" + edition);
+        optionalFields.put("publishmonth", publishMonth + "");
         optionalFields.put("note", note);
         return optionalFields;
     }

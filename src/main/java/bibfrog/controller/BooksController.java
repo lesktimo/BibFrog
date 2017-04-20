@@ -58,7 +58,7 @@ public class BooksController extends ReferanceController {
 
     private void createFileForDownloading(Long id) throws IOException {
         Book book = booksRepo.findOne(id);
-        String bibtex = exportService.createBibtexFromBookFile(book);
+        String bibtex = exportService.createBibtexFromBook(book);
         exportService.createFile(bibtex);
     }
 

@@ -31,7 +31,7 @@ public class ExportService {
         return bibtex;
     }
 
-    public String createBibtexFromBookFile(Book book) {
+    public String createBibtexFromBook(Book book) {
         String bibtex = "@book{" + book.getReferenceKey() + ","
                 + "\nauthor = {" + book.getAuthor() + "},"
                 + "\ntitle = {" + book.getTitle() + "},"
@@ -44,7 +44,7 @@ public class ExportService {
         return bibtex;
     }
 
-    public String createBibtexFromArticleFile(Article article) {
+    public String createBibtexFromArticle(Article article) {
         String bibtex = "@article{" + article.getReferenceKey() + ","
                 + "\nauthor = {" + article.getAuthor() + "},"
                 + "\ntitle = {" + article.getTitle() + "},"
