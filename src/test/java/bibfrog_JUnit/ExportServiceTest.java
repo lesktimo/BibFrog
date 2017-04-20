@@ -25,10 +25,6 @@ public class ExportServiceTest {
         inpro.setBookTitle("Booktitle");
         inpro.setPublishYear(2017);
         System.out.println(es.createBibtexFromInproceeding(inpro));
-        System.out.println("");
-        if ("0".equals(inpro.getVolume() + "")) {
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!1");
-        }
         String expected = "@inproceedings{KEY,\n"
                 + "author = {Author},\n"
                 + "title = {Title},\n"

@@ -9,11 +9,32 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h2>Inproceedings</h2>
-                        <ul>
-                            <li th:each="inpro : ${inproList}">
-                                <b th:text="${inpro}">inpro</b>
-                            </li>
-                        </ul>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <td>Title</td>
+                                        <td>Book title</td>
+                                        <td>Year</td>
+                                        <td style="text-align: right;">Write your filename</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="inpro : ${inproList}">
+                                        <td><b th:text="${inpro.title}">inpro</b></td>
+                                        <td><b th:text="${inpro.bookTitle}">inpro</b></td>
+                                        <td><b th:text="${inpro.publishYear}">inpro</b></td>
+                                        <td><form id="downloadForm" th:action="@{inpro/{inproId}/download(inproId=${inpro.id})}" method="GET">
+                                                <div class="form-group">
+                                                <input class="form-control"  type="text" name="fileName" value="bibtex"/>
+                                                </div>
+                                                <input class="btn btn-success btn-block" type="submit" value="Download"/>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>    
                     </div>
                 </div>
             </div>

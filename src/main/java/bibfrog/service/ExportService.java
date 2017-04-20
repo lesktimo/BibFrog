@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ExportService {
-    
+
     public void createFile(String bibtex) throws IOException {
         File file = new File("src/bibtex.bib");
         file.createNewFile();
