@@ -4,21 +4,16 @@ import bibfrog.domain.Article;
 import bibfrog.domain.Book;
 import bibfrog.domain.Inproceeding;
 import bibfrog.domain.Reference;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ExportService {
-
+    
     public void createFile(String bibtex) throws IOException {
         File file = new File("src/bibtex.bib");
         file.createNewFile();
