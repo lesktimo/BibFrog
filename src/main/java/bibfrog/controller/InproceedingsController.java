@@ -58,7 +58,9 @@ public class InproceedingsController {
 
     @RequestMapping(value = "/inpro/{id}/download", method = RequestMethod.GET)
     public HttpEntity<byte[]> downloadInpro(@PathVariable Long id, @RequestParam String fileName) throws IOException {
-        if (fileName.isEmpty()) {fileName = "fugyou";}
+        if (fileName.isEmpty()) {
+            fileName = "fugyou";
+        }
         createFileForDownloading(id);
         File inproFile = getFilePathForBytes("src/bibtex.bib");
         byte[] bytes = Files.readAllBytes(createPath(inproFile));
@@ -66,8 +68,7 @@ public class InproceedingsController {
     }
 
     private File getFilePathForBytes(String filePath) {
-        File inproFile = new File(filePath);
-        return inproFile;
+        return new File(filePath);
     }
 
     private void createFileForDownloading(Long id) throws IOException {
@@ -77,15 +78,14 @@ public class InproceedingsController {
     }
 
     private Path createPath(File inproFile) {
-        Path path = Paths.get(inproFile.getPath());
-        return path;
+        return Paths.get(inproFile.getPath());
     }
 
     private HttpHeaders createHeaders(File inproFile, String fileName) {
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.TEXT_PLAIN);
         headers.set(HttpHeaders.CONTENT_DISPOSITION,
-                "attachment; filename="+ fileName +".bib".replace(".txt", ""));
+                "attachment; filename=" + fileName + ".bib".replace(".txt", ""));
         headers.setContentLength(inproFile.length());
         return headers;
     }
