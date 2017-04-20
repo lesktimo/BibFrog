@@ -7,17 +7,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class Article extends AbstractPersistable<Long> implements Reference {
-//    @article{article,
-//  author  = {Peter Adams}, 
-//  title   = {The title of the work},
-//  journal = {The name of the journal},
-//  year    = 1993,
-//  number  = 2,
-//  pages   = {201-213},
-//  month   = 7,
-//  note    = {An optional note}, 
-//  volume  = 4
-//}
+
     @NotNull
     private String author, title, journal;
     
