@@ -81,7 +81,7 @@ public class BooksController {
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.TEXT_PLAIN);
         headers.set(HttpHeaders.CONTENT_DISPOSITION,
-                "attachment; filename="+fileName+".bib".replace(".txt", ""));
+                "attachment; filename=" + fileName + ".bib".replace(".txt", ""));
         headers.setContentLength(bookFile.length());
         return headers;
     }

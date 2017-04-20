@@ -80,7 +80,7 @@ public class ArticlesController {
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.TEXT_PLAIN);
         headers.set(HttpHeaders.CONTENT_DISPOSITION,
-                "attachment; filename="+fileName+".bib".replace(".txt", ""));
+                "attachment; filename=" + fileName + ".bib".replace(".txt", ""));
         headers.setContentLength(articleFile.length());
         return headers;
     }
