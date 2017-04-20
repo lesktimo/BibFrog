@@ -1,6 +1,7 @@
 
 package bibfrog_JUnit;
 
+import bibfrog.domain.*;
 import bibfrog.service.ExportService;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,5 +15,9 @@ public class ExportServiceTest {
         es = new ExportService();
     }
     
-    
+    @Test
+    public void createBibtexFromInproWorks() {
+        Inproceeding inpro = new Inproceeding();
+        
+    }
 }

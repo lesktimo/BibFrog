@@ -1,17 +1,9 @@
 package bibfrog.service;
 
-import bibfrog.domain.Article;
-import bibfrog.domain.Book;
-import bibfrog.domain.Inproceeding;
-import bibfrog.domain.Reference;
-import java.io.BufferedReader;
+import bibfrog.domain.*;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import org.springframework.stereotype.Service;
@@ -26,7 +18,6 @@ public class ExportService {
         fileWriter.write(bibtex);
         fileWriter.flush();
         fileWriter.close();
-
     }
 
     public String createBibtexFromInproceeding(Inproceeding inpro) {
