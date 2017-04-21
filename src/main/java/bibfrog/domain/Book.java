@@ -10,7 +10,11 @@ public class Book extends AbstractPersistable<Long> implements Reference {
 
     //required fields
     @NotNull
-    private String author, title, publisher;
+    private String author;
+    @NotNull
+    private String title;
+    @NotNull
+    private String publisher;
     @NotNull
     private int publishYear;
     //optional fields

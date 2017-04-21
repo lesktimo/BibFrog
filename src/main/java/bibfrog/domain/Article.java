@@ -9,7 +9,11 @@ import javax.validation.constraints.NotNull;
 public class Article extends AbstractPersistable<Long> implements Reference {
 
     @NotNull
-    private String author, title, journal;
+    private String author;
+    @NotNull
+    private String title;
+    @NotNull
+    private String journal;
 
     @NotNull
     private int publishYear;

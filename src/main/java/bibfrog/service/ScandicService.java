@@ -1,5 +1,8 @@
 package bibfrog.service;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class ScandicService {
 
     public String scandicChecker(String bibtex) {

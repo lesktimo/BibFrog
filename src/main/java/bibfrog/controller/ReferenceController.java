@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 
-public abstract class ReferanceController {
+public abstract class ReferenceController {
 
     protected File getFilePathForBytes(String filePath) {
         return new File(filePath);

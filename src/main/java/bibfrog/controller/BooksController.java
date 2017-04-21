@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class BooksController extends ReferanceController {
+public class BooksController extends ReferenceController {
 
     @Autowired
     private BooksRepo booksRepo;
@@ -38,7 +38,11 @@ public class BooksController extends ReferanceController {
         if (bindingResult.hasErrors()) {
             return "book";
         }
-        booksRepo.save(book);
+        book = booksRepo.save(book);
+        if (book.getReferenceKey() == null || article.getReferenceKey().isEmpty()) {
+            book.setReferenceKey(book.getId().toString());
+            booksRepo.save(book);
+        }
         return "redirect:/books";
     }
 

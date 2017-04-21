@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class InproceedingsController extends ReferanceController {
+public class InproceedingsController extends ReferenceController {
 
     @Autowired
     private InproceedingsRepo inproRepo;
@@ -40,6 +40,9 @@ public class InproceedingsController extends ReferanceController {
         }
         Inproceeding helperInpro = inproRepo.save(inpro);
         helperInpro.setAuthors();
+        if (helperInpro.getReferenceKey() == null || helperInpro.getReferenceKey().isEmpty()) {
+            helperInpro.setReferenceKey(helperInpro.getId().toString());
+        }
         inproRepo.save(helperInpro);
         return "redirect:/inpros";
     }

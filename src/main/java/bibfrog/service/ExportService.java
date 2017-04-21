@@ -6,10 +6,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ExportService {
+
+    @Autowired
+    private ScandicService scandic;
 
     public void createFile(String bibtex) throws IOException {
         File file = new File("src/bibtex.bib");
@@ -21,10 +25,10 @@ public class ExportService {
     }
 
     public String createBibtexFromInproceeding(Inproceeding inpro) {
-        String bibtex = "@inproceedings{" + inpro.getReferenceKey() + ","
-                + "\nauthor = {" + inpro.authorString() + "},"
-                + "\ntitle = {" + inpro.getTitle() + "},"
-                + "\nbooktitle = {" + inpro.getBookTitle() + "},"
+        String bibtex = "@inproceedings{" + scandic.scandicChecker(inpro.getReferenceKey()) + ","
+                + "\nauthor = {" + scandic.scandicChecker(inpro.authorString()) + "},"
+                + "\ntitle = {" + scandic.scandicChecker(inpro.getTitle()) + "},"
+                + "\nbooktitle = {" + scandic.scandicChecker(inpro.getBookTitle()) + "},"
                 + "\nyear = {" + inpro.getPublishYear() + "}";
         bibtex += addOptionalFieldsToBibtex(inpro);
         bibtex += "\n}";
@@ -32,10 +36,10 @@ public class ExportService {
     }
 
     public String createBibtexFromBook(Book book) {
-        String bibtex = "@book{" + book.getReferenceKey() + ","
-                + "\nauthor = {" + book.getAuthor() + "},"
-                + "\ntitle = {" + book.getTitle() + "},"
-                + "\npublisher = {" + book.getPublisher() + "},"
+        String bibtex = "@book{" + scandic.scandicChecker(book.getReferenceKey()) + ","
+                + "\nauthor = {" + scandic.scandicChecker(book.getAuthor()) + "},"
+                + "\ntitle = {" + scandic.scandicChecker(book.getTitle()) + "},"
+                + "\npublisher = {" + scandic.scandicChecker(book.getPublisher()) + "},"
                 + "\nyear = {" + book.getPublishYear() + "}";
 
         bibtex += addOptionalFieldsToBibtex(book);
@@ -45,10 +49,10 @@ public class ExportService {
     }
 
     public String createBibtexFromArticle(Article article) {
-        String bibtex = "@article{" + article.getReferenceKey() + ","
-                + "\nauthor = {" + article.getAuthor() + "},"
-                + "\ntitle = {" + article.getTitle() + "},"
-                + "\njournal = {" + article.getJournal() + "},"
+        String bibtex = "@article{" + scandic.scandicChecker(article.getReferenceKey()) + ","
+                + "\nauthor = {" + scandic.scandicChecker(article.getAuthor()) + "},"
+                + "\ntitle = {" + scandic.scandicChecker(article.getTitle()) + "},"
+                + "\njournal = {" + scandic.scandicChecker(article.getJournal()) + "},"
                 + "\nyear = {" + article.getPublishYear() + "}";
 
         bibtex += addOptionalFieldsToBibtex(article);
@@ -63,7 +67,7 @@ public class ExportService {
 
         for (Entry entry : optionalFields.entrySet()) {
             if (entry.getValue() != null && !entry.getValue().equals("") && !entry.getValue().equals("0")) {
-                inproTex += ",\n" + entry.getKey() + " = {" + entry.getValue() + "}";
+                inproTex += ",\n" + entry.getKey() + " = {" + scandic.scandicChecker((String) entry.getValue()) + "}";
             }
         }
         return inproTex;

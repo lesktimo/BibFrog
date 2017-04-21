@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class ArticlesController extends ReferanceController {
+public class ArticlesController extends ReferenceController {
 
     @Autowired
     private ArticleRepo articleRepo;
@@ -38,7 +38,11 @@ public class ArticlesController extends ReferanceController {
         if (bindingResult.hasErrors()) {
             return "article";
         }
-        articleRepo.save(article);
+        article = articleRepo.save(article);
+        if (article.getReferenceKey() == null || article.getReferenceKey().isEmpty()) {
+            article.setReferenceKey(article.getId().toString());
+            articleRepo.save(article);
+        }
         return "redirect:/articles";
     }
 
