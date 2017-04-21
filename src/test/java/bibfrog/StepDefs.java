@@ -144,25 +144,31 @@ public class StepDefs {
 
     @When("^BibFrog in NavBar is clicked$")
     public void navBar_bibfrog() {
-        WebElement element = driver.findElement(By.name("frontpage"));
+        WebElement element = driver.findElement(By.linkText("BibFrog"));
         element.click();
     }
 
     @When("^Articles in NavBar is clicked$")
     public void navBar_article() {
-        WebElement element = driver.findElement(By.name("navbarArticles"));
+        WebElement element = driver.findElement(By.linkText("Articles"));
         element.click();
     }
 
     @When("^Inproceedings in NavBar is clicked$")
     public void navBar_inpro() {
-        WebElement element = driver.findElement(By.name("navbarInpros"));
+        WebElement element = driver.findElement(By.linkText("Inproceedings"));
         element.click();
     }
 
     @When("^Books in NavBar is clicked$")
     public void navBar_books() {
-        WebElement element = driver.findElement(By.name("navbarBooks"));
+        WebElement element = driver.findElement(By.linkText("Books"));
+        element.click();
+    }
+
+    @When("^List all in NavBar is clicked$")
+    public void navBar_ListAll() {
+        WebElement element = driver.findElement(By.linkText("List all"));
         element.click();
     }
 
@@ -199,6 +205,11 @@ public class StepDefs {
     @Then("^the article is not added to the site and create an article page is shown$")
     public void article_is_not_added() throws Throwable {
         assertTrue(driver.getPageSource().contains("an article."));
+    }
+
+    @Then("^a list of all references is shown$")
+    public void references_shown() throws Throwable {
+        assertTrue(driver.getPageSource().contains("References"));
     }
 
     @Then("^a list of inproceedings is shown$")

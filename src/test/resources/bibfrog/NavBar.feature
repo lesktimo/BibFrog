@@ -5,6 +5,11 @@ Feature: as A user I want be able to use the navigation
     When BibFrog in NavBar is clicked
     Then frontpage is shown
 
+  Scenario: using the NavBar to references
+    Given add inproceeding is selected
+    When List all in NavBar is clicked
+    Then a list of all references is shown
+
   Scenario: using the Navbar to list of inproceedings
     Given add inproceeding is selected
     When Inproceedings in NavBar is clicked

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" th:include="index :: base">
+    <head>
+        <title>BibFrog</title>
+    </head>
+    <body>
+        <div th:fragment="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>References</h2>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <td class="listingRow">Title</td>
+                                        <td class="listingRow">Authors</td>
+                                        <td class="listingRow">Year</td>
+                                        <td class="listingRow">Reference Key</td>
+                                        <td style="text-align: right;">Write your filename</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="reference : ${list}">
+                                        <td class="listingRow"><b th:text="${reference.title}">title</b></td>
+                                        <td class="listingRow"><b th:text="${reference.authorString()}">authors</b></td>
+                                        <td class="listingRow"><b th:text="${reference.year}">year</b></td>
+                                        <td class="listingRow"><b th:text="${reference.referenceKey}">reference key</b></td>
+                                        <td class="listingRow"><form id="downloadForm" th:action="@{/list/download}" method="GET">
+                                                <div class="form-group">
+                                                    <input class="form-control"  type="text" name="fileName" value="bibtex"/>
+                                                </div>
+                                                <input class="btn btn-success btn-block" type="submit" value="Download"/>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
