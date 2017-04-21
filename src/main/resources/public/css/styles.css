@@ -78,3 +78,7 @@
     max-width: 70px;
 }
 
+.requiredField{
+    color: red;
+}
+

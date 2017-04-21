@@ -12,23 +12,23 @@
                         <h2 class="text-center"><strong>Create</strong> an article.</h2>
 
                         <div class="form-group">
-                            <label class="lbl">Title:<input class="form-control" type="text" th:field="*{title}" name="title" placeholder="Operating Systems: Internal Design and Principles" /></label>
+                            <label class="lbl">Title: <a class="requiredField">*</a><input class="form-control" type="text" th:field="*{title}" name="title" placeholder="Operating Systems: Internal Design and Principles" /></label>
                             <a th:if="${#fields.hasErrors('title')}" th:errors="*{title}">title errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Author(s):<input class="form-control" type="text" th:field="*{givenAuthors}" name="givenAuthors" placeholder="William Stallings" /></label>
+                            <label class="lbl">Author(s): <a class="requiredField">*</a><input class="form-control" type="text" th:field="*{givenAuthors}" name="givenAuthors" placeholder="William Stallings" /></label>
                             <a th:if="${#fields.hasErrors('givenAuthors')}" th:errors="*{givenAuthors}">authors errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Journal:<input class="form-control" type="text" th:field="*{journal}" name="journal" placeholder="Journal" /></label>
+                            <label class="lbl">Journal: <a class="requiredField">*</a><input class="form-control" type="text" th:field="*{journal}" name="journal" placeholder="Journal" /></label>
                             <a th:if="${#fields.hasErrors('journal')}" th:errors="*{journal}">journal errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Year:<input class="form-control" type="number" th:field="*{publishYear}" name="publishYear" placeholder="2013" /></label>
+                            <label class="lbl">Year: <a class="requiredField">*</a><input class="form-control" type="number" th:field="*{publishYear}" name="publishYear" placeholder="2013" /></label>
                             <a th:if="${#fields.hasErrors('publishYear')}" th:errors="*{publishYear}">year errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Reference key:<input class="form-control" type="text" th:field="*{referenceKey}" name="referenceKey" placeholder="Reference key (optional)" /></label>
+                            <label class="lbl">Reference key:<input class="form-control" type="text" th:field="*{referenceKey}" name="referenceKey" placeholder="Reference key" /></label>
                             <a th:if="${#fields.hasErrors('referenceKey')}" th:errors="*{referenceKey}">Reference key errors</a>
                         </div>
                         <div class="form-group">
@@ -40,7 +40,7 @@
                             <a th:if="${#fields.hasErrors('number')}" th:errors="*{number}">number errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Pages:<input class="form-control" type="text" th:field="*{pages}" name="pages" placeholder="1-2 (optional)" /></label>
+                            <label class="lbl">Pages:<input class="form-control" type="text" th:field="*{pages}" name="pages" placeholder="2-6" /></label>
                             <a th:if="${#fields.hasErrors('pages')}" th:errors="*{pages}">pages errors</a>
                         </div>
                         <div class="form-group">
@@ -48,7 +48,7 @@
                             <a th:if="${#fields.hasErrors('publishMonth')}" th:errors="*{publishMont}">month errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Note:<input class="form-control" type="text" th:field="*{note}" name="note" placeholder="Additional notes (optional)" /></label>
+                            <label class="lbl">Note:<input class="form-control" type="text" th:field="*{note}" name="note" placeholder="Additional notes" /></label>
                             <a th:if="${#fields.hasErrors('note')}" th:errors="*{note}">note errors</a>
                             <div class="form-group">
                                 <button class="btn btn-primary btn-block" type="submit">Add</button>

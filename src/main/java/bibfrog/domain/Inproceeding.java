@@ -92,6 +92,7 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
         return authors;
     }
 
+    @Override
     public void setAuthors() {
         if (this.givenAuthors.contains(",")) {
             this.authors = this.givenAuthors.trim().split(",");
@@ -169,6 +170,7 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
         this.referenceKey = referenceKey;
     }
 
+    @Override
     public String authorString() {
         String printBuilder = "";
         for (String author : authors) {

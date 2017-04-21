@@ -27,6 +27,7 @@ public class Article extends AbstractPersistable<Long> implements Reference {
         return authors;
     }
 
+    @Override
     public void setAuthors() {
         if (this.givenAuthors.contains(",")) {
             this.authors = this.givenAuthors.trim().split(",");
@@ -120,6 +121,7 @@ public class Article extends AbstractPersistable<Long> implements Reference {
         this.number = number;
     }
 
+    @Override
     public String authorString() {
         String printBuilder = "";
         for (String author : authors) {
