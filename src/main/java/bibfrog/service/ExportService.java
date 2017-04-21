@@ -37,7 +37,7 @@ public class ExportService {
 
     public String createBibtexFromBook(Book book) {
         String bibtex = "@book{" + scandic.scandicChecker(book.getReferenceKey()) + ","
-                + "\nauthor = {" + scandic.scandicChecker(book.getAuthor()) + "},"
+                + "\nauthor = {" + scandic.scandicChecker(book.authorString()) + "},"
                 + "\ntitle = {" + scandic.scandicChecker(book.getTitle()) + "},"
                 + "\npublisher = {" + scandic.scandicChecker(book.getPublisher()) + "},"
                 + "\nyear = {" + book.getPublishYear() + "}";
@@ -50,7 +50,7 @@ public class ExportService {
 
     public String createBibtexFromArticle(Article article) {
         String bibtex = "@article{" + scandic.scandicChecker(article.getReferenceKey()) + ","
-                + "\nauthor = {" + scandic.scandicChecker(article.getAuthor()) + "},"
+                + "\nauthor = {" + scandic.scandicChecker(article.authorString()) + "},"
                 + "\ntitle = {" + scandic.scandicChecker(article.getTitle()) + "},"
                 + "\njournal = {" + scandic.scandicChecker(article.getJournal()) + "},"
                 + "\nyear = {" + article.getPublishYear() + "}";

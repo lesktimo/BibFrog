@@ -120,6 +120,14 @@ public class Article extends AbstractPersistable<Long> implements Reference {
         this.number = number;
     }
 
+    public String authorString() {
+        String printBuilder = "";
+        for (String author : authors) {
+            printBuilder += author + ", ";
+        }
+        return printBuilder.substring(0, printBuilder.length() - 2);
+    }
+
     @Override
     public HashMap<String, String> optionalFields() {
         HashMap<String, String> optionalFields = new HashMap();

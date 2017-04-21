@@ -77,7 +77,7 @@ public class StepDefs {
         element.sendKeys(book);
         element = driver.findElement(By.name("publishYear"));
         element.sendKeys(year);
-        element = driver.findElement(By.name("author"));
+        element = driver.findElement(By.name("givenAuthors"));
         element.sendKeys(authors);
         element = driver.findElement(By.className("btn"));
         element.submit();
@@ -91,7 +91,7 @@ public class StepDefs {
         element.sendKeys(book);
         element = driver.findElement(By.name("publishYear"));
         element.sendKeys(year);
-        element = driver.findElement(By.name("author"));
+        element = driver.findElement(By.name("givenAuthors"));
         element.sendKeys(authors);
         element = driver.findElement(By.className("btn"));
         element.submit();
@@ -105,7 +105,7 @@ public class StepDefs {
         element.sendKeys(book);
         element = driver.findElement(By.name("publishYear"));
         element.sendKeys(year);
-        element = driver.findElement(By.name("author"));
+        element = driver.findElement(By.name("givenAuthors"));
         element.sendKeys(authors);
         element = driver.findElement(By.className("btn"));
         element.submit();
@@ -119,7 +119,7 @@ public class StepDefs {
         element.sendKeys(book);
         element = driver.findElement(By.name("publishYear"));
         element.sendKeys(year);
-        element = driver.findElement(By.name("author"));
+        element = driver.findElement(By.name("givenAuthors"));
         element.sendKeys(authors);
         element = driver.findElement(By.className("btn"));
         element.submit();
