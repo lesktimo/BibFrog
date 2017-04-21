@@ -12,13 +12,21 @@
                             <div class="box">
                                 <h3 class="name">Articles</h3>
                                 <img src="../img/meeting.jpg" alt="Arto"/>
-                                <p class="description">Create and manage article references</p><a th:href="@{/article/add}" class="learn-more" name='createArticle'>Create »</a></div>
+                                <p class="description">Create and manage article references</p>
+                                <a th:href="@{/article/add}" class="learn-more" name='createArticle'>Create »</a>
+                                <br/>
+                                <a th:href="@{/inpros}" class="learn-more" name='createInproceeding'>List »</a>
+                            </div>
                         </div>
                         <div class="col-md-4 col-sm-6 item">
                             <div class="box">
                                 <h3 class="name">Books</h3>
                                 <img src="../img/meeting.jpg" alt="Arto"/>
-                                <p class="description">Create and manage book references</p><a th:href="@{/book/add}" class="learn-more" name='createBook'>Create »</a></div>
+                                <p class="description">Create and manage book references</p>
+                                <a th:href="@{/book/add}" class="learn-more" name='createBook'>Create »</a>
+                                <br/>
+                                <a th:href="@{/inpros}" class="learn-more" name='createInproceeding'>List »</a>
+                            </div>
                         </div>
                         <div class="col-md-4 col-sm-6 item">
                             <div class="box">
@@ -26,7 +34,8 @@
                                 <img src="../img/meeting.jpg" alt="Arto"/>
                                 <p class="description">Create and manage inproceeding references</p>
                                 <a th:href="@{/inpro/add}" class="learn-more" name='createInproceeding'>Create »</a>
-                                <a th:href="@{/inpro/add}" class="learn-more" name='createInproceeding'>List »</a>
+                                <br/>
+                                <a th:href="@{/inpros}" class="learn-more" name='createInproceeding'>List »</a>
                             </div>
                         </div>
                     </div>
