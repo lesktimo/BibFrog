@@ -2,4 +2,4 @@ target/
 *~
 tmc-langs.log
 /nbproject/
-src/bibtext.bib
+src/bibtex.bib
