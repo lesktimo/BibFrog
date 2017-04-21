@@ -12,9 +12,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class ExportService {
 
-    @Autowired
-    private ScandicService scandic;
-
     public void createFile(String bibtex) throws IOException {
         File file = new File("src/bibtex.bib");
         file.createNewFile();
@@ -25,10 +22,10 @@ public class ExportService {
     }
 
     public String createBibtexFromInproceeding(Inproceeding inpro) {
-        String bibtex = "@inproceedings{" + scandic.scandicChecker(inpro.getReferenceKey()) + ","
-                + "\nauthor = {" + scandic.scandicChecker(inpro.authorString()) + "},"
-                + "\ntitle = {" + scandic.scandicChecker(inpro.getTitle()) + "},"
-                + "\nbooktitle = {" + scandic.scandicChecker(inpro.getBookTitle()) + "},"
+        String bibtex = "@inproceedings{" + scandicChecker(inpro.getReferenceKey()) + ","
+                + "\nauthor = {" + scandicChecker(inpro.authorString()) + "},"
+                + "\ntitle = {" + scandicChecker(inpro.getTitle()) + "},"
+                + "\nbooktitle = {" + scandicChecker(inpro.getBookTitle()) + "},"
                 + "\nyear = {" + inpro.getPublishYear() + "}";
         bibtex += addOptionalFieldsToBibtex(inpro);
         bibtex += "\n}";
@@ -36,10 +33,10 @@ public class ExportService {
     }
 
     public String createBibtexFromBook(Book book) {
-        String bibtex = "@book{" + scandic.scandicChecker(book.getReferenceKey()) + ","
-                + "\nauthor = {" + scandic.scandicChecker(book.authorString()) + "},"
-                + "\ntitle = {" + scandic.scandicChecker(book.getTitle()) + "},"
-                + "\npublisher = {" + scandic.scandicChecker(book.getPublisher()) + "},"
+        String bibtex = "@book{" + scandicChecker(book.getReferenceKey()) + ","
+                + "\nauthor = {" + scandicChecker(book.authorString()) + "},"
+                + "\ntitle = {" + scandicChecker(book.getTitle()) + "},"
+                + "\npublisher = {" + scandicChecker(book.getPublisher()) + "},"
                 + "\nyear = {" + book.getPublishYear() + "}";
 
         bibtex += addOptionalFieldsToBibtex(book);
@@ -49,10 +46,10 @@ public class ExportService {
     }
 
     public String createBibtexFromArticle(Article article) {
-        String bibtex = "@article{" + scandic.scandicChecker(article.getReferenceKey()) + ","
-                + "\nauthor = {" + scandic.scandicChecker(article.authorString()) + "},"
-                + "\ntitle = {" + scandic.scandicChecker(article.getTitle()) + "},"
-                + "\njournal = {" + scandic.scandicChecker(article.getJournal()) + "},"
+        String bibtex = "@article{" + scandicChecker(article.getReferenceKey()) + ","
+                + "\nauthor = {" + scandicChecker(article.authorString()) + "},"
+                + "\ntitle = {" + scandicChecker(article.getTitle()) + "},"
+                + "\njournal = {" + scandicChecker(article.getJournal()) + "},"
                 + "\nyear = {" + article.getPublishYear() + "}";
 
         bibtex += addOptionalFieldsToBibtex(article);
@@ -67,9 +64,56 @@ public class ExportService {
 
         for (Entry entry : optionalFields.entrySet()) {
             if (entry.getValue() != null && !entry.getValue().equals("") && !entry.getValue().equals("0")) {
-                inproTex += ",\n" + entry.getKey() + " = {" + scandic.scandicChecker((String) entry.getValue()) + "}";
+                inproTex += ",\n" + entry.getKey() + " = {" + scandicChecker((String) entry.getValue()) + "}";
             }
         }
         return inproTex;
+    }
+
+    public String scandicChecker(String bibtex) {
+
+        int i = 0;
+        int j = 0;
+        String newScandicBibtex = "";
+        for (char c : bibtex.toCharArray()) {
+
+            switch (c) {
+                case 'ö':
+                    newScandicBibtex += bibtex.substring(j, i) + "\\\"o";
+                    j = i + 1;
+                    //replace with \"o        
+                    break;
+                case 'ä':
+                    newScandicBibtex += bibtex.substring(j, i) + "\\\"a";
+                    j = i + 1;
+                    //replace with \"a     
+                    break;
+                case 'å':
+                    newScandicBibtex += bibtex.substring(j, i) + "\\aa";
+                    j = i + 1;
+                    //replace with \aa
+                    break;
+                case 'Ö':
+                    newScandicBibtex += bibtex.substring(j, i) + "\\\"O";
+                    j = i + 1;
+                    //replace with \"O    
+                    break;
+                case 'Ä':
+                    newScandicBibtex += bibtex.substring(j, i) + "\\\"A";
+                    j = i + 1;
+                    //replace with \"a
+                    break;
+                case 'Å':
+                    newScandicBibtex += bibtex.substring(j, i) + "\\AA";
+                    j = i + 1;
+                    //replace with \AA
+                    break;
+                default:
+                    break;
+            }
+            i++;
+        }
+        newScandicBibtex += bibtex.substring(j);
+        return newScandicBibtex;
     }
 }

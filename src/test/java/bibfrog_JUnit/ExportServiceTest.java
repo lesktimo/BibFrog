@@ -37,7 +37,8 @@ public class ExportServiceTest {
     public void createBibtexFromBookWorks() {
         Book book = new Book();
         book.setReferenceKey("KEY");
-        book.setAuthor("Author");
+        book.setGivenAuthors("Author");
+        book.setAuthors();
         book.setTitle("Title");
         book.setPublisher("Publisher");
         book.setPublishYear(2017);
@@ -102,10 +103,26 @@ public class ExportServiceTest {
 //        assertEquals(expected, es.createBibtexFromArticle(article));
 //    }
 
+    @Test
+    public void scandicCheckerDoesntChangeIfNoScandics() {
+        assertEquals("Some string", es.scandicChecker("Some string"));
+    }
+    
+    @Test
+    public void scandicCheckerChangesSmallScandics() {
+        assertEquals("String c\\\"ont\\\"aining \\aa", es.scandicChecker("String cöntäining å"));
+    }
+    
+    @Test
+    public void scandicCheckerChangesCapitalScandics() {
+        assertEquals("String c\\\"Ont\\\"Aining \\AA", es.scandicChecker("String cÖntÄining Å"));
+    }
+    
     private Article setArticle() {
         Article article = new Article();
         article.setReferenceKey("KEY");
-        article.setAuthor("Author");
+        article.setGivenAuthors("Author");
+        article.setAuthors();
         article.setTitle("Title");
         article.setJournal("Journal");
         article.setPublishYear(2017);
