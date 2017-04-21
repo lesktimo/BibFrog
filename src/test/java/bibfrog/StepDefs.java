@@ -129,6 +129,7 @@ public class StepDefs {
         WebElement element = driver.findElement(By.className("btn"));
         element.click();
     }
+
     @Then("^a file with correct author \"([^\"]*)\" is exported$")
     public void a_file_with_correct_author(String author) throws FileNotFoundException {
         File file = new File("src/bibtex.bib");
@@ -139,6 +140,35 @@ public class StepDefs {
         }
         System.out.println(fileData);
         assertTrue(fileData.contains(author));
+    }
+
+    @When("^BibFrog in NavBar is clicked$")
+    public void navBar_bibfrog() {
+        WebElement element = driver.findElement(By.name("frontpage"));
+        element.click();
+    }
+
+    @When("^Articles in NavBar is clicked$")
+    public void navBar_article() {
+        WebElement element = driver.findElement(By.name("navbarArticles"));
+        element.click();
+    }
+
+    @When("^Inproceedings in NavBar is clicked$")
+    public void navBar_inpro() {
+        WebElement element = driver.findElement(By.name("navbarInpros"));
+        element.click();
+    }
+
+    @When("^Books in NavBar is clicked$")
+    public void navBar_books() {
+        WebElement element = driver.findElement(By.name("navbarBooks"));
+        element.click();
+    }
+
+    @Then("^frontpage is shown$")
+    public void frontpage_shown() {
+        assertTrue(driver.getPageSource().contains("Create and manage article references"));
     }
 
     @Then("^a new inproceeding is added to the site and a list of inproceedings is shown$")
@@ -169,6 +199,21 @@ public class StepDefs {
     @Then("^the article is not added to the site and create an article page is shown$")
     public void article_is_not_added() throws Throwable {
         assertTrue(driver.getPageSource().contains("an article."));
+    }
+
+    @Then("^a list of inproceedings is shown$")
+    public void inproceedings_shown() throws Throwable {
+        assertTrue(driver.getPageSource().contains("Inproceedings"));
+    }
+
+    @Then("^a list of books is shown$")
+    public void books_shown() throws Throwable {
+        assertTrue(driver.getPageSource().contains("Books"));
+    }
+
+    @Then("^a list of articles is shown$")
+    public void articles_shown() throws Throwable {
+        assertTrue(driver.getPageSource().contains("Articles"));
     }
 
     @After
