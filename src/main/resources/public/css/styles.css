@@ -70,7 +70,11 @@
 
 #downloadForm{
     position: relative;
-    left: 60%;
+    left: 50%;
     max-width: 200px;
+}
+
+.listingRow{
+    max-width: 70px;
 }
 

@@ -13,22 +13,22 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <td>Title</td>
-                                        <td>Author</td>
-                                        <td>Publisher</td>
-                                        <td>Year</td>
+                                        <td class="listingRow">Title</td>
+                                        <td class="listingRow">Author</td>
+                                        <td class="listingRow">Publisher</td>
+                                        <td class="listingRow">Year</td>
                                         <td style="text-align: right;">Write your filename</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr th:each="book : ${bookList}">
-                                        <td><b th:text="${book.title}">inpro</b></td>
-                                        <td><b th:text="${book.author}">inpro</b></td>
-                                        <td><b th:text="${book.publisher}">inpro</b></td>
-                                        <td><b th:text="${book.publishYear}">inpro</b></td>
-                                        <td><form id="downloadForm" th:action="@{book/{bookId}/download(bookId=${book.id})}" method="GET">
+                                        <td class="listingRow"><b th:text="${book.title}">title</b></td>
+                                        <td class="listingRow"><b th:text="${book.authorString()}">authors</b></td>
+                                        <td class="listingRow"><b th:text="${book.publisher}">publisher</b></td>
+                                        <td class="listingRow"><b th:text="${book.publishYear}">year</b></td>
+                                        <td class="listingRow"><form id="downloadForm" th:action="@{book/{bookId}/download(bookId=${book.id})}" method="GET">
                                                 <div class="form-group">
-                                                <input class="form-control"  type="text" name="fileName" value="bibtex"/>
+                                                    <input class="form-control"  type="text" name="fileName" value="bibtex"/>
                                                 </div>
                                                 <input class="btn btn-success btn-block" type="submit" value="Download"/>
                                             </form>

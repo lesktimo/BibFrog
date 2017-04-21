@@ -13,22 +13,22 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <td>Title</td>
-                                        <td>Book title</td>
-                                        <td>Author</td>
-                                        <td>Year</td>
+                                        <td class="listingRow">Title</td>
+                                        <td class="listingRow">Book title</td>
+                                        <td class="listingRow">Author</td>
+                                        <td class="listingRow">Year</td>
                                         <td style="text-align: right;">Write your filename</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr th:each="inpro : ${inproList}">
-                                        <td><b th:text="${inpro.title}">inpro</b></td>
-                                        <td><b th:text="${inpro.bookTitle}">inpro</b></td>
-                                        <td><b th:text="${inpro.authors[0]}">inpro</b></td>
-                                        <td><b th:text="${inpro.publishYear}">inpro</b></td>
-                                        <td><form id="downloadForm" th:action="@{inpro/{inproId}/download(inproId=${inpro.id})}" method="GET">
+                                        <td class="listingRow"><b th:text="${inpro.title}">title</b></td>
+                                        <td class="listingRow"><b th:text="${inpro.bookTitle}">book title</b></td>
+                                        <td class="listingRow"><b th:text="${inpro.authorString()}">authors</b></td>
+                                        <td class="listingRow"><b th:text="${inpro.publishYear}">year</b></td>
+                                        <td class="listingRow"><form id="downloadForm" th:action="@{inpro/{inproId}/download(inproId=${inpro.id})}" method="GET">
                                                 <div class="form-group">
-                                                <input class="form-control"  type="text" name="fileName" value="bibtex"/>
+                                                    <input class="form-control"  type="text" name="fileName" value="bibtex"/>
                                                 </div>
                                                 <input class="btn btn-success btn-block" type="submit" value="Download"/>
                                             </form>

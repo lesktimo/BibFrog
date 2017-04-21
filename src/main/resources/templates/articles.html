@@ -13,20 +13,20 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <td>Title</td>
-                                        <td>Author</td>
-                                        <td>Journal</td>
-                                        <td>Year</td>
+                                        <td class="listingRow">Title</td>
+                                        <td class="listingRow">Author</td>
+                                        <td class="listingRow">Journal</td>
+                                        <td class="listingRow">Year</td>
                                         <td style="text-align: right;">Write your filename</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr th:each="article : ${articleList}">
-                                        <td><b th:text="${article.title}">article</b></td>
-                                        <td><b th:text="${article.author}">article</b></td>
-                                        <td><b th:text="${article.journal}">article</b></td>
-                                        <td><b th:text="${article.publishYear}">article</b></td>
-                                        <td><form id="downloadForm" th:action="@{article/{articleId}/download(articleId=${article.id})}" method="GET">
+                                        <td class="listingRow"><b th:text="${article.title}">title</b></td>
+                                        <td class="listingRow"><b th:text="${article.authorString()}">authors</b></td>
+                                        <td class="listingRow"><b th:text="${article.journal}">journal</b></td>
+                                        <td class="listingRow"><b th:text="${article.publishYear}">year</b></td>
+                                        <td class="listingRow"><form id="downloadForm" th:action="@{article/{articleId}/download(articleId=${article.id})}" method="GET">
                                                 <div class="form-group">
                                                     <input class="form-control"  type="text" name="fileName" value="bibtex"/>
                                                 </div>
