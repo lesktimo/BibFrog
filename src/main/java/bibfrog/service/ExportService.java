@@ -63,8 +63,9 @@ public class ExportService {
         String inproTex = "";
 
         for (Entry entry : optionalFields.entrySet()) {
-            if (entry.getValue() != null && !entry.getValue().equals("") && !entry.getValue().equals("0")) {
-                inproTex += ",\n" + entry.getKey() + " = {" + scandicChecker((String) entry.getValue()) + "}";
+            String value = (String) entry.getValue();
+            if (value != null && !value.equals("") && !value.equals("0")) {
+                inproTex += ",\n" + entry.getKey() + " = {" + scandicChecker(value) + "}";
             }
         }
         return inproTex;
