@@ -8,19 +8,45 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Article extends AbstractPersistable<Long> implements Reference {
 
-    @NotNull
-    private String author;
+    //required fields
+    private String[] authors;
     @NotNull
     private String title;
     @NotNull
     private String journal;
-
     @NotNull
     private int publishYear;
+    @NotNull
+    private String givenAuthors;
 
     //optional fields
     private String note, pages, referenceKey;
     private int volume, number, publishMonth;
+
+    public String[] getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors() {
+        if (this.givenAuthors.contains(",")) {
+            this.authors = this.givenAuthors.trim().split(",");
+            for (int i = 0; i < authors.length; i++) {
+                authors[i] = authors[i].trim();
+            }
+        } else {
+            String[] helper = {""};
+            helper[0] = this.givenAuthors.trim();
+            this.authors = helper;
+        }
+    }
+
+    public String getGivenAuthors() {
+        return givenAuthors;
+    }
+
+    public void setGivenAuthors(String givenAuthors) {
+        this.givenAuthors = givenAuthors;
+    }
 
     public int getPublishMonth() {
         return publishMonth;
@@ -28,14 +54,6 @@ public class Article extends AbstractPersistable<Long> implements Reference {
 
     public void setPublishMonth(int publishMonth) {
         this.publishMonth = publishMonth;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String article) {
-        this.author = article;
     }
 
     public String getTitle() {

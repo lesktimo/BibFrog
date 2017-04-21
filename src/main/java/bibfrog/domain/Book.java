@@ -9,28 +9,46 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 public class Book extends AbstractPersistable<Long> implements Reference {
 
     //required fields
-    @NotNull
-    private String author;
+    private String[] authors;
     @NotNull
     private String title;
     @NotNull
     private String publisher;
     @NotNull
     private int publishYear;
+    @NotNull
+    private String givenAuthors;
     //optional fields
     private int volume, edition, publishMonth;
     private String series, address, note, referenceKey;
 
+    public String[] getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors() {
+        if (this.givenAuthors.contains(",")) {
+            this.authors = this.givenAuthors.trim().split(",");
+            for (int i = 0; i < authors.length; i++) {
+                authors[i] = authors[i].trim();
+            }
+        } else {
+            String[] helper = {""};
+            helper[0] = this.givenAuthors.trim();
+            this.authors = helper;
+        }
+    }
+
+    public String getGivenAuthors() {
+        return givenAuthors;
+    }
+
+    public void setGivenAuthors(String givenAuthors) {
+        this.givenAuthors = givenAuthors;
+    }
+
     public String getReferenceKey() {
         return referenceKey;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
     }
 
     public String getTitle() {

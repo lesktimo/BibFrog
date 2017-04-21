@@ -39,7 +39,7 @@ public class BooksController extends ReferenceController {
             return "book";
         }
         book = booksRepo.save(book);
-        if (book.getReferenceKey() == null || article.getReferenceKey().isEmpty()) {
+        if (book.getReferenceKey() == null || book.getReferenceKey().isEmpty()) {
             book.setReferenceKey(book.getId().toString());
             booksRepo.save(book);
         }
