@@ -4,7 +4,7 @@ import bibfrog.domain.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 import org.springframework.stereotype.Service;
 
@@ -58,7 +58,7 @@ public class ExportService {
     }
 
     public String addOptionalFieldsToBibtex(Reference ref) {
-        HashMap<String, String> optionalFields = ref.optionalFields();
+        LinkedHashMap<String, String> optionalFields = ref.optionalFields();
         String inproTex = "";
 
         for (Entry entry : optionalFields.entrySet()) {

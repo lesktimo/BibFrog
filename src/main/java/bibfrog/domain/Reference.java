@@ -1,10 +1,10 @@
 package bibfrog.domain;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public interface Reference {
 
-    public HashMap<String, String> optionalFields();
+    public LinkedHashMap<String, String> optionalFields();
 
     public String authorString();
 
