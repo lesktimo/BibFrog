@@ -8,25 +8,25 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Articles</h2>
+                        <h2>References</h2>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
                                     <tr>
                                         <td class="listingRow">Title</td>
                                         <td class="listingRow">Authors</td>
-                                        <td class="listingRow">Journal</td>
                                         <td class="listingRow">Year</td>
+                                        <td class="listingRow">Reference Key</td>
                                         <td style="text-align: right;">Write your filename</td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr th:each="article : ${articleList}">
-                                        <td class="listingRow"><b th:text="${article.title}">title</b></td>
-                                        <td class="listingRow"><b th:text="${article.authorString()}">authors</b></td>
-                                        <td class="listingRow"><b th:text="${article.journal}">journal</b></td>
-                                        <td class="listingRow"><b th:text="${article.publishYear}">year</b></td>
-                                        <td class="listingRow"><form id="downloadForm" th:action="@{article/{articleId}/download(articleId=${article.id})}" method="GET">
+                                    <tr th:each="reference : ${list}">
+                                        <td class="listingRow"><b th:text="${reference.title}">title</b></td>
+                                        <td class="listingRow"><b th:text="${reference.authorString()}">authors</b></td>
+                                        <td class="listingRow"><b th:text="${reference.year}">year</b></td>
+                                        <td class="listingRow"><b th:text="${reference.referenceKey}">reference key</b></td>
+                                        <td class="listingRow"><form id="downloadForm" th:action="@{/list/download}" method="GET">
                                                 <div class="form-group">
                                                     <input class="form-control"  type="text" name="fileName" value="bibtex"/>
                                                 </div>
