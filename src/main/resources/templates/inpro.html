@@ -12,23 +12,23 @@
                         <h2 class="text-center"><strong>Create</strong> an inproceeding.</h2>
 
                         <div class="form-group">
-                            <label class="lbl">Title:<input class="form-control" type="text" th:field="*{title}" name="title" placeholder="Results from a Three-Year Transition to the Extreme Apprenticeship Method" /></label>
+                            <label class="lbl">Title: <a class="requiredField">*</a><input class="form-control" type="text" th:field="*{title}" name="title" placeholder="Results from a Three-Year Transition to the Extreme Apprenticeship Method" /></label>
                             <a th:if="${#fields.hasErrors('title')}" th:errors="*{title}">title errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Book Title:<input class="form-control" type="text" th:field="*{bookTitle}" name="bookTitle" placeholder="Advanced Learning Technologies, ICALT" /></label>
+                            <label class="lbl">Book Title: <a class="requiredField">*</a><input class="form-control" type="text" th:field="*{bookTitle}" name="bookTitle" placeholder="Advanced Learning Technologies, ICALT" /></label>
                             <a th:if="${#fields.hasErrors('bookTitle')}" th:errors="*{bookTitle}">booktitle errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Author(s):<input class="form-control" type="text" th:field="*{givenAuthors}" name="givenAuthors" placeholder="Arto Vihavainen, Matti Luukkainen" /></label>
+                            <label class="lbl">Author(s): <a class="requiredField">*</a><input class="form-control" type="text" th:field="*{givenAuthors}" name="givenAuthors" placeholder="Arto Vihavainen, Matti Luukkainen" /></label>
                             <a th:if="${#fields.hasErrors('givenAuthors')}" th:errors="*{givenAuthors}">authors errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Year:<input class="form-control" type="number" th:field="*{publishYear}" name="publishYear" placeholder="2013" /></label>
+                            <label class="lbl">Year: <a class="requiredField">*</a><input class="form-control" type="number" th:field="*{publishYear}" name="publishYear" placeholder="2013" /></label>
                             <a th:if="${#fields.hasErrors('publishYear')}" th:errors="*{publishYear}">year errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Reference key:<input class="form-control" type="text" th:field="*{referenceKey}" name="referenceKey" placeholder="Reference key (optional)" /></label>
+                            <label class="lbl">Reference key:<input class="form-control" type="text" th:field="*{referenceKey}" name="referenceKey" placeholder="Reference key" /></label>
                             <a th:if="${#fields.hasErrors('referenceKey')}" th:errors="*{referenceKey}">Reference key errors</a>
                         </div>
                         <div class="form-group">
@@ -40,15 +40,15 @@
                             <a th:if="${#fields.hasErrors('volume')}" th:errors="*{volume}">volume errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Series:<input class="form-control" type="text" th:field="*{series}" name="series" placeholder="Name of the set of Books (optional)" /></label>
+                            <label class="lbl">Series:<input class="form-control" type="text" th:field="*{series}" name="series" placeholder="Name of the set of Books" /></label>
                             <a th:if="${#fields.hasErrors('series')}" th:errors="*{series}">series errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Pages:<input class="form-control" type="text" th:field="*{pages}" name="pages" placeholder="1-2 (optional)" /></label>
+                            <label class="lbl">Pages:<input class="form-control" type="text" th:field="*{pages}" name="pages" placeholder="1-2" /></label>
                             <a th:if="${#fields.hasErrors('pages')}" th:errors="*{pages}">page errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Address:<input class="form-control" type="text" th:field="*{address}" name="address" placeholder="Piscataway, NJ 08854-4141 USA (optional)" /></label>
+                            <label class="lbl">Address:<input class="form-control" type="text" th:field="*{address}" name="address" placeholder="Piscataway, NJ 08854-4141 USA" /></label>
                             <a th:if="${#fields.hasErrors('address')}" th:errors="*{address}">address errors</a>
                         </div>
                         <div class="form-group">
@@ -56,15 +56,15 @@
                             <a th:if="${#fields.hasErrors('publishMonth')}" th:errors="*{publishMonth}">Month errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Organization:<input class="form-control" type="text" th:field="*{organization}" name="organization" placeholder="Sponsors (optional)" /></label>
+                            <label class="lbl">Organization:<input class="form-control" type="text" th:field="*{organization}" name="organization" placeholder="Sponsors" /></label>
                             <a th:if="${#fields.hasErrors('organization')}" th:errors="*{organization}">organization errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Publisher:<input class="form-control" type="text" th:field="*{publisher}" name="publisher" placeholder="IEEE (optional)" /></label>
+                            <label class="lbl">Publisher:<input class="form-control" type="text" th:field="*{publisher}" name="publisher" placeholder="IEEE" /></label>
                             <a th:if="${#fields.hasErrors('publisher')}" th:errors="*{publisher}">publisher errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Note:<input class="form-control" type="text" th:field="*{note}" name="note" placeholder="Additional notes (optional)" /></label>
+                            <label class="lbl">Note:<input class="form-control" type="text" th:field="*{note}" name="note" placeholder="Additional notes" /></label>
                             <a th:if="${#fields.hasErrors('note')}" th:errors="*{note}">note errors</a>
                             <div class="form-group">
                                 <button class="btn btn-primary btn-block" type="submit">Add</button>
