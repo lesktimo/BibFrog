@@ -1,6 +1,7 @@
 package bibfrog.domain;
 
 import java.util.LinkedHashMap;
+import java.util.Random;
 import javax.persistence.Entity;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import javax.validation.constraints.NotNull;
@@ -139,5 +140,11 @@ public class Article extends AbstractPersistable<Long> implements Reference {
         optionalFields.put("month", publishMonth + "");
         optionalFields.put("note", note);
         return optionalFields;
+    }
+    
+    
+    @Override
+    public void generateReferenceKey() {
+        this.referenceKey = title.substring(0, 2).trim() + this.publishYear + this.authorString().substring(0, 2).trim() + super.getId() + new Random().nextInt(1000);
     }
 }

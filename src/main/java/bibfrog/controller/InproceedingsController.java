@@ -41,7 +41,7 @@ public class InproceedingsController extends ReferenceController {
         inpro = inproRepo.save(inpro);
         inpro.setAuthors();
         if (inpro.getReferenceKey() == null || inpro.getReferenceKey().isEmpty()) {
-            inpro.setReferenceKey(inpro.getId().toString());
+            inpro.generateReferenceKey();
         }
         inproRepo.save(inpro);
         return "redirect:/inpros";

@@ -41,7 +41,7 @@ public class BooksController extends ReferenceController {
         book = booksRepo.save(book);
         book.setAuthors();
         if (book.getReferenceKey() == null || book.getReferenceKey().isEmpty()) {
-            book.setReferenceKey(book.getId().toString());
+            book.generateReferenceKey();
         }
         booksRepo.save(book);
         return "redirect:/books";
