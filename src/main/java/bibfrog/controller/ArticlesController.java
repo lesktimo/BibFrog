@@ -39,10 +39,11 @@ public class ArticlesController extends ReferenceController {
             return "article";
         }
         article = articleRepo.save(article);
+        article.setAuthors();
         if (article.getReferenceKey() == null || article.getReferenceKey().isEmpty()) {
             article.setReferenceKey(article.getId().toString());
-            articleRepo.save(article);
         }
+        articleRepo.save(article);
         return "redirect:/articles";
     }
 

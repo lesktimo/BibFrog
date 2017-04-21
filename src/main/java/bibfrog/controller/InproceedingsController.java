@@ -38,12 +38,12 @@ public class InproceedingsController extends ReferenceController {
         if (bindingResult.hasErrors()) {
             return "inpro";
         }
-        Inproceeding helperInpro = inproRepo.save(inpro);
-        helperInpro.setAuthors();
-        if (helperInpro.getReferenceKey() == null || helperInpro.getReferenceKey().isEmpty()) {
-            helperInpro.setReferenceKey(helperInpro.getId().toString());
+        inpro = inproRepo.save(inpro);
+        inpro.setAuthors();
+        if (inpro.getReferenceKey() == null || inpro.getReferenceKey().isEmpty()) {
+            inpro.setReferenceKey(inpro.getId().toString());
         }
-        inproRepo.save(helperInpro);
+        inproRepo.save(inpro);
         return "redirect:/inpros";
     }
 

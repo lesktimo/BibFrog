@@ -128,11 +128,6 @@ public class Book extends AbstractPersistable<Long> implements Reference {
     }
 
     @Override
-    public String toString() {
-        return "Book{" + "author=" + author + ", title=" + title + ", publisher=" + publisher + ", publishYear=" + publishYear + ", volume=" + volume + ", edition=" + edition + ", publishMonth=" + publishMonth + ", series=" + series + ", address=" + address + ", note=" + note + '}';
-    }
-
-    @Override
     public HashMap<String, String> optionalFields() {
         HashMap<String, String> optionalFields = new HashMap();
         optionalFields.put("volume", "" + volume);

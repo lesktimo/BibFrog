@@ -169,19 +169,6 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
         this.referenceKey = referenceKey;
     }
 
-    public String authorString() {
-        String printBuilder = "";
-        for (String author : authors) {
-            printBuilder += author + ", ";
-        }
-        return printBuilder.substring(0, printBuilder.length() - 2);
-    }
-
-    @Override
-    public String toString() {
-        return "Inproceeding{" + "authors= [" + this.authorString() + "] , title=" + title + ", bookTitle=" + bookTitle + ", year=" + publishYear + ", editor=" + editor + ", address=" + address + ", organization=" + organization + ", publisher=" + publisher + ", note=" + note + ", volume=" + volume + ", pages=" + pages + ", publishMonth=" + publishMonth + '}';
-    }
-
     @Override
     public HashMap<String, String> optionalFields() {
         HashMap<String, String> optionalFields = new HashMap();

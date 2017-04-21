@@ -39,10 +39,11 @@ public class BooksController extends ReferenceController {
             return "book";
         }
         book = booksRepo.save(book);
+        book.setAuthors();
         if (book.getReferenceKey() == null || book.getReferenceKey().isEmpty()) {
             book.setReferenceKey(book.getId().toString());
-            booksRepo.save(book);
         }
+        booksRepo.save(book);
         return "redirect:/books";
     }
 
