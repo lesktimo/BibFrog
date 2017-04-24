@@ -129,14 +129,17 @@ public class StepDefs {
     }
 
     @When("^download button is pressed$")
-    public void download_button_is_pressed() {
+    public void download_button_is_pressed() throws InterruptedException {
         WebElement element = driver.findElement(By.name("downloadBibtex"));
         element.click();
     }
 
     @When("^confirm button is pressed$")
-    public void confirm_button_is_pressed() {
-        WebElement element = driver.findElement(By.name("downloadBibtex"));
+    public void confirm_button_is_pressed() throws InterruptedException {
+        driver.switchTo().activeElement();
+        sleep(1000);
+
+        WebElement element = driver.findElement(By.xpath("//button[contains(name(),'confirmDownload')]"));
         element.click();
     }
 
@@ -243,6 +246,10 @@ public class StepDefs {
         assertTrue(driver.getPageSource().contains(book));
         assertTrue(driver.getPageSource().contains(inproceeding));
 
+    }
+
+    public void sleep(int ms) throws InterruptedException {
+        Thread.sleep(ms);
     }
 
     @After
