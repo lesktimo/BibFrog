@@ -10,6 +10,7 @@ import java.util.Scanner;
 import static org.junit.Assert.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
@@ -17,7 +18,7 @@ public class StepDefs {
 
     String baseUrl = "http://localhost:8080";
 
-    WebDriver driver = new HtmlUnitDriver();
+    WebDriver driver = new HtmlUnitDriver(true);
 
     @Given("^BibFrog link to frontpage is clicked$")
     public void navBar_bibfrog_frontpage() {
@@ -136,10 +137,22 @@ public class StepDefs {
 
     @When("^confirm button is pressed$")
     public void confirm_button_is_pressed() throws InterruptedException {
+<<<<<<< HEAD
 //        driver.switchTo().activeElement();
 //        sleep(1000);
 //        WebElement element = driver.findElement(By.xpath("//button[contains(name(),'confirmDownload')]"));
 //        element.click();
+=======
+        driver.switchTo().activeElement();
+
+        Thread.sleep(3000);
+
+// find the button which contains text "Yes" as we have dynamic id
+        WebElement element = driver.findElement(By.xpath("//button[contains(text(),'Confirm')]"));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", element);
+
+>>>>>>> a688b98df19f90c2c0bb2815f1a8b1cbc97f3728
     }
 
     @Then("^a file with correct author \"([^\"]*)\" is exported$")
