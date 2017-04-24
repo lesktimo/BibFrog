@@ -19,23 +19,27 @@ public class StepDefs {
 
     WebDriver driver = new HtmlUnitDriver();
 
-    @Given("^add inproceeding is selected$")
-    public void add_inproceeding_selected() throws Throwable {
+    @Given("^BibFrog link to frontpage is clicked$")
+    public void navBar_bibfrog_frontpage() {
         driver.get(baseUrl);
+        WebElement element = driver.findElement(By.linkText("BibFrog"));
+        element.click();
+    }
+
+    @When("^add inproceeding is selected$")
+    public void add_inproceeding_selected() throws Throwable {
         WebElement element = driver.findElement(By.name("createInproceeding"));
         element.click();
     }
 
-    @Given("^add book is selected$")
+    @When("^add book is selected$")
     public void add_book_selected() throws Throwable {
-        driver.get(baseUrl);
         WebElement element = driver.findElement(By.name("createBook"));
         element.click();
     }
 
-    @Given("^add article is selected$")
+    @When("^add article is selected$")
     public void add_article_selected() throws Throwable {
-        driver.get(baseUrl);
         WebElement element = driver.findElement(By.name("createArticle"));
         element.click();
     }
@@ -225,6 +229,14 @@ public class StepDefs {
     @Then("^a list of articles is shown$")
     public void articles_shown() throws Throwable {
         assertTrue(driver.getPageSource().contains("Articles"));
+    }
+
+    @Then("^page contains \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\"$")
+    public void added_references_shown(String article, String book, String inproceeding) throws Throwable {
+        assertTrue(driver.getPageSource().contains(article));
+        assertTrue(driver.getPageSource().contains(book));
+        assertTrue(driver.getPageSource().contains(inproceeding));
+
     }
 
     @After
