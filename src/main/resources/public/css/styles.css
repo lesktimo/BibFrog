@@ -71,8 +71,12 @@
 
 #downloadForm{
     position: relative;
-    left: 40%;
+    left: 30;
     max-width: 200px;
+}
+
+#confirmForm{
+    position: static
 }
 
 .listingRow{

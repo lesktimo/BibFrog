@@ -17,7 +17,6 @@
                                         <td class="listingRow">Book title</td>
                                         <td class="listingRow">Authors</td>
                                         <td class="listingRow">Year</td>
-                                        <td style="text-align: right;">Download bibtex</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -32,7 +31,7 @@
 
                                             <!-- Modal -->
                                             <div class="modal fade" id="myModal" role="dialog">
-                                                <div class="modal-dialog">
+                                                <div class="modal-dialog modal-sm">
 
                                                     <!-- Modal content-->
                                                     <div class="modal-content">
@@ -42,11 +41,13 @@
                                                             <h4 class="modal-title">Download bibtex</h4>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form id="downloadForm" th:action="@{/list/download}" method="GET">
+                                                            <form id="confirmForm" th:action="@{/list/download}" method="GET">
                                                                 <div class="form-group">
                                                                     <input class="form-control"  type="text" name="fileName" value="bibtex"/>
                                                                 </div>
-                                                                <input class="btn btn-success btn-block" name="confirmDownload" type="submit" value="Confirm"/>
+                                                                <div class="bootstrap-dialog-buttons">
+                                                                    <input class="btn btn-success btn-block" name="confirmDownload" type="submit" value="Confirm"/>
+                                                                </div>
                                                             </form>
                                                         </div>
                                                         <div class="modal-footer">
