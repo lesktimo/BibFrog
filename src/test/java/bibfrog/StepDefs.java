@@ -136,7 +136,7 @@ public class StepDefs {
 
     @When("^confirm button is pressed$")
     public void confirm_button_is_pressed() {
-        WebElement element = driver.findElement(By.name("downloadBibtex"));
+        WebElement element = driver.findElement(By.name("confirmDownload"));
         element.click();
     }
 
