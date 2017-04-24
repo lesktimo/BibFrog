@@ -5,6 +5,7 @@
 
 .features-boxed p {
     color:#7d8285;
+    @import "styles.css";
 }
 
 .features-boxed h2 {
@@ -70,7 +71,7 @@
 
 #downloadForm{
     position: relative;
-    left: 50%;
+    left: 45%;
     max-width: 200px;
 }
 
