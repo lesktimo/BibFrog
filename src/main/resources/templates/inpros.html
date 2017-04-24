@@ -17,7 +17,7 @@
                                         <td class="listingRow">Book title</td>
                                         <td class="listingRow">Authors</td>
                                         <td class="listingRow">Year</td>
-                                        <td style="text-align: right;">Write your filename</td>
+                                        <td style="text-align: right;">Download bibtex</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -26,12 +26,37 @@
                                         <td class="listingRow"><b th:text="${inpro.bookTitle}">book title</b></td>
                                         <td class="listingRow"><b th:text="${inpro.authorString()}">authors</b></td>
                                         <td class="listingRow"><b th:text="${inpro.publishYear}">year</b></td>
-                                        <td class="listingRow"><form id="downloadForm" th:action="@{inpro/{inproId}/download(inproId=${inpro.id})}" method="GET">
-                                                <div class="form-group">
-                                                    <input class="form-control"  type="text" name="fileName" value="bibtex"/>
+                                        <td class="listingRow">
+                                            <!-- Trigger the modal with a button -->
+                                            <button id="downloadForm" type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal">Download</button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="myModal" role="dialog">
+                                                <div class="modal-dialog">
+
+                                                    <!-- Modal content-->
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">Download bibtex</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form id="downloadForm" th:action="@{/list/download}" method="GET">
+                                                                <div class="form-group">
+                                                                    <input class="form-control"  type="text" name="fileName" value="bibtex"/>
+                                                                </div>
+                                                                <input class="btn btn-success btn-block" type="submit" value="Confirm"/>
+                                                            </form>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
-                                                <input class="btn btn-success btn-block" type="submit" value="Download"/>
-                                            </form>
+                                            </div>
+
                                         </td>
                                     </tr>
                                 </tbody>
