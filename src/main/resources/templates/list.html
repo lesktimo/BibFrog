@@ -24,7 +24,7 @@
                                     <tr th:each="reference : ${list}">
                                         <td class="listingRow"><b th:text="${reference.title}">title</b></td>
                                         <td class="listingRow"><b th:text="${reference.authorString()}">authors</b></td>
-                                        <td class="listingRow"><b th:text="${reference.year}">year</b></td>
+                                        <td class="listingRow"><b th:text="${reference.publishYear}">year</b></td>
                                         <td class="listingRow"><b th:text="${reference.referenceKey}">reference key</b></td>
                                         <td class="listingRow"><form id="downloadForm" th:action="@{/list/download}" method="GET">
                                                 <div class="form-group">

@@ -10,7 +10,7 @@ Feature: as A user I want be able to use the navigation
     When List all in NavBar is clicked
     Then a list of all references is shown
 
-  Scenario: using the Navbar to list of inproceedings
+  Scenario: using the NavBar to list of inproceedings
     Given add inproceeding is selected
     When Inproceedings in NavBar is clicked
     Then a list of inproceedings is shown
