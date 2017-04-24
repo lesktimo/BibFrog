@@ -135,17 +135,12 @@ public class StepDefs {
     }
 
     @When("^confirm button is pressed$")
-<<<<<<< HEAD
     public void confirm_button_is_pressed() throws InterruptedException {
         driver.switchTo().activeElement();
         sleep(1000);
 
-        WebElement element = driver.findElement(By.xpath("//button[contains(name(),'confirmDownload')]"));
-=======
-    public void confirm_button_is_pressed() {
-        WebElement element = driver.findElement(By.name("confirmDownload"));
->>>>>>> 91810e02384cddd55d44f0aa85a41852c3c09f4e
-        element.click();
+//        WebElement element = driver.findElement(By.xpath("//button[contains(name(),'confirmDownload')]"));
+//        element.click();
     }
 
     @Then("^a file with correct author \"([^\"]*)\" is exported$")
