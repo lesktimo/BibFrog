@@ -130,7 +130,13 @@ public class StepDefs {
 
     @When("^download button is pressed$")
     public void download_button_is_pressed() {
-        WebElement element = driver.findElement(By.className("btn"));
+        WebElement element = driver.findElement(By.name("downloadBibtex"));
+        element.click();
+    }
+
+    @When("^confirm button is pressed$")
+    public void confirm_button_is_pressed() {
+        WebElement element = driver.findElement(By.name("downloadBibtex"));
         element.click();
     }
 

@@ -28,7 +28,7 @@
                                         <td class="listingRow"><b th:text="${inpro.publishYear}">year</b></td>
                                         <td class="listingRow">
                                             <!-- Trigger the modal with a button -->
-                                            <button id="downloadForm" type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal">Download</button>
+                                            <button id="downloadForm" type="button" name="downloadBibtex" class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal">Download</button>
 
                                             <!-- Modal -->
                                             <div class="modal fade" id="myModal" role="dialog">
@@ -46,7 +46,7 @@
                                                                 <div class="form-group">
                                                                     <input class="form-control"  type="text" name="fileName" value="bibtex"/>
                                                                 </div>
-                                                                <input class="btn btn-success btn-block" type="submit" value="Confirm"/>
+                                                                <input class="btn btn-success btn-block" name="confirmDownload" type="submit" value="Confirm"/>
                                                             </form>
                                                         </div>
                                                         <div class="modal-footer">
