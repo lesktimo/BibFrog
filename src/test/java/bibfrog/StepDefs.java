@@ -137,23 +137,25 @@ public class StepDefs {
 
     @When("^confirm button is pressed$")
     public void confirm_button_is_pressed() throws InterruptedException {
-//        driver.switchTo().activeElement();
-//        sleep(1000);
-//        WebElement element = driver.findElement(By.xpath("//input[contains(name(),'confirmDownload')]"));
-//        element.click();
+        driver.switchTo().activeElement();
+        sleep(1000);
+        WebElement element = driver.findElement(By.name("confirmDownload"));
+//        JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript("arguments[0].click();", element);
+        element.click();
 
     }
 
     @Then("^a file with correct author \"([^\"]*)\" is exported$")
     public void a_file_with_correct_author(String author) throws FileNotFoundException {
-//        File file = new File("src/bibtex.bib");
-//        Scanner reader = new Scanner(file);
-//        String fileData = "";
-//        while (reader.hasNextLine()) {
-//            fileData += reader.nextLine();
-//        }
-//        System.out.println(fileData);
-//        assertTrue(fileData.contains(author));
+        File file = new File("src/bibtex.bib");
+        Scanner reader = new Scanner(file);
+        String fileData = "";
+        while (reader.hasNextLine()) {
+            fileData += reader.nextLine();
+        }
+        System.out.println(fileData);
+        assertTrue(fileData.contains(author));
     }
 
     @When("^BibFrog in NavBar is clicked$")

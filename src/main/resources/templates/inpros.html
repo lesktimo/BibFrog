@@ -41,7 +41,7 @@
                                                             <h4 class="modal-title">Download bibtex</h4>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form id="downloadForm" th:action="@{/list/download}" method="GET">
+                                                            <form id="downloadForm" th:action="@{inpro/{inproId}/download(inproId=${inpro.id})}" method="GET">
                                                                 <div class="form-group">
                                                                     <input class="form-control"  type="text" name="fileName" value="bibtex"/>
                                                                 </div>
