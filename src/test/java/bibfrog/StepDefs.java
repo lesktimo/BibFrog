@@ -139,7 +139,7 @@ public class StepDefs {
     public void confirm_button_is_pressed() throws InterruptedException {
 //        driver.switchTo().activeElement();
 //        sleep(1000);
-//        WebElement element = driver.findElement(By.xpath("//button[contains(name(),'confirmDownload')]"));
+//        WebElement element = driver.findElement(By.xpath("//input[contains(name(),'confirmDownload')]"));
 //        element.click();
 
     }

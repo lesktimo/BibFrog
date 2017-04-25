@@ -41,13 +41,12 @@
                                                             <h4 class="modal-title">Download bibtex</h4>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form id="confirmForm" th:action="@{/list/download}" method="GET">
+                                                            <form id="downloadForm" th:action="@{/list/download}" method="GET">
                                                                 <div class="form-group">
                                                                     <input class="form-control"  type="text" name="fileName" value="bibtex"/>
                                                                 </div>
-                                                                <div class="bootstrap-dialog-buttons">
-                                                                    <button class="btn btn-success btn-block" name="confirmDownload" type="submit" value="Confirm">Confirm</button>
-                                                                </div>                                                            </form>
+                                                                <input class="btn btn-success btn-block" name="confirmDownload" type="submit" value="Confirm"/>
+                                                            </form>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
