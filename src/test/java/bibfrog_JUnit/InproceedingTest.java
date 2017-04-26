@@ -48,8 +48,8 @@ public class InproceedingTest {
     
     @Test
     public void optionalFieldsReturnsOptionalValuesInCorrectOrder() {
-        inpro.setEditor("test1");;
-        inpro.setVolume(1);;
+        inpro.setEditor("test1");
+        inpro.setVolume(1);
         inpro.setSeries("test2");
         inpro.setPages("test3");
         inpro.setAddress("test4");
@@ -60,8 +60,8 @@ public class InproceedingTest {
         
         Inproceeding expected = new Inproceeding();
         
-        expected.setEditor("test1");;
-        expected.setVolume(1);;
+        expected.setEditor("test1");
+        expected.setVolume(1);
         expected.setSeries("test2");
         expected.setPages("test3");
         expected.setAddress("test4");
@@ -71,5 +71,17 @@ public class InproceedingTest {
         expected.setNote("test7");
         
         assertEquals(expected.optionalFields(), inpro.optionalFields());
+    }
+    
+    @Test
+    public void generateReferenceKeyWorks() {
+        inpro.setGivenAuthors("Author");
+        inpro.setAuthors();
+        inpro.setTitle("Title");
+        inpro.setBookTitle("Booktitle");
+        inpro.setPublishYear(2017);
+        inpro.generateReferenceKey();
+        assertTrue(inpro.getReferenceKey().contains("Ti2017Au"));
+        
     }
 }

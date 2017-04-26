@@ -4,11 +4,11 @@ import java.util.LinkedHashMap;
 
 public interface Reference {
     
-    public void generateReferenceKey();
+    void generateReferenceKey();
     
-    public LinkedHashMap<String, String> optionalFields();
+    LinkedHashMap<String, String> optionalFields();
 
-    public String authorString();
+    String authorString();
 
-    public void setAuthors();
+    void setAuthors();
 }
