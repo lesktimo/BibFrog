@@ -79,7 +79,13 @@
                                                     </div>
 
                                                 </div>
+
+                                                <input class="btn btn-success btn-block" type="submit" value="Download"/>
+                                            
+                                             <form id="downloadForm" th:action="@{book/{bookId}/edit(bookId=${book.id})}" method="GET"><input class="btn btn-success btn-block" type="submit" value="Edit"/></form>
+
                                             </div>
+
 
                                         </td>
                                     </tr>
