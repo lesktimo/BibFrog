@@ -23,7 +23,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class InproceedingsController{
+public class InproceedingsController {
+
     @Autowired
     private InproceedingsRepo inproRepo;
 
@@ -73,14 +74,20 @@ public class InproceedingsController{
         exportService.createFile(bibtex);
     }
     
+    @RequestMapping(value = "/inpros/all/download", method = RequestMethod.GET)
+    public HttpEntity<byte[]> downloadAllInpros( @RequestParam String fileName) throws IOException {
+        String bibtex = exportService.createBibtexFromAllInproceedings(inproRepo.findAll());
+        exportService.createFile(bibtex);
+        File inproFile = getFilePathForBytes("src/bibtex.bib");
+        byte[] bytes = Files.readAllBytes(createPath(inproFile));
+        return new HttpEntity<>(bytes, createHeaders(inproFile, fileName));
+    }
+
     protected File getFilePathForBytes(String filePath) {
         return new File(filePath);
 
     }
-    
-    
-    
-    
+
     protected Path createPath(File file) {
         return Paths.get(file.getPath());
     }

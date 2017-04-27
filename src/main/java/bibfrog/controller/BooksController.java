@@ -88,5 +88,14 @@ public class BooksController {
         headers.setContentLength(file.length());
         return headers;
     }
+    
+    @RequestMapping(value = "/books/all/download", method = RequestMethod.GET)
+    public HttpEntity<byte[]> downloadAllBooks( @RequestParam String fileName) throws IOException {
+        String bibtex = exportService.createBibtexFromAllBooks(booksRepo.findAll());
+        exportService.createFile(bibtex);
+        File inproFile = getFilePathForBytes("src/bibtex.bib");
+        byte[] bytes = Files.readAllBytes(createPath(inproFile));
+        return new HttpEntity<>(bytes, createHeaders(inproFile, fileName));
+    }
 
 }
