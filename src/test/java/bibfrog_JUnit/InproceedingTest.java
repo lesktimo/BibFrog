@@ -78,7 +78,6 @@ public class InproceedingTest {
         inpro.setGivenAuthors("Author");
         inpro.setAuthors();
         inpro.setTitle("Title");
-        inpro.setBookTitle("Booktitle");
         inpro.setPublishYear(2017);
         inpro.generateReferenceKey();
         assertTrue(inpro.getReferenceKey().contains("Ti2017Au"));

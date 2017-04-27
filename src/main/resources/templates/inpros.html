@@ -9,6 +9,14 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h2>Inproceedings</h2>
+                        <div class="downloadAll">
+                            <form id="downloadForm" th:action="@{/inpros/all/download}" method="GET">
+                                <div class="form-group">
+                                    <input class="form-control"  type="text" name="fileName" value="bibtex"/>
+                                </div>
+                                <input class="btn btn-success btn-block" type="submit" value="Download All" name="downloadAll"/>
+                            </form>
+                        </div>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>

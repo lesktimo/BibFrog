@@ -10,3 +10,4 @@
 
 ## Asiakaspalaveri/sprintin demo
 * Perjantaisin 14.00 C220
+* Loppudemo torstai 4.5. klo. 14-17
