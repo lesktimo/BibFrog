@@ -37,10 +37,29 @@ public class ArticlesController{
         return "article";
     }
     @RequestMapping(value = "/article/{id}/edit", method = RequestMethod.GET)
-    public String editArticle(Model mode, @PathVariable long id) {
-        mode.addAttribute("article", articleRepo.findOne(id));
+    public String editArticle(Model model, @PathVariable long id) {
+        model.addAttribute("article", articleRepo.findOne(id));
         return "article";
     }
+    
+    @RequestMapping(value = "/article/{id}/edit", method = RequestMethod.POST)
+    public String updateArticle(@PathVariable Long id, @Valid @ModelAttribute Article article, BindingResult bindingResult) {
+        articleRepo.delete(id);
+        
+        if (bindingResult.hasErrors()) {
+            return "article";
+        }
+        article = articleRepo.save(article);
+        article.setAuthors();
+        if (article.getReferenceKey() == null || article.getReferenceKey().isEmpty()) {
+            article.generateReferenceKey();
+        }
+        
+        articleRepo.save(article);
+        return "redirect:/articles";
+    }
+     
+    
 
     @RequestMapping(value = "/article/add", method = RequestMethod.POST)   
     public String postArticle(@Valid @ModelAttribute Article article, BindingResult bindingResult) {

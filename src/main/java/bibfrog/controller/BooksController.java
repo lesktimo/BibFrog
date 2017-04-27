@@ -36,6 +36,29 @@ public class BooksController {
         model.addAttribute("book", new Book());
         return "book";
     }
+    
+    @RequestMapping(value = "/book/{id}/edit", method = RequestMethod.GET)
+    public String editBook(Model model, @PathVariable long id) {
+        model.addAttribute("book", booksRepo.findOne(id));
+        return "book_edit";
+    }
+    
+    @RequestMapping(value = "/book/{id}/edit", method = RequestMethod.POST)
+    public String updateBook(@PathVariable Long id, @Valid @ModelAttribute Book book, BindingResult bindingResult) {
+        booksRepo.delete(id);
+        
+        if (bindingResult.hasErrors()) {
+            return "book";
+        }
+        book = booksRepo.save(book);
+        book.setAuthors();
+        if (book.getReferenceKey() == null || book.getReferenceKey().isEmpty()) {
+            book.generateReferenceKey();
+        }
+        
+        booksRepo.save(book);
+        return "redirect:/books";
+    }
 
     @RequestMapping(value = "/book/add", method = RequestMethod.POST)
     public String postBook(@Valid @ModelAttribute Book book, BindingResult bindingResult) {
