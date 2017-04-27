@@ -16,7 +16,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,30 +24,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ReferenceController {
 
     @Autowired
-    private InproceedingsRepo inpros;
+    private InproceedingsRepo inprosRepo;
 
     @Autowired
-    private BooksRepo books;
+    private BooksRepo booksRepo;
 
     @Autowired
-    private ArticleRepo articles;
+    private ArticleRepo articlesRepo;
 
     @Autowired
     private ExportService exportService;
-    
+
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String listAllReferences(Model model) {
         List<Reference> references = getAllReferences();
         model.addAttribute("list", references);
         return "list";
-    }
-
-    private List<Reference> getAllReferences() {
-        List<Reference> references = new ArrayList<>();
-        references.addAll(articles.findAll());
-        references.addAll(books.findAll());
-        references.addAll(inpros.findAll());
-        return references;
     }
 
     @RequestMapping(value = "/list/download", method = RequestMethod.GET)
@@ -62,21 +53,29 @@ public class ReferenceController {
         return new HttpEntity<>(bytes, createHeaders(inproFile, fileName));
     }
 
-    public void createFileForDownloading() throws IOException {
-        String bibtex = exportService.createBibtexFromAll(inpros.findAll(), books.findAll(), articles.findAll());
+    private List<Reference> getAllReferences() {
+        List<Reference> references = new ArrayList<>();
+        references.addAll(articlesRepo.findAll());
+        references.addAll(booksRepo.findAll());
+        references.addAll(inprosRepo.findAll());
+        return references;
+    }
+
+    private void createFileForDownloading() throws IOException {
+        String bibtex = exportService.createBibtexFromAll(inprosRepo.findAll(), booksRepo.findAll(), articlesRepo.findAll());
         exportService.createFile(bibtex);
     }
 
-    protected File getFilePathForBytes(String filePath) {
+    private File getFilePathForBytes(String filePath) {
         return new File(filePath);
 
     }
 
-    protected Path createPath(File file) {
+    private Path createPath(File file) {
         return Paths.get(file.getPath());
     }
 
-    protected HttpHeaders createHeaders(File file, String fileName) {
+    private HttpHeaders createHeaders(File file, String fileName) {
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.TEXT_PLAIN);
         headers.set(HttpHeaders.CONTENT_DISPOSITION,
