@@ -37,18 +37,17 @@ public class InproceedingsController {
         return "inpro";
     }
 
-    
     @RequestMapping(value = "/inpro/{id}/edit", method = RequestMethod.GET)
-    public String editInproceeding (@PathVariable Long id, Model model) {
+    public String editInproceeding(@PathVariable Long id, Model model) {
         Inproceeding inpro = inproRepo.findOne(id);
         model.addAttribute("inproceeding", inpro);
         return "inpro_edit";
     }
-    
+
     @RequestMapping(value = "/inpro/{id}/edit", method = RequestMethod.POST)
     public String updateInproceeding(@PathVariable Long id, @Valid @ModelAttribute Inproceeding inpro, BindingResult bindingResult) {
         inproRepo.delete(id);
-        
+
         if (bindingResult.hasErrors()) {
             return "inpro_edit";
         }
@@ -57,11 +56,10 @@ public class InproceedingsController {
         if (inpro.getReferenceKey() == null || inpro.getReferenceKey().isEmpty()) {
             inpro.generateReferenceKey();
         }
-        
+
         inproRepo.save(inpro);
         return "redirect:/inpros";
     }
-    
 
     @RequestMapping(value = "/inpro/add", method = RequestMethod.POST)
     public String postInproceeding(@Valid @ModelAttribute Inproceeding inpro, BindingResult bindingResult) {
@@ -99,9 +97,9 @@ public class InproceedingsController {
         String bibtex = exportService.createBibtexFromInproceeding(inpro);
         exportService.createFile(bibtex);
     }
-    
+
     @RequestMapping(value = "/inpros/all/download", method = RequestMethod.GET)
-    public HttpEntity<byte[]> downloadAllInpros( @RequestParam String fileName) throws IOException {
+    public HttpEntity<byte[]> downloadAllInpros(@RequestParam String fileName) throws IOException {
         String bibtex = exportService.createBibtexFromAllInproceedings(inproRepo.findAll());
         exportService.createFile(bibtex);
         File inproFile = getFilePathForBytes("src/bibtex.bib");
