@@ -77,6 +77,15 @@ public class ArticlesController{
 
     }
     
+    @RequestMapping(value = "/articles/all/download", method = RequestMethod.GET)
+    public HttpEntity<byte[]> downloadAllArticles( @RequestParam String fileName) throws IOException {
+        String bibtex = exportService.createBibtexFromAllArticles(articleRepo.findAll());
+        exportService.createFile(bibtex);
+        File inproFile = getFilePathForBytes("src/bibtex.bib");
+        byte[] bytes = Files.readAllBytes(createPath(inproFile));
+        return new HttpEntity<>(bytes, createHeaders(inproFile, fileName));
+    }
+    
     
     
     
