@@ -36,7 +36,14 @@ public class InproceedingsController {
         model.addAttribute("inproceeding", new Inproceeding());
         return "inpro";
     }
-
+    
+    @RequestMapping(value = "/inpro/{id}/edit", method = RequestMethod.GET)
+    public String editInproceeding (@PathVariable Long id, Model model) {
+        Inproceeding inpro = inproRepo.findOne(id);
+        model.addAttribute("inpro", inpro);
+        return "inpro_edit";
+    }
+    
     @RequestMapping(value = "/inpro/add", method = RequestMethod.POST)
     public String postInproceeding(@Valid @ModelAttribute Inproceeding inpro, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
