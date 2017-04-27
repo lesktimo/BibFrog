@@ -141,8 +141,6 @@ public class StepDefs {
         driver.switchTo().activeElement();
         sleep(1000);
         WebElement element = driver.findElement(By.name("confirmDownload"));
-//        JavascriptExecutor js = (JavascriptExecutor) driver;
-//        js.executeScript("arguments[0].click();", element);
         element.click();
 
     }
