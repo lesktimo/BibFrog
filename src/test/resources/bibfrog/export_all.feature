@@ -12,5 +12,5 @@ Feature: As a user I want to be able to export all references at the same time
     When correct input for title "inproceeding1", correct booktitle "booktitle", correct year "2016" and correct Authors "Arton lasit" are given
     When List all in NavBar is clicked
     When download all button is pressed
-    When confirm button is pressed
+    When confirm all button is pressed
     Then a file that contains "article1", "title1" and "inproceeding1" is created
