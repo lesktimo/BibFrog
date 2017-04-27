@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map.Entry;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,55 @@ public class ExportService {
         fileWriter.flush();
         fileWriter.close();
     }
+    
+    
+    public String createBibtexFromAll(List<Inproceeding> inpros, List<Book> books, List<Article> articles){
+        String bibtex = "";
+        
+        bibtex += createBibtexFromAllInproceedings(inpros);
+        bibtex += createBibtexFromAllBooks(books);
+        bibtex += createBibtexFromAllArticles(articles);
+        
+        return bibtex;
+    }
+    
+    public String createBibtexFromAllInproceedings(List<Inproceeding> inpros){
+        String inprotex = "";
+        for (Inproceeding inpro : inpros) {
+            inprotex += createBibtexFromInproceeding(inpro);
+            inprotex += "\n";
+            inprotex += "\n";
+        }
+        
+        return inprotex;
+    }
+    
+    public String createBibtexFromAllBooks(List<Book> books){
+        String booktex = "";
+        for (Book book : books) {
+            booktex += createBibtexFromBook(book);
+            booktex += "\n";
+            booktex += "\n";
+        }
+        
+        return booktex;
+    }
+    
+    
+    public String createBibtexFromAllArticles(List<Article> articles){
+        String articletex = "";
+        for (Article article : articles) {
+            articletex += createBibtexFromArticle(article);
+            articletex += "\n";
+            articletex += "\n";
+        }
+        
+        return articletex;
+    }
+    
+    
+    
+    
 
     public String createBibtexFromInproceeding(Inproceeding inpro) {
         String bibtex = "@inproceedings{" + scandicChecker(inpro.getReferenceKey()) + ","

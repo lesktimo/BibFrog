@@ -9,6 +9,12 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h2>References</h2>
+                        <form id="downloadForm" th:action="@{/list/download}" method="GET">
+                            <div class="form-group">
+                                <input class="form-control"  type="text" name="fileName" value="bibtex"/>
+                            </div>
+                            <input class="btn btn-success btn-block" type="submit"/>
+                        </form>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
@@ -41,12 +47,7 @@
                                                             <h4 class="modal-title">Download bibtex</h4>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form id="downloadForm" th:action="@{/list/download}" method="GET">
-                                                                <div class="form-group">
-                                                                    <input class="form-control"  type="text" name="fileName" value="bibtex"/>
-                                                                </div>
-                                                                <input class="btn btn-success btn-block" name="confirmDownload" type="submit" value="Confirm"/>
-                                                            </form>
+
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
