@@ -146,17 +146,7 @@ public class StepDefs {
 
     }
 
-    @Then("^a file with correct author \"([^\"]*)\" is exported$")
-    public void a_file_with_correct_author(String author) throws FileNotFoundException {
-        File file = new File("src/bibtex.bib");
-        Scanner reader = new Scanner(file);
-        String fileData = "";
-        while (reader.hasNextLine()) {
-            fileData += reader.nextLine();
-        }
-        System.out.println(fileData);
-        assertTrue(fileData.contains(author));
-    }
+    
 
     @When("^BibFrog in NavBar is clicked$")
     public void navBar_bibfrog() {
@@ -191,6 +181,11 @@ public class StepDefs {
     @Then("^frontpage is shown$")
     public void frontpage_shown() {
         assertTrue(driver.getPageSource().contains("Create and manage article references"));
+    }
+    @Then("^a file with correct author \"([^\"]*)\" is exported$")
+    public void a_file_with_correct_author(String author) throws FileNotFoundException {
+        String fileData = readFile();
+        assertTrue(fileData.contains(author));
     }
 
     @Then("^a new inproceeding is added to the site and a list of inproceedings is shown$")
@@ -253,6 +248,16 @@ public class StepDefs {
 
     public void sleep(int ms) throws InterruptedException {
         Thread.sleep(ms);
+    }
+
+    public String readFile() throws FileNotFoundException {
+        File file = new File("src/bibtex.bib");
+        Scanner reader = new Scanner(file);
+        String fileData = "";
+        while (reader.hasNextLine()) {
+            fileData += reader.nextLine();
+        }
+        return fileData;
     }
 
     @After
