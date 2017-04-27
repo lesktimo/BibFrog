@@ -130,9 +130,17 @@ public class StepDefs {
         element.submit();
     }
 
-    @When("^download button is pressed$")
-    public void download_button_is_pressed() throws InterruptedException {
+    @When("^manage button is pressed$")
+    public void manage_button_is_pressed() throws InterruptedException {
         WebElement element = driver.findElement(By.name("downloadBibtex"));
+        element.click();
+    }
+
+    @When("^edit button is pressed$")
+    public void edit_button_is_pressed() throws InterruptedException {
+        driver.switchTo().activeElement();
+        sleep(1000);
+        WebElement element = driver.findElement(By.name("editButton"));
         element.click();
     }
 
@@ -223,6 +231,21 @@ public class StepDefs {
         assertTrue(driver.getPageSource().contains("an article."));
     }
 
+    @Then("^article is not edited and edit page is shown$")
+    public void article_is_not_edited() throws Throwable {
+        assertTrue(driver.getPageSource().contains("an article."));
+    }
+
+    @Then("^book is not edited and edit page is shown$")
+    public void book_is_not_edited() throws Throwable {
+        assertTrue(driver.getPageSource().contains("an book."));
+    }
+
+    @Then("^inproceeding is not edited and edit page is shown$")
+    public void inproceeding_is_not_edited() throws Throwable {
+        assertTrue(driver.getPageSource().contains("an inproceeding."));
+    }
+
     @Then("^a list of all references is shown$")
     public void references_shown() throws Throwable {
         assertTrue(driver.getPageSource().contains("References"));
@@ -241,6 +264,15 @@ public class StepDefs {
     @Then("^a list of articles is shown$")
     public void articles_shown() throws Throwable {
         assertTrue(driver.getPageSource().contains("Articles"));
+    }
+
+    @Then("^listing page contains fields \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\"$")
+    public void successful_edit(String field1, String field2, int year, String field3) {
+        assertTrue(driver.getPageSource().contains("field1"));
+        assertTrue(driver.getPageSource().contains("field2"));
+        assertTrue(driver.getPageSource().contains("year"));
+        assertTrue(driver.getPageSource().contains("field3"));
+
     }
 
     @Then("^page contains \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\"$")
