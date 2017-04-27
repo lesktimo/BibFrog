@@ -50,7 +50,7 @@ public class InproceedingsController {
         inproRepo.delete(id);
         
         if (bindingResult.hasErrors()) {
-            return "inpro";
+            return "inpro_edit";
         }
         inpro = inproRepo.save(inpro);
         inpro.setAuthors();

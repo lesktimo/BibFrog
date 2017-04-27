@@ -48,7 +48,7 @@ public class BooksController {
         booksRepo.delete(id);
         
         if (bindingResult.hasErrors()) {
-            return "book";
+            return "book_edit";
         }
         book = booksRepo.save(book);
         book.setAuthors();
