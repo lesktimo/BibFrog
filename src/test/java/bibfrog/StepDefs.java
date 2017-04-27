@@ -152,6 +152,14 @@ public class StepDefs {
         element.click();
 
     }
+    @When("^confirm button is pressed$")
+    public void confirm_all_button_is_pressed() throws InterruptedException {
+        driver.switchTo().activeElement();
+        sleep(1000);
+        WebElement element = driver.findElement(By.name("confirmAllDownload"));
+        element.click();
+
+    }
 
     @When("^BibFrog in NavBar is clicked$")
     public void navBar_bibfrog() {
