@@ -19,4 +19,5 @@ Feature: As a user I want to export articles from the site
     When add article is selected
     When correct input for title "article3", correct journal "journal", correct year "2014" and correct Authors "Arton lasit" are given
     When download all button is pressed
+    When confirm button is pressed
     Then a file that contains page contains "article1", "article2" and "article3" is created
