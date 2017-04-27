@@ -36,17 +36,17 @@ public class BooksController {
         model.addAttribute("book", new Book());
         return "book";
     }
-    
+
     @RequestMapping(value = "/book/{id}/edit", method = RequestMethod.GET)
     public String editBook(Model model, @PathVariable long id) {
         model.addAttribute("book", booksRepo.findOne(id));
         return "book_edit";
     }
-    
+
     @RequestMapping(value = "/book/{id}/edit", method = RequestMethod.POST)
     public String updateBook(@PathVariable Long id, @Valid @ModelAttribute Book book, BindingResult bindingResult) {
         booksRepo.delete(id);
-        
+
         if (bindingResult.hasErrors()) {
             return "book_edit";
         }
@@ -55,7 +55,7 @@ public class BooksController {
         if (book.getReferenceKey() == null || book.getReferenceKey().isEmpty()) {
             book.generateReferenceKey();
         }
-        
+
         booksRepo.save(book);
         return "redirect:/books";
     }
@@ -111,9 +111,9 @@ public class BooksController {
         headers.setContentLength(file.length());
         return headers;
     }
-    
+
     @RequestMapping(value = "/books/all/download", method = RequestMethod.GET)
-    public HttpEntity<byte[]> downloadAllBooks( @RequestParam String fileName) throws IOException {
+    public HttpEntity<byte[]> downloadAllBooks(@RequestParam String fileName) throws IOException {
         String bibtex = exportService.createBibtexFromAllBooks(booksRepo.findAll());
         exportService.createFile(bibtex);
         File bookFile = getFilePathForBytes("src/bibtex.bib");
