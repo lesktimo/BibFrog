@@ -32,6 +32,7 @@
                                                 </div>
                                                 <input class="btn btn-success btn-block" type="submit" value="Download"/>
                                             </form>
+                                             <form id="downloadForm" th:action="@{book/{bookId}/edit(bookId=${book.id})}" method="GET"><input class="btn btn-success btn-block" type="submit" value="Edit"/></form>
                                         </td>
                                     </tr>
                                 </tbody>

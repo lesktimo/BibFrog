@@ -32,8 +32,13 @@ public class ArticlesController extends ReferenceController {
         model.addAttribute("article", new Article());
         return "article";
     }
+    @RequestMapping(value = "/article/{id}/edit", method = RequestMethod.GET)
+    public String editArticle(Model mode, @PathVariable long id) {
+        mode.addAttribute("article", articleRepo.findOne(id));
+        return "article";
+    }
 
-    @RequestMapping(value = "/article/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/article/add", method = RequestMethod.POST)   
     public String postArticle(@Valid @ModelAttribute Article article, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "article";

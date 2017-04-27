@@ -32,6 +32,11 @@ public class InproceedingsController extends ReferenceController {
         model.addAttribute("inproceeding", new Inproceeding());
         return "inpro";
     }
+    @RequestMapping(value = "/inpro/{id}/edit", method = RequestMethod.GET)
+    public String editInproceeding(Model mode, @PathVariable long id) {
+        mode.addAttribute("article", inproRepo.findOne(id));
+        return "inpro";
+    }
 
     @RequestMapping(value = "/inpro/add", method = RequestMethod.POST)
     public String postInproceeding(@Valid @ModelAttribute Inproceeding inpro, BindingResult bindingResult) {
