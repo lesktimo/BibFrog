@@ -101,7 +101,7 @@ public class ExportServiceTest {
         articles.add(article);
 
         String bibtex = es.createBibtexFromAllArticles(articles);
-        String expected = es.createBibtexFromArticle(article) + "\n\n";
+        String expected = es.createBibtexFromArticle(article);
 
         assertEquals(expected, bibtex);
     }
@@ -114,7 +114,7 @@ public class ExportServiceTest {
         books.add(book);
 
         String bibtex = es.createBibtexFromAllBooks(books);
-        String expected = es.createBibtexFromBook(book) + "\n\n";
+        String expected = es.createBibtexFromBook(book);
 
         assertEquals(expected, bibtex);
     }
@@ -136,7 +136,7 @@ public class ExportServiceTest {
 
         String bibtex = es.createBibtexFromAllInproceedings(inpros);
         String expected = es.createBibtexFromInproceeding(inpro1) + "\n\n"
-                + es.createBibtexFromInproceeding(inpro2) + "\n\n";
+                + es.createBibtexFromInproceeding(inpro2);
 
         assertEquals(expected, bibtex);
     }

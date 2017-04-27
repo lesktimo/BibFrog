@@ -37,7 +37,7 @@ public class ExportService {
             inprotex += createBibtexFromInproceeding(inpro) + "\n\n";
         }
         
-        return inprotex;
+        return inprotex.trim();
     }
     
     public String createBibtexFromAllBooks(List<Book> books){
@@ -46,7 +46,7 @@ public class ExportService {
             booktex += createBibtexFromBook(book) + "\n\n";
         }
         
-        return booktex;
+        return booktex.trim();
     }
         
     public String createBibtexFromAllArticles(List<Article> articles){
@@ -55,7 +55,7 @@ public class ExportService {
             articletex += createBibtexFromArticle(article) + "\n\n";
         }
         
-        return articletex;
+        return articletex.trim();
     }
 
     public String createBibtexFromInproceeding(Inproceeding inpro) {
