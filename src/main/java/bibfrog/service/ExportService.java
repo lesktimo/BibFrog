@@ -20,8 +20,7 @@ public class ExportService {
         fileWriter.flush();
         fileWriter.close();
     }
-    
-    
+        
     public String createBibtexFromAll(List<Inproceeding> inpros, List<Book> books, List<Article> articles){
         String bibtex = "";
         
@@ -35,9 +34,7 @@ public class ExportService {
     public String createBibtexFromAllInproceedings(List<Inproceeding> inpros){
         String inprotex = "";
         for (Inproceeding inpro : inpros) {
-            inprotex += createBibtexFromInproceeding(inpro);
-            inprotex += "\n";
-            inprotex += "\n";
+            inprotex += createBibtexFromInproceeding(inpro) + "\n\n";
         }
         
         return inprotex;
@@ -46,29 +43,20 @@ public class ExportService {
     public String createBibtexFromAllBooks(List<Book> books){
         String booktex = "";
         for (Book book : books) {
-            booktex += createBibtexFromBook(book);
-            booktex += "\n";
-            booktex += "\n";
+            booktex += createBibtexFromBook(book) + "\n\n";
         }
         
         return booktex;
     }
-    
-    
+        
     public String createBibtexFromAllArticles(List<Article> articles){
         String articletex = "";
         for (Article article : articles) {
-            articletex += createBibtexFromArticle(article);
-            articletex += "\n";
-            articletex += "\n";
+            articletex += createBibtexFromArticle(article) + "\n\n";
         }
         
         return articletex;
     }
-    
-    
-    
-    
 
     public String createBibtexFromInproceeding(Inproceeding inpro) {
         String bibtex = "@inproceedings{" + scandicChecker(inpro.getReferenceKey()) + ","
@@ -121,7 +109,6 @@ public class ExportService {
     }
 
     public String scandicChecker(String bibtex) {
-
         int i = 0;
         int j = 0;
         String newScandicBibtex = "";

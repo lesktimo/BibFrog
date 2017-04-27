@@ -87,8 +87,13 @@
     color: red;
 }
 
-.downloadAll{
-    padding-top: 50px;
-    margin-left: 40%;
-    padding-bottom: 50px;
+.leftButton{
+    position: absolute;
+    left: 0%;
 }
+
+.manageButton{
+    position: absolute;
+    right: -50%;
+}
+

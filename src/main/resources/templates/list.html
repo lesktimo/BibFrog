@@ -8,14 +8,32 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>References</h2>
-                        <div class="downloadAll">
-                            <form id="downloadForm" th:action="@{/list/download}" method="GET">
-                                <div class="form-group">
-                                    <input class="form-control"  type="text" name="fileName" value="bibtex"/>
+                        <h2>References
+                            <button id="downloadForm" type="button" name="downloadAll" class="btn btn-success leftButton" data-toggle="modal" data-target="#myModal">Download All</button></h2>
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Download All References</h4>
+
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="downloadAll">
+                                            <form id="downloadForm" th:action="@{/list/download}" method="GET">
+                                                <div class="form-group">
+                                                    <input class="form-control"  type="text" name="fileName" value="bibtex"/>
+                                                </div>
+                                                <input class="btn btn-success btn-block" type="submit" value="Download All" name="confirmDownload"/>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
                                 </div>
-                                <input class="btn btn-success btn-block" type="submit" value="Download All" name="downloadAll"/>
-                            </form>
+
+                            </div>
                         </div>
                         <div class="table-responsive">
                             <table class="table">
@@ -34,33 +52,7 @@
                                         <td class="listingRow"><b th:text="${reference.publishYear}">year</b></td>
                                         <td class="listingRow"><b th:text="${reference.referenceKey}">reference key</b></td>
                                         <td class="listingRow">
-                                            <!-- Trigger the modal with a button -->
-                                            <button id="downloadForm" type="button" name="downloadBibtex" class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal">Download</button>
-
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="myModal" role="dialog">
-                                                <div class="modal-dialog modal-sm">
-
-                                                    <!-- Modal content-->
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-
-                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                            <h4 class="modal-title">Download bibtex</h4>
-                                                        </div>
-                                                        <div class="modal-body">
-
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
                                         </td>
-
                                     </tr>
                                 </tbody>
                             </table>

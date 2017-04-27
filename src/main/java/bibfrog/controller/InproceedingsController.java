@@ -41,8 +41,25 @@ public class InproceedingsController {
     @RequestMapping(value = "/inpro/{id}/edit", method = RequestMethod.GET)
     public String editInproceeding (@PathVariable Long id, Model model) {
         Inproceeding inpro = inproRepo.findOne(id);
-        model.addAttribute("inpro", inpro);
+        model.addAttribute("inproceeding", inpro);
         return "inpro_edit";
+    }
+    
+    @RequestMapping(value = "/inpro/{id}/edit", method = RequestMethod.POST)
+    public String updateInproceeding(@PathVariable Long id, @Valid @ModelAttribute Inproceeding inpro, BindingResult bindingResult) {
+        inproRepo.delete(id);
+        
+        if (bindingResult.hasErrors()) {
+            return "inpro";
+        }
+        inpro = inproRepo.save(inpro);
+        inpro.setAuthors();
+        if (inpro.getReferenceKey() == null || inpro.getReferenceKey().isEmpty()) {
+            inpro.generateReferenceKey();
+        }
+        
+        inproRepo.save(inpro);
+        return "redirect:/inpros";
     }
     
 

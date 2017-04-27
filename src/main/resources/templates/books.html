@@ -9,13 +9,29 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h2>Books</h2>
-                        <div class="downloadAll">
-                            <form id="downloadForm" th:action="@{/books/all/download}" method="GET">
-                                <div class="form-group">
-                                    <input class="form-control"  type="text" name="fileName" value="bibtex"/>
+                        <div class="modal fade" id="downloadAll" role="dialog">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Download All References</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="downloadAll">
+                                            <form id="downloadForm" th:action="@{/books/all/download}" method="GET">
+                                                <div class="form-group">
+                                                    <input class="form-control"  type="text" name="fileName" value="bibtex"/>
+                                                </div>
+                                                <input class="btn btn-success btn-block" type="submit" value="Download All" name="confirmDownload"/>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
                                 </div>
-                                <input class="btn btn-success btn-block" type="submit" value="Download All" name="downloadAll"/>
-                            </form>
+
+                            </div>
                         </div>
                         <div class="table-responsive">
                             <table class="table">
@@ -25,6 +41,9 @@
                                         <td class="listingRow">Authors</td>
                                         <td class="listingRow">Publisher</td>
                                         <td class="listingRow">Year</td>
+                                        <td class='listingRow'>
+                                            <button id="downloadForm" type="button" name="downloadAll" class="btn btn-success leftButton" data-toggle="modal" data-target="#downloadAll">Download All</button>
+                                        </td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -35,16 +54,12 @@
                                         <td class="listingRow"><b th:text="${book.publishYear}">year</b></td>
                                         <td class="listingRow">
                                             <!-- Trigger the modal with a button -->
-                                            <button id="downloadForm" type="button" name="downloadBibtex" class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal">Download</button>
-
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="myModal" role="dialog">
+                                            <button id="downloadForm" type="button" name="downloadBibtex" class="btn btn-success" data-toggle="modal" data-target="#singleDownloadModal">Manage</button>
+                                            <div class="modal fade" id="singleDownloadModal" role="dialog">
                                                 <div class="modal-dialog modal-sm">
-
                                                     <!-- Modal content-->
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-
                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                             <h4 class="modal-title">Download bibtex</h4>
                                                         </div>
@@ -53,23 +68,18 @@
                                                                 <div class="form-group">
                                                                     <input class="form-control"  type="text" name="fileName" value="bibtex"/>
                                                                 </div>
-                                                                <input class="btn btn-success btn-block" name="confirmDownload" type="submit" value="Confirm"/>
+                                                                <input class="btn btn-success btn-block" name="confirmDownload" type="submit" value="Download"/>
                                                             </form>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            <form id="downloadForm" th:action="@{book/{bookId}/edit(bookId=${book.id})}" method="GET">
+                                                                <input class="btn btn-success" type="submit" value="Edit"/>
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            </form>
                                                         </div>
                                                     </div>
-
                                                 </div>
-
-                                                <input class="btn btn-success btn-block" type="submit" value="Download"/>
-                                            
-                                             <form id="downloadForm" th:action="@{book/{bookId}/edit(bookId=${book.id})}" method="GET"><input class="btn btn-success btn-block" type="submit" value="Edit"/></form>
-
                                             </div>
-
-
                                         </td>
                                     </tr>
                                 </tbody>

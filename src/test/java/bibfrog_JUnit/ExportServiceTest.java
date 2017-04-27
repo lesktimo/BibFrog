@@ -151,9 +151,9 @@ public class ExportServiceTest {
         List<Book> books = new ArrayList<>();
         books.add(book);
         
-        Inproceeding inpro1 = setInproceeding();
+        Inproceeding inpro = setInproceeding();
         List<Inproceeding> inpros = new ArrayList<>();
-        inpros.add(inpro1);
+        inpros.add(inpro);
         
         String bibtex = es.createBibtexFromAll(inpros, books, articles);
         
