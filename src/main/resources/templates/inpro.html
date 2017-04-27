@@ -32,7 +32,7 @@
                             <a th:if="${#fields.hasErrors('referenceKey')}" th:errors="*{referenceKey}">Reference key errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Editor:<input class="form-control" type="text" th:field="*{editor}" name="editor" placeholder="Name of the editor (optional)" /></label>
+                            <label class="lbl">Editor:<input class="form-control" type="text" th:field="*{editor}" name="editor" placeholder="Name of the editor" /></label>
                             <a th:if="${#fields.hasErrors('title')}" th:errors="*{title}">title errors</a>
                         </div>
                         <div class="form-group">
