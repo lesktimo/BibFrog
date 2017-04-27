@@ -1,6 +1,7 @@
 .features-boxed {
     color:#313437;
     background-color:#eef4f7;
+    padding-bottom: 100px;
 }
 
 .features-boxed p {
@@ -95,3 +96,21 @@
     width: 108px;
 }
 
+.footer-basic .copyright {
+    margin-top:15px;
+    text-align:center;
+    font-size:13px;
+    color:#aaa;
+    margin-bottom:0;
+}
+
+.col-md-12{
+    margin-top: 50px;
+    padding-bottom: 50px;
+    background-color: #fff;
+    box-shadow: 2px 2px 2px #ddd;
+}
+
+.box {
+    box-shadow: 2px 2px 2px #ddd;
+}
