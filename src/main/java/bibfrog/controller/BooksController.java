@@ -116,9 +116,9 @@ public class BooksController {
     public HttpEntity<byte[]> downloadAllBooks( @RequestParam String fileName) throws IOException {
         String bibtex = exportService.createBibtexFromAllBooks(booksRepo.findAll());
         exportService.createFile(bibtex);
-        File inproFile = getFilePathForBytes("src/bibtex.bib");
-        byte[] bytes = Files.readAllBytes(createPath(inproFile));
-        return new HttpEntity<>(bytes, createHeaders(inproFile, fileName));
+        File bookFile = getFilePathForBytes("src/bibtex.bib");
+        byte[] bytes = Files.readAllBytes(createPath(bookFile));
+        return new HttpEntity<>(bytes, createHeaders(bookFile, fileName));
     }
 
 }

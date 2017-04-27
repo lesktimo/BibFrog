@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class ArticlesController{
+public class ArticlesController {
 
     @Autowired
     private ArticleRepo articleRepo;
@@ -36,16 +36,17 @@ public class ArticlesController{
         model.addAttribute("article", new Article());
         return "article";
     }
+
     @RequestMapping(value = "/article/{id}/edit", method = RequestMethod.GET)
     public String editArticle(Model model, @PathVariable long id) {
         model.addAttribute("article", articleRepo.findOne(id));
         return "article_edit";
     }
-    
+
     @RequestMapping(value = "/article/{id}/edit", method = RequestMethod.POST)
     public String updateArticle(@PathVariable Long id, @Valid @ModelAttribute Article article, BindingResult bindingResult) {
         articleRepo.delete(id);
-        
+
         if (bindingResult.hasErrors()) {
             return "article_edit";
         }
@@ -54,14 +55,12 @@ public class ArticlesController{
         if (article.getReferenceKey() == null || article.getReferenceKey().isEmpty()) {
             article.generateReferenceKey();
         }
-        
+
         articleRepo.save(article);
         return "redirect:/articles";
     }
-     
-    
 
-    @RequestMapping(value = "/article/add", method = RequestMethod.POST)   
+    @RequestMapping(value = "/article/add", method = RequestMethod.POST)
     public String postArticle(@Valid @ModelAttribute Article article, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "article";
@@ -88,31 +87,27 @@ public class ArticlesController{
         byte[] bytes = Files.readAllBytes(createPath(articleFile));
         return new HttpEntity<>(bytes, createHeaders(articleFile, fileName));
     }
-    
-    
+
     private void createFileForDownloading(Long id) throws IOException {
         Article article = articleRepo.findOne(id);
         String bibtex = exportService.createBibtexFromArticle(article);
         exportService.createFile(bibtex);
     }
-    
+
     protected File getFilePathForBytes(String filePath) {
         return new File(filePath);
 
     }
-    
+
     @RequestMapping(value = "/articles/all/download", method = RequestMethod.GET)
-    public HttpEntity<byte[]> downloadAllArticles( @RequestParam String fileName) throws IOException {
+    public HttpEntity<byte[]> downloadAllArticles(@RequestParam String fileName) throws IOException {
         String bibtex = exportService.createBibtexFromAllArticles(articleRepo.findAll());
         exportService.createFile(bibtex);
-        File inproFile = getFilePathForBytes("src/bibtex.bib");
-        byte[] bytes = Files.readAllBytes(createPath(inproFile));
-        return new HttpEntity<>(bytes, createHeaders(inproFile, fileName));
+        File articleFile = getFilePathForBytes("src/bibtex.bib");
+        byte[] bytes = Files.readAllBytes(createPath(articleFile));
+        return new HttpEntity<>(bytes, createHeaders(articleFile, fileName));
     }
-    
-    
-    
-    
+
     protected Path createPath(File file) {
         return Paths.get(file.getPath());
     }

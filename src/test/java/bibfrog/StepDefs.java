@@ -152,7 +152,7 @@ public class StepDefs {
         element.click();
 
     }
-    @When("^confirm button is pressed$")
+    @When("^confirm all button is pressed$")
     public void confirm_all_button_is_pressed() throws InterruptedException {
         driver.switchTo().activeElement();
         sleep(1000);
