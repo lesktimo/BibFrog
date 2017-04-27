@@ -283,7 +283,7 @@ public class StepDefs {
 
     }
 
-    @Then("^a file that contains page contains \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\" is created$")
+    @Then("^a file that contains \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\" is created$")
     public void added_references_downloaded(String title1, String title2, String title3) throws FileNotFoundException {
         String fileData = readFile();
         assertTrue(fileData.contains(title1));

@@ -20,4 +20,4 @@ Feature: As a user I want to export inproceedings from the site
     When correct input for title "inproceeding3", correct booktitle "booktitle", correct year "2014" and correct Authors "Arton lasit" are given
     When download all button is pressed
     When confirm button is pressed
-    Then a file that contains page contains "inproceeding1", "inproceeding2" and "inproceeding3" is created
+    Then a file that contains "inproceeding1", "inproceeding2" and "inproceeding3" is created

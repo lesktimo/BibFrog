@@ -13,4 +13,4 @@ Feature: As a user I want to be able to export all references at the same time
     When List all in NavBar is clicked
     When download all button is pressed
     When confirm button is pressed
-    Then a file that contains page contains "article1", "title1" and "inproceeding1" is created
+    Then a file that contains "article1", "title1" and "inproceeding1" is created
