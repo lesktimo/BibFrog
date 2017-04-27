@@ -92,7 +92,6 @@
 }
 
 .manageButton{
-    position: absolute;
-    right: -50%;
+    width: 108px;
 }
 

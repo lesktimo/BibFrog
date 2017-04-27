@@ -14,17 +14,15 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Download All References</h4>
+                                        <h4 class="modal-title">Download All Articles</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <div class="downloadAll">
-                                            <form id="downloadForm" th:action="@{/articles/all/download}" method="GET">
-                                                <div class="form-group">
-                                                    <input class="form-control"  type="text" name="fileName" value="bibtex"/>
-                                                </div>
-                                                <input class="btn btn-success btn-block" type="submit" value="Download All" name="confirmAllDownload"/>
-                                            </form>
-                                        </div>
+                                        <form th:action="@{/articles/all/download}" method="GET">
+                                            <div class="form-group">
+                                                <input class="form-control"  type="text" name="fileName" value="bibtex"/>
+                                            </div>
+                                            <input class="btn btn-success btn-block" type="submit" value="Download All" name="confirmAllDownload"/>
+                                        </form>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -52,16 +50,16 @@
                                         <td class="listingRow"><b th:text="${article.journal}">journal</b></td>
                                         <td class="listingRow"><b th:text="${article.publishYear}">year</b></td>
                                         <td class="listingRow">
-                                            <button id="downloadForm" type="button" name="downloadBibtex" class="btn btn-success" data-toggle="modal" data-target="#singleDownloadModal">Manage</button>
+                                            <button id="downloadForm" type="button" name="downloadBibtex" class="btn btn-success manageButton" data-toggle="modal" data-target="#singleDownloadModal">Manage</button>
                                             <div class="modal fade" id="singleDownloadModal" role="dialog">
                                                 <div class="modal-dialog modal-sm">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                            <h4 class="modal-title">Download bibtex</h4>
+                                                            <h4 class="modal-title">Download an article</h4>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form id="downloadForm" th:action="@{article/{articleId}/download(articleId=${article.id})}" method="GET">
+                                                            <form th:action="@{article/{articleId}/download(articleId=${article.id})}" method="GET">
                                                                 <div class="form-group">
                                                                     <input class="form-control"  type="text" name="fileName" value="bibtex"/>
                                                                 </div>
@@ -69,7 +67,7 @@
                                                             </form>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <form id="downloadForm" th:action="@{article/{articleId}/edit(articleId=${article.id})}" method="GET">
+                                                            <form th:action="@{article/{articleId}/edit(articleId=${article.id})}" method="GET">
                                                                 <input class="btn btn-success" type="submit" value="Edit" name='editButton'/>
                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                             </form>
