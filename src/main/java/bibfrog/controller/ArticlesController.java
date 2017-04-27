@@ -39,7 +39,7 @@ public class ArticlesController{
     @RequestMapping(value = "/article/{id}/edit", method = RequestMethod.GET)
     public String editArticle(Model model, @PathVariable long id) {
         model.addAttribute("article", articleRepo.findOne(id));
-        return "article";
+        return "article_edit";
     }
     
     @RequestMapping(value = "/article/{id}/edit", method = RequestMethod.POST)
@@ -47,7 +47,7 @@ public class ArticlesController{
         articleRepo.delete(id);
         
         if (bindingResult.hasErrors()) {
-            return "article";
+            return "article_edit";
         }
         article = articleRepo.save(article);
         article.setAuthors();

@@ -53,11 +53,9 @@
                                         <td class="listingRow"><b th:text="${book.publisher}">publisher</b></td>
                                         <td class="listingRow"><b th:text="${book.publishYear}">year</b></td>
                                         <td class="listingRow">
-                                            <!-- Trigger the modal with a button -->
                                             <button id="downloadForm" type="button" name="downloadBibtex" class="btn btn-success" data-toggle="modal" data-target="#singleDownloadModal">Manage</button>
                                             <div class="modal fade" id="singleDownloadModal" role="dialog">
                                                 <div class="modal-dialog modal-sm">
-                                                    <!-- Modal content-->
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
