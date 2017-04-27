@@ -10,6 +10,7 @@ import java.util.Scanner;
 import static org.junit.Assert.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
@@ -17,25 +18,30 @@ public class StepDefs {
 
     String baseUrl = "http://localhost:8080";
 
-    WebDriver driver = new HtmlUnitDriver();
+    WebDriver driver = new HtmlUnitDriver(true);
 
-    @Given("^add inproceeding is selected$")
-    public void add_inproceeding_selected() throws Throwable {
+    @Given("^BibFrog link to frontpage is clicked$")
+    public void navBar_bibfrog_frontpage() {
         driver.get(baseUrl);
+        WebElement element = driver.findElement(By.linkText("BibFrog"));
+        element.click();
+    }
+
+    //WHEN_______________________________________________________________________________________
+    @When("^add inproceeding is selected$")
+    public void add_inproceeding_selected() throws Throwable {
         WebElement element = driver.findElement(By.name("createInproceeding"));
         element.click();
     }
 
-    @Given("^add book is selected$")
+    @When("^add book is selected$")
     public void add_book_selected() throws Throwable {
-        driver.get(baseUrl);
         WebElement element = driver.findElement(By.name("createBook"));
         element.click();
     }
 
-    @Given("^add article is selected$")
+    @When("^add article is selected$")
     public void add_article_selected() throws Throwable {
-        driver.get(baseUrl);
         WebElement element = driver.findElement(By.name("createArticle"));
         element.click();
     }
@@ -125,19 +131,65 @@ public class StepDefs {
     }
 
     @When("^download button is pressed$")
-    public void download_button_is_pressed() {
-        WebElement element = driver.findElement(By.className("btn"));
+    public void download_button_is_pressed() throws InterruptedException {
+        WebElement element = driver.findElement(By.name("downloadBibtex"));
         element.click();
     }
+
+    @When("^confirm button is pressed$")
+    public void confirm_button_is_pressed() throws InterruptedException {
+        driver.switchTo().activeElement();
+        sleep(1000);
+        WebElement element = driver.findElement(By.name("confirmDownload"));
+        element.click();
+
+    }
+
+    @When("^BibFrog in NavBar is clicked$")
+    public void navBar_bibfrog() {
+        WebElement element = driver.findElement(By.linkText("BibFrog"));
+        element.click();
+    }
+
+    @When("^Articles in NavBar is clicked$")
+    public void navBar_article() {
+        WebElement element = driver.findElement(By.linkText("Articles"));
+        element.click();
+    }
+
+    @When("^Inproceedings in NavBar is clicked$")
+    public void navBar_inpro() {
+        WebElement element = driver.findElement(By.linkText("Inproceedings"));
+        element.click();
+    }
+
+    @When("^Books in NavBar is clicked$")
+    public void navBar_books() {
+        WebElement element = driver.findElement(By.linkText("Books"));
+        element.click();
+    }
+
+    @When("^List all in NavBar is clicked$")
+    public void navBar_ListAll() {
+        WebElement element = driver.findElement(By.linkText("List all"));
+        element.click();
+    }
+
+    @When("^download all button is pressed$")
+    public void downloadAllReferences() {
+        WebElement element = driver.findElement(By.name("downloadAll"));
+        element.click();
+    }
+
+    // THEN_______________________________________________________________________
+    @Then("^frontpage is shown$")
+    public void frontpage_shown() {
+        assertTrue(driver.getPageSource().contains("Create and manage article references"));
+    }
+
     @Then("^a file with correct author \"([^\"]*)\" is exported$")
     public void a_file_with_correct_author(String author) throws FileNotFoundException {
-        File file = new File("src/bibtex.bib");
-        Scanner reader = new Scanner(file);
-        String fileData = "";
-        while (reader.hasNextLine()) {
-            fileData += reader.nextLine();
-        }
-        System.out.println(fileData);
+        String fileData = readFile();
         assertTrue(fileData.contains(author));
     }
 
@@ -169,6 +221,56 @@ public class StepDefs {
     @Then("^the article is not added to the site and create an article page is shown$")
     public void article_is_not_added() throws Throwable {
         assertTrue(driver.getPageSource().contains("an article."));
+    }
+
+    @Then("^a list of all references is shown$")
+    public void references_shown() throws Throwable {
+        assertTrue(driver.getPageSource().contains("References"));
+    }
+
+    @Then("^a list of inproceedings is shown$")
+    public void inproceedings_shown() throws Throwable {
+        assertTrue(driver.getPageSource().contains("Inproceedings"));
+    }
+
+    @Then("^a list of books is shown$")
+    public void books_shown() throws Throwable {
+        assertTrue(driver.getPageSource().contains("Books"));
+    }
+
+    @Then("^a list of articles is shown$")
+    public void articles_shown() throws Throwable {
+        assertTrue(driver.getPageSource().contains("Articles"));
+    }
+
+    @Then("^page contains \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\"$")
+    public void added_references_shown(String article, String book, String inproceeding) throws Throwable {
+        assertTrue(driver.getPageSource().contains(article));
+        assertTrue(driver.getPageSource().contains(book));
+        assertTrue(driver.getPageSource().contains(inproceeding));
+
+    }
+
+    @Then("^a file that contains page contains \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\" is created$")
+    public void added_references_downloaded(String title1, String title2, String title3) throws FileNotFoundException {
+        String fileData = readFile();
+        assertTrue(fileData.contains(title1));
+        assertTrue(fileData.contains(title2));
+        assertTrue(fileData.contains(title3));
+    }
+
+    public void sleep(int ms) throws InterruptedException {
+        Thread.sleep(ms);
+    }
+
+    public String readFile() throws FileNotFoundException {
+        File file = new File("src/bibtex.bib");
+        Scanner reader = new Scanner(file);
+        String fileData = "";
+        while (reader.hasNextLine()) {
+            fileData += reader.nextLine();
+        }
+        return fileData;
     }
 
     @After

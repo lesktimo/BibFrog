@@ -5,6 +5,7 @@
 
 .features-boxed p {
     color:#7d8285;
+    @import "styles.css";
 }
 
 .features-boxed h2 {
@@ -70,8 +71,12 @@
 
 #downloadForm{
     position: relative;
-    left: 50%;
+    left: 30;
     max-width: 200px;
+}
+
+#confirmForm{
+    position: static
 }
 
 .listingRow{
@@ -82,3 +87,8 @@
     color: red;
 }
 
+.downloadAll{
+    padding-top: 50px;
+    margin-left: 40%;
+    padding-bottom: 50px;
+}

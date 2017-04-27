@@ -6,9 +6,13 @@ import bibfrog.service.ExportService;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class ArticlesController extends ReferenceController {
+public class ArticlesController{
 
     @Autowired
     private ArticleRepo articleRepo;
@@ -46,7 +50,7 @@ public class ArticlesController extends ReferenceController {
         article = articleRepo.save(article);
         article.setAuthors();
         if (article.getReferenceKey() == null || article.getReferenceKey().isEmpty()) {
-            article.setReferenceKey(article.getId().toString());
+            article.generateReferenceKey();
         }
         articleRepo.save(article);
         return "redirect:/articles";
@@ -65,11 +69,42 @@ public class ArticlesController extends ReferenceController {
         byte[] bytes = Files.readAllBytes(createPath(articleFile));
         return new HttpEntity<>(bytes, createHeaders(articleFile, fileName));
     }
-
+    
+    
     private void createFileForDownloading(Long id) throws IOException {
         Article article = articleRepo.findOne(id);
         String bibtex = exportService.createBibtexFromArticle(article);
         exportService.createFile(bibtex);
+    }
+    
+    protected File getFilePathForBytes(String filePath) {
+        return new File(filePath);
+
+    }
+    
+    @RequestMapping(value = "/articles/all/download", method = RequestMethod.GET)
+    public HttpEntity<byte[]> downloadAllArticles( @RequestParam String fileName) throws IOException {
+        String bibtex = exportService.createBibtexFromAllArticles(articleRepo.findAll());
+        exportService.createFile(bibtex);
+        File inproFile = getFilePathForBytes("src/bibtex.bib");
+        byte[] bytes = Files.readAllBytes(createPath(inproFile));
+        return new HttpEntity<>(bytes, createHeaders(inproFile, fileName));
+    }
+    
+    
+    
+    
+    protected Path createPath(File file) {
+        return Paths.get(file.getPath());
+    }
+
+    protected HttpHeaders createHeaders(File file, String fileName) {
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.TEXT_PLAIN);
+        headers.set(HttpHeaders.CONTENT_DISPOSITION,
+                "attachment; filename=" + fileName + ".bib".replace(".txt", ""));
+        headers.setContentLength(file.length());
+        return headers;
     }
 
 }

@@ -8,9 +8,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Books</h2>
+                        <h2>References</h2>
                         <div class="downloadAll">
-                            <form id="downloadForm" th:action="@{/books/all/download}" method="GET">
+                            <form id="downloadForm" th:action="@{/list/download}" method="GET">
                                 <div class="form-group">
                                     <input class="form-control"  type="text" name="fileName" value="bibtex"/>
                                 </div>
@@ -23,16 +23,16 @@
                                     <tr>
                                         <td class="listingRow">Title</td>
                                         <td class="listingRow">Authors</td>
-                                        <td class="listingRow">Publisher</td>
                                         <td class="listingRow">Year</td>
+                                        <td class="listingRow">Reference Key</td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr th:each="book : ${bookList}">
-                                        <td class="listingRow"><b th:text="${book.title}">title</b></td>
-                                        <td class="listingRow"><b th:text="${book.authorString()}">authors</b></td>
-                                        <td class="listingRow"><b th:text="${book.publisher}">publisher</b></td>
-                                        <td class="listingRow"><b th:text="${book.publishYear}">year</b></td>
+                                    <tr th:each="reference : ${list}">
+                                        <td class="listingRow"><b th:text="${reference.title}">title</b></td>
+                                        <td class="listingRow"><b th:text="${reference.authorString()}">authors</b></td>
+                                        <td class="listingRow"><b th:text="${reference.publishYear}">year</b></td>
+                                        <td class="listingRow"><b th:text="${reference.referenceKey}">reference key</b></td>
                                         <td class="listingRow">
                                             <!-- Trigger the modal with a button -->
                                             <button id="downloadForm" type="button" name="downloadBibtex" class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal">Download</button>
@@ -49,12 +49,7 @@
                                                             <h4 class="modal-title">Download bibtex</h4>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form id="downloadForm" th:action="@{book/{bookId}/download(bookId=${book.id})}" method="GET">
-                                                                <div class="form-group">
-                                                                    <input class="form-control"  type="text" name="fileName" value="bibtex"/>
-                                                                </div>
-                                                                <input class="btn btn-success btn-block" name="confirmDownload" type="submit" value="Confirm"/>
-                                                            </form>
+
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -62,15 +57,10 @@
                                                     </div>
 
                                                 </div>
-<<<<<<< HEAD
-                                                <input class="btn btn-success btn-block" type="submit" value="Download"/>
-                                            </form>
-                                             <form id="downloadForm" th:action="@{book/{bookId}/edit(bookId=${book.id})}" method="GET"><input class="btn btn-success btn-block" type="submit" value="Edit"/></form>
-=======
                                             </div>
 
->>>>>>> a3233cf37ea90be326fc8a43ba5af7bb33054a9c
                                         </td>
+
                                     </tr>
                                 </tbody>
                             </table>

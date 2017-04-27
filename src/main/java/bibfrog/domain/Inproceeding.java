@@ -1,6 +1,7 @@
 package bibfrog.domain;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Random;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -180,8 +181,8 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
     }
 
     @Override
-    public HashMap<String, String> optionalFields() {
-        HashMap<String, String> optionalFields = new HashMap();
+    public LinkedHashMap<String, String> optionalFields() {
+        LinkedHashMap<String, String> optionalFields = new LinkedHashMap();
         optionalFields.put("editor", editor);
         optionalFields.put("volume", volume + "");
         optionalFields.put("series", series);
@@ -192,5 +193,10 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
         optionalFields.put("publisher", publisher);
         optionalFields.put("note", note);
         return optionalFields;
+    }
+    
+    @Override
+    public void generateReferenceKey() {
+        this.referenceKey = title.substring(0, 2).trim() + this.publishYear + this.authorString().substring(0, 2).trim() + super.getId() + new Random().nextInt(1000);
     }
 }

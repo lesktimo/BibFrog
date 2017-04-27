@@ -1,12 +1,14 @@
 package bibfrog.domain;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public interface Reference {
+    
+    void generateReferenceKey();
+    
+    LinkedHashMap<String, String> optionalFields();
 
-    public HashMap<String, String> optionalFields();
+    String authorString();
 
-    public String authorString();
-
-    public void setAuthors();
+    void setAuthors();
 }

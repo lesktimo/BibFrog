@@ -6,9 +6,13 @@ import bibfrog.service.ExportService;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class BooksController extends ReferenceController {
+public class BooksController {
 
     @Autowired
     private BooksRepo booksRepo;
@@ -41,7 +45,7 @@ public class BooksController extends ReferenceController {
         book = booksRepo.save(book);
         book.setAuthors();
         if (book.getReferenceKey() == null || book.getReferenceKey().isEmpty()) {
-            book.setReferenceKey(book.getId().toString());
+            book.generateReferenceKey();
         }
         booksRepo.save(book);
         return "redirect:/books";
@@ -65,6 +69,33 @@ public class BooksController extends ReferenceController {
         Book book = booksRepo.findOne(id);
         String bibtex = exportService.createBibtexFromBook(book);
         exportService.createFile(bibtex);
+    }
+
+    protected File getFilePathForBytes(String filePath) {
+        return new File(filePath);
+
+    }
+
+    protected Path createPath(File file) {
+        return Paths.get(file.getPath());
+    }
+
+    protected HttpHeaders createHeaders(File file, String fileName) {
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.TEXT_PLAIN);
+        headers.set(HttpHeaders.CONTENT_DISPOSITION,
+                "attachment; filename=" + fileName + ".bib".replace(".txt", ""));
+        headers.setContentLength(file.length());
+        return headers;
+    }
+    
+    @RequestMapping(value = "/books/all/download", method = RequestMethod.GET)
+    public HttpEntity<byte[]> downloadAllBooks( @RequestParam String fileName) throws IOException {
+        String bibtex = exportService.createBibtexFromAllBooks(booksRepo.findAll());
+        exportService.createFile(bibtex);
+        File inproFile = getFilePathForBytes("src/bibtex.bib");
+        byte[] bytes = Files.readAllBytes(createPath(inproFile));
+        return new HttpEntity<>(bytes, createHeaders(inproFile, fileName));
     }
 
 }
