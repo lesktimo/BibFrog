@@ -2,6 +2,8 @@ package bibfrog_JUnit;
 
 import bibfrog.domain.*;
 import bibfrog.service.ExportService;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -17,13 +19,7 @@ public class ExportServiceTest {
 
     @Test
     public void createBibtexFromInproWorks() {
-        Inproceeding inpro = new Inproceeding();
-        inpro.setReferenceKey("KEY");
-        inpro.setGivenAuthors("Author");
-        inpro.setAuthors();
-        inpro.setTitle("Title");
-        inpro.setBookTitle("Booktitle");
-        inpro.setPublishYear(2017);
+        Inproceeding inpro = setInproceeding();
         String expected = "@inproceedings{KEY,\n"
                 + "author = {Author},\n"
                 + "title = {Title},\n"
@@ -35,13 +31,7 @@ public class ExportServiceTest {
 
     @Test
     public void createBibtexFromBookWorks() {
-        Book book = new Book();
-        book.setReferenceKey("KEY");
-        book.setGivenAuthors("Author");
-        book.setAuthors();
-        book.setTitle("Title");
-        book.setPublisher("Publisher");
-        book.setPublishYear(2017);
+        Book book = setBook();
         String expected = "@book{KEY,\n"
                 + "author = {Author},\n"
                 + "title = {Title},\n"
@@ -68,7 +58,7 @@ public class ExportServiceTest {
         Article article = setArticle();
         article.setPages("1--2");
         article.setPublishMonth(8);
-        
+
         String expected = "@article{KEY,\n"
                 + "author = {Author},\n"
                 + "title = {Title},\n"
@@ -79,7 +69,7 @@ public class ExportServiceTest {
                 + "}";
         assertEquals(expected, es.createBibtexFromArticle(article));
     }
-    
+
     @Test
     public void everyOptionalFieldIsAddedCorrectly() {
         Article article = setArticle();
@@ -88,7 +78,7 @@ public class ExportServiceTest {
         article.setPages("1--2");
         article.setPublishMonth(8);
         article.setNote("Note");
-        
+
         String expected = "@article{KEY,\n"
                 + "author = {Author},\n"
                 + "title = {Title},\n"
@@ -104,20 +94,111 @@ public class ExportServiceTest {
     }
 
     @Test
+    public void bibtexIsCreatedCorrectlyFromEveryArticle() {
+        Article article = setArticle();
+
+        List<Article> articles = new ArrayList<>();
+        articles.add(article);
+
+        String bibtex = es.createBibtexFromAllArticles(articles);
+        String expected = es.createBibtexFromArticle(article) + "\n\n";
+
+        assertEquals(expected, bibtex);
+    }
+
+    @Test
+    public void bibtexIsCreatedCorrectlyFromEveryBook() {
+        Book book = setBook();
+
+        List<Book> books = new ArrayList<>();
+        books.add(book);
+
+        String bibtex = es.createBibtexFromAllBooks(books);
+        String expected = es.createBibtexFromBook(book) + "\n\n";
+
+        assertEquals(expected, bibtex);
+    }
+
+    @Test
+    public void bibtexIsCreatedCorrectlyFromEveryInproceeding() {
+        Inproceeding inpro1 = setInproceeding();
+        Inproceeding inpro2 = new Inproceeding();
+        inpro2.setReferenceKey("KEY2");
+        inpro2.setGivenAuthors("Author2");
+        inpro2.setAuthors();
+        inpro2.setTitle("Title2");
+        inpro2.setBookTitle("Booktitle2");
+        inpro2.setPublishYear(2017);
+
+        List<Inproceeding> inpros = new ArrayList<>();
+        inpros.add(inpro1);
+        inpros.add(inpro2);
+
+        String bibtex = es.createBibtexFromAllInproceedings(inpros);
+        String expected = es.createBibtexFromInproceeding(inpro1) + "\n\n"
+                + es.createBibtexFromInproceeding(inpro2) + "\n\n";
+
+        assertEquals(expected, bibtex);
+    }
+
+    @Test
+    public void bibtexIsCreatedCorrectlyFromEveryReference() {
+        Article article = setArticle();
+        List<Article> articles = new ArrayList<>();
+        articles.add(article);
+        
+        Book book = setBook();
+        List<Book> books = new ArrayList<>();
+        books.add(book);
+        
+        Inproceeding inpro = setInproceeding();
+        List<Inproceeding> inpros = new ArrayList<>();
+        inpros.add(inpro);
+        
+        String bibtex = es.createBibtexFromAll(inpros, books, articles);
+        
+        String expected = es.createBibtexFromAllInproceedings(inpros) +
+                es.createBibtexFromAllBooks(books) + 
+                es.createBibtexFromAllArticles(articles);
+        
+        assertEquals(expected, bibtex);
+    }
+    
+    @Test
+    public void bibtexIsCreatedCorrectlyFromEveryArticleAndBook() {
+        Article article = setArticle();
+        List<Article> articles = new ArrayList<>();
+        articles.add(article);
+        
+        Book book = setBook();
+        List<Book> books = new ArrayList<>();
+        books.add(book);
+        
+        List<Inproceeding> inpros = new ArrayList<>();
+        
+        String bibtex = es.createBibtexFromAll(inpros, books, articles);
+        
+        String expected = es.createBibtexFromAllBooks(books) + 
+                es.createBibtexFromAllArticles(articles);
+        
+        assertEquals(expected, bibtex);
+    }
+
+    @Test
     public void scandicCheckerDoesntChangeIfNoScandics() {
         assertEquals("Some string", es.scandicChecker("Some string"));
     }
-    
+
     @Test
     public void scandicCheckerChangesSmallScandics() {
         assertEquals("String c\\\"ont\\\"aining \\aa", es.scandicChecker("String cöntäining å"));
     }
-    
+
     @Test
     public void scandicCheckerChangesCapitalScandics() {
         assertEquals("String c\\\"Ont\\\"Aining \\AA", es.scandicChecker("String cÖntÄining Å"));
     }
-    
+
     private Article setArticle() {
         Article article = new Article();
         article.setReferenceKey("KEY");
@@ -128,5 +209,29 @@ public class ExportServiceTest {
         article.setPublishYear(2017);
 
         return article;
+    }
+
+    private Inproceeding setInproceeding() {
+        Inproceeding inpro = new Inproceeding();
+        inpro.setReferenceKey("KEY");
+        inpro.setGivenAuthors("Author");
+        inpro.setAuthors();
+        inpro.setTitle("Title");
+        inpro.setBookTitle("Booktitle");
+        inpro.setPublishYear(2017);
+
+        return inpro;
+    }
+
+    private Book setBook() {
+        Book book = new Book();
+        book.setReferenceKey("KEY");
+        book.setGivenAuthors("Author");
+        book.setAuthors();
+        book.setTitle("Title");
+        book.setPublisher("Publisher");
+        book.setPublishYear(2017);
+
+        return book;
     }
 }
