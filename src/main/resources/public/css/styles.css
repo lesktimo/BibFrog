@@ -89,5 +89,11 @@
 
 .leftButton{
     position: absolute;
-    left: 75%;
+    left: 0%;
 }
+
+.manageButton{
+    position: absolute;
+    right: -50%;
+}
+
