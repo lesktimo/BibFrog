@@ -266,14 +266,14 @@ public class StepDefs {
         assertTrue(driver.getPageSource().contains("Articles"));
     }
 
-    @Then("^listing page contains fields \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\"$")
-    public void successful_edit(String field1, String field2, int year, String field3) {
-        assertTrue(driver.getPageSource().contains("field1"));
-        assertTrue(driver.getPageSource().contains("field2"));
-        assertTrue(driver.getPageSource().contains("year"));
-        assertTrue(driver.getPageSource().contains("field3"));
-
-    }
+//    @Then("^listing page contains fields \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\"$")
+//    public void successful_edit(String field1, String field2, int year, String field3) {
+//        assertTrue(driver.getPageSource().contains("field1"));
+//        assertTrue(driver.getPageSource().contains("field2"));
+//        assertTrue(driver.getPageSource().contains("year"));
+//        assertTrue(driver.getPageSource().contains("field3"));
+//
+//    }
 
     @Then("^page contains \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\"$")
     public void added_references_shown(String article, String book, String inproceeding) throws Throwable {
