@@ -9,5 +9,5 @@ Feature: As a user I want to add inproceedings to the site
   Scenario: user can not add an inproceeding with an incorrect input
     Given BibFrog link to frontpage is clicked
     When add inproceeding is selected
-    When correct input for title "Inproceeding", correct booktitle "booktitle", incorrect year "asdf" and correct Authors "Arton lasit" are given
+    When incorrect input for title "", correct booktitle "booktitle", incorrect year "asdf" and correct Authors "Arton lasit" are given
     Then the inproceeding is not added to the site and create an improceeding page is shown

@@ -60,8 +60,8 @@ public class StepDefs {
         element.submit();
     }
 
-    @When("^correct input for title \"([^\"]*)\", correct booktitle \"([^\"]*)\", incorrect year \"([^\"]*)\" and correct Authors \"([^\"]*)\" are given$")
-    public void incorrect_year_for_inproceeding_is_entered(String inproceeding, String book, String year, String authors) throws Throwable {
+    @When("^incorrect input for title \"([^\"]*)\", correct booktitle \"([^\"]*)\", incorrect year \"([^\"]*)\" and correct Authors \"([^\"]*)\" are given$")
+    public void incorrect_title_for_inproceeding_is_entered(String inproceeding, String book, String year, String authors) throws Throwable {
         WebElement element = driver.findElement(By.name("title"));
         element.sendKeys(inproceeding);
         element = driver.findElement(By.name("bookTitle"));
@@ -88,7 +88,7 @@ public class StepDefs {
         element.submit();
     }
 
-    @When("^correct input for publisher \"([^\"]*)\", correct title \"([^\"]*)\", incorrect year \"([^\"]*)\" and correct Authors \"([^\"]*)\" are given$")
+    @When("^incorrect input for publisher \"([^\"]*)\", correct title \"([^\"]*)\", incorrect year \"([^\"]*)\" and correct Authors \"([^\"]*)\" are given$")
     public void incorrect_year_for_book_is_entered(String inproceeding, String book, String year, String authors) throws Throwable {
         WebElement element = driver.findElement(By.name("publisher"));
         element.sendKeys(inproceeding);
@@ -116,15 +116,19 @@ public class StepDefs {
         element.submit();
     }
 
-    @When("^correct input for title \"([^\"]*)\", correct journal \"([^\"]*)\", incorrect year \"([^\"]*)\" and correct Authors \"([^\"]*)\" are given$")
+    @When("^incorrect input for title \"([^\"]*)\", correct journal \"([^\"]*)\", incorrect year \"([^\"]*)\" and correct Authors \"([^\"]*)\" are given$")
     public void incorrect_year_for_article_is_entered(String inproceeding, String book, String year, String authors) throws Throwable {
         WebElement element = driver.findElement(By.name("title"));
+        element.clear();
         element.sendKeys(inproceeding);
         element = driver.findElement(By.name("journal"));
+        element.clear();
         element.sendKeys(book);
         element = driver.findElement(By.name("publishYear"));
+        element.clear();
         element.sendKeys(year);
         element = driver.findElement(By.name("givenAuthors"));
+        element.clear();
         element.sendKeys(authors);
         element = driver.findElement(By.className("btn"));
         element.submit();
@@ -152,6 +156,7 @@ public class StepDefs {
         element.click();
 
     }
+
     @When("^confirm all button is pressed$")
     public void confirm_all_button_is_pressed() throws InterruptedException {
         driver.switchTo().activeElement();
@@ -246,7 +251,7 @@ public class StepDefs {
 
     @Then("^book is not edited and edit page is shown$")
     public void book_is_not_edited() throws Throwable {
-        assertTrue(driver.getPageSource().contains("an book."));
+        assertTrue(driver.getPageSource().contains("a book."));
     }
 
     @Then("^inproceeding is not edited and edit page is shown$")
@@ -282,7 +287,6 @@ public class StepDefs {
 //        assertTrue(driver.getPageSource().contains("field3"));
 //
 //    }
-
     @Then("^page contains \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\"$")
     public void added_references_shown(String article, String book, String inproceeding) throws Throwable {
         assertTrue(driver.getPageSource().contains(article));
