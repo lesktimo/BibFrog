@@ -94,24 +94,6 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
         this.publisher = publisher;
     }
 
-    public String[] getAuthors() {
-        return authors;
-    }
-
-    @Override
-    public void setAuthors() {
-        if (this.givenAuthors.contains(",")) {
-            this.authors = this.givenAuthors.trim().split(",");
-            for (int i = 0; i < authors.length; i++) {
-                authors[i] = authors[i].trim();
-            }
-        } else {
-            String[] helper = {""};
-            helper[0] = this.givenAuthors.trim();
-            this.authors = helper;
-        }
-    }
-
     public String getTitle() {
         return title;
     }
@@ -152,16 +134,16 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
         this.givenAuthors = givenAuthors;
     }
 
-    public int getPublishYear() {
-        return publishYear;
-    }
-
     public String getSeries() {
         return series;
     }
 
     public void setSeries(String series) {
         this.series = series;
+    }
+    
+    public int getPublishYear() {
+        return publishYear;
     }
 
     public void setPublishYear(int publishYear) {
@@ -185,6 +167,24 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
         return printBuilder.substring(0, printBuilder.length() - 2);
     }
 
+    public String[] getAuthors() {
+        return authors;
+    }
+
+    @Override
+    public void setAuthors() {
+        if (this.givenAuthors.contains(",")) {
+            this.authors = this.givenAuthors.trim().split(",");
+            for (int i = 0; i < authors.length; i++) {
+                authors[i] = authors[i].trim();
+            }
+        } else {
+            String[] helper = {""};
+            helper[0] = this.givenAuthors.trim();
+            this.authors = helper;
+        }
+    }
+    
     @Override
     public LinkedHashMap<String, String> optionalFields() {
         LinkedHashMap<String, String> optionalFields = new LinkedHashMap();
