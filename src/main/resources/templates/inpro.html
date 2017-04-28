@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-group">
                             <label class="lbl">Editor:<input class="form-control" type="text" th:field="*{editor}" name="editor" placeholder="Name of the editor (optional)" /></label>
-                            <a th:if="${#fields.hasErrors('title')}" th:errors="*{title}">title errors</a>
+                            <a th:if="${#fields.hasErrors('editor')}" th:errors="*{editor}">editor errors</a>
                         </div>
                         <div class="form-group">
                             <label class="lbl">Volume:<input class="form-control" type="number" th:field="*{volume}" name="volume" placeholder="1" /></label>
