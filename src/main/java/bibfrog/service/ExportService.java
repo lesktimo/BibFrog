@@ -9,9 +9,18 @@ import java.util.List;
 import java.util.Map.Entry;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service for creating bibtex.bib from references.
+ */
 @Service
 public class ExportService {
 
+    /**
+     * Creates a bibtex.bib file to src from bibtex-string.
+     *
+     * @param bibtex bibtex-string of reference
+     * @throws IOException
+     */
     public void createFile(String bibtex) throws IOException {
         File file = new File("src/bibtex.bib");
         file.createNewFile();
@@ -21,6 +30,14 @@ public class ExportService {
         fileWriter.close();
     }
 
+    /**
+     * Creates bibtex-string from all references to be exported.
+     *
+     * @param inpros all inproceedings
+     * @param books all books
+     * @param articles all articles
+     * @return string of all references in bibtex-format
+     */
     public String createBibtexFromAll(List<Inproceeding> inpros, List<Book> books, List<Article> articles) {
         String bibtex = "";
 
@@ -31,6 +48,12 @@ public class ExportService {
         return bibtex;
     }
 
+    /**
+     * Creates bibtex-string from all inproceedings to be exported.
+     *
+     * @param inpros all inproceedings
+     * @return string of all inproceedings in bibtex-format
+     */
     public String createBibtexFromAllInproceedings(List<Inproceeding> inpros) {
         String inprotex = "";
         for (Inproceeding inpro : inpros) {
@@ -40,6 +63,12 @@ public class ExportService {
         return inprotex.trim();
     }
 
+    /**
+     * Creates bibtex-string from all books to be exported.
+     *
+     * @param books all books
+     * @return string of all books in bibtex-format
+     */
     public String createBibtexFromAllBooks(List<Book> books) {
         String booktex = "";
         for (Book book : books) {
@@ -49,6 +78,12 @@ public class ExportService {
         return booktex.trim();
     }
 
+    /**
+     * Creates bibtex-string from all articles to be exported.
+     *
+     * @param articles all articles
+     * @return string of all articles in bibtex-format
+     */
     public String createBibtexFromAllArticles(List<Article> articles) {
         String articletex = "";
         for (Article article : articles) {
@@ -58,6 +93,12 @@ public class ExportService {
         return articletex.trim();
     }
 
+    /**
+     * Creates bibtex-string from inproceeding to be exported.
+     *
+     * @param inpro inproceeding
+     * @return string of inproceeding in bibtex-format
+     */
     public String createBibtexFromInproceeding(Inproceeding inpro) {
         String bibtex = "@inproceedings{" + scandicChecker(inpro.getReferenceKey()) + ","
                 + "\nauthor = {" + scandicChecker(inpro.authorString()) + "},"
@@ -69,6 +110,12 @@ public class ExportService {
         return bibtex;
     }
 
+    /**
+     * Creates bibtex-string from book to be exported.
+     *
+     * @param book book
+     * @return string of book in bibtex-format
+     */
     public String createBibtexFromBook(Book book) {
         String bibtex = "@book{" + scandicChecker(book.getReferenceKey()) + ","
                 + "\nauthor = {" + scandicChecker(book.authorString()) + "},"
@@ -82,6 +129,12 @@ public class ExportService {
         return bibtex;
     }
 
+    /**
+     * Creates bibtex-string from article to be exported.
+     *
+     * @param article article
+     * @return string of article in bibtex-format
+     */
     public String createBibtexFromArticle(Article article) {
         String bibtex = "@article{" + scandicChecker(article.getReferenceKey()) + ","
                 + "\nauthor = {" + scandicChecker(article.authorString()) + "},"
@@ -95,6 +148,12 @@ public class ExportService {
         return bibtex;
     }
 
+    /**
+     * Adds all present optional attributes from reference to bibtex-string.
+     *
+     * @param ref reference
+     * @return string of reference in bibtex-format with optional fields added
+     */
     public String addOptionalFieldsToBibtex(Reference ref) {
         LinkedHashMap<String, String> optionalFields = ref.optionalFields();
         String inproTex = "";
@@ -108,6 +167,12 @@ public class ExportService {
         return inproTex;
     }
 
+    /**
+     * Checks bibtex-string for scandic letters and refactors to latex-format.
+     *
+     * @param bibtex bibtex-string of reference
+     * @return bibtex-string with latex friendly scandics
+     */
     public String scandicChecker(String bibtex) {
         int i = 0;
         int j = 0;
@@ -118,32 +183,26 @@ public class ExportService {
                 case 'ö':
                     newScandicBibtex += bibtex.substring(j, i) + "\\\"o";
                     j = i + 1;
-                    //replace with \"o        
                     break;
                 case 'ä':
                     newScandicBibtex += bibtex.substring(j, i) + "\\\"a";
                     j = i + 1;
-                    //replace with \"a     
                     break;
                 case 'å':
                     newScandicBibtex += bibtex.substring(j, i) + "\\aa";
                     j = i + 1;
-                    //replace with \aa
                     break;
                 case 'Ö':
                     newScandicBibtex += bibtex.substring(j, i) + "\\\"O";
                     j = i + 1;
-                    //replace with \"O    
                     break;
                 case 'Ä':
                     newScandicBibtex += bibtex.substring(j, i) + "\\\"A";
                     j = i + 1;
-                    //replace with \"a
                     break;
                 case 'Å':
                     newScandicBibtex += bibtex.substring(j, i) + "\\AA";
                     j = i + 1;
-                    //replace with \AA
                     break;
                 default:
                     break;
