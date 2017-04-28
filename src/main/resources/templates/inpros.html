@@ -52,8 +52,8 @@
                                             <td class="listingRow"><b th:text="${inpro.authorString()}">authors</b></td>
                                             <td class="listingRow"><b th:text="${inpro.publishYear}">year</b></td>
                                             <td class="listingRow">
-                                                <button id="downloadForm" type="button" name="downloadBibtex" class="btn btn-success manageButton" data-toggle="modal" data-target="#singleDownloadModal">Manage</button>
-                                                <div class="modal fade" id="singleDownloadModal" role="dialog">
+                                                <button id="downloadForm" type="button" name="downloadBibtex" class="btn btn-success manageButton" data-toggle="modal" th:attr="data-target='#singleDownload'+${inpro.id}">Manage</button>
+                                                <div class="modal fade" th:attr="id='singleDownload'+${inpro.id}" role="dialog">
                                                     <div class="modal-dialog modal-sm">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
