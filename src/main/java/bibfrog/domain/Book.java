@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Random;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
@@ -12,12 +13,15 @@ public class Book extends AbstractPersistable<Long> implements Reference {
     //required fields
     private String[] authors;
     @NotNull
+    @Length(min = 2, max = 140)
     private String title;
     @NotNull
+    @Length(min = 2, max = 140)
     private String publisher;
     @NotNull
     private int publishYear;
     @NotNull
+    @Length(min = 2, max = 140)
     private String givenAuthors;
     //optional fields
     private int volume, edition, publishMonth;
@@ -150,7 +154,6 @@ public class Book extends AbstractPersistable<Long> implements Reference {
         return optionalFields;
     }
 
-     
     @Override
     public void generateReferenceKey() {
         this.referenceKey = title.substring(0, 2).trim() + this.publishYear + this.authorString().substring(0, 2).trim() + super.getId() + new Random().nextInt(1000);

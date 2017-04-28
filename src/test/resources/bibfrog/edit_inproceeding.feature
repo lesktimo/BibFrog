@@ -7,7 +7,6 @@ Feature: As a user I want to be able to edit inproceedings after adding them to 
     When manage button is pressed
     When edit button is pressed
     When correct input for title "editedInproceeding", correct booktitle "editedBooktitle", correct year "2015" and correct Authors "Arton muokatut lasit" are given
-#    Then listing page contains fields "editedInproceeding", "editedBooktitle", "2015" and "Arton muokatut lasit"
     Then a list of articles is shown
 
   Scenario: User can add an inproceeding and cannot edit it with incorrect inputs afterwards

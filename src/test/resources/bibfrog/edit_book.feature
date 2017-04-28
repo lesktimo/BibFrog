@@ -7,7 +7,6 @@ Feature: As a user I want to be able to edit books after adding them to the site
     When manage button is pressed
     When edit button is pressed
     When correct input for publisher "editedPublisher", correct title "editedTitle", correct year "2015" and correct Authors "Arton muokatut lasit" are given
-#    Then listing page contains fields "editedPublisher", "editedTitle", "2015" and "Arton muokatut lasit"
     Then a list of articles is shown
 
   Scenario: User can add a book and cannot edit it with incorrect inputs afterwards

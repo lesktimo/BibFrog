@@ -7,7 +7,6 @@ Feature: As a user I want to be abe to edit articles after adding them to the si
     When manage button is pressed
     When edit button is pressed
     When correct input for title "editedArticle", correct journal "editedjournal", correct year "2015" and correct Authors "Arton muokatut lasit" are given
-#    Then listing page contains fields "editedArticle", "editedJournal", "2015" and "Arton muokatut lasit"
     Then a list of articles is shown
 
   Scenario: User can add an article and cannot edit it with incorrect inputs afterwards

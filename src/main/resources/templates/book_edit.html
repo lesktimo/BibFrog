@@ -9,8 +9,7 @@
                 <div class="form-container">
                     <div class="image-holder"></div>
                     <form method="post" th:object="${book}">
-                        <h2 class="text-center"><strong>Edit</strong>a book.</h2>
-
+                        <h2 class="text-center"><strong>Edit</strong> a book.</h2>
                         <div class="form-group">
                             <label class="lbl">Title: <a class="requiredField">*</a><input class="form-control" type="text" th:field="*{title}" name="title" placeholder="Operating Systems: Internal Design and Principles" /></label>
                             <a th:if="${#fields.hasErrors('title')}" th:errors="*{title}">title errors</a>
@@ -55,7 +54,7 @@
                             <label class="lbl">Note:<input class="form-control" type="text" th:field="*{note}" name="note" placeholder="Additional notes" /></label>
                             <a th:if="${#fields.hasErrors('note')}" th:errors="*{note}">note errors</a>
                             <div class="form-group">
-                                <button class="btn btn-primary btn-block" type="submit">Add</button>
+                                <button class="btn btn-primary btn-block" type="submit">Edit</button>
                             </div>
                         </div>
                     </form>

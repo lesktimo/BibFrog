@@ -17,6 +17,7 @@
                         </div>
                         <div class="form-group">
                             <label class="lbl">Author(s): <a class="requiredField">*</a><input class="form-control" type="text" th:field="*{givenAuthors}" name="givenAuthors" placeholder="J. Golding" /></label>
+                            <a href="article.html"></a>
                             <a th:if="${#fields.hasErrors('givenAuthors')}" th:errors="*{givenAuthors}">authors errors</a>
                         </div>
                         <div class="form-group">

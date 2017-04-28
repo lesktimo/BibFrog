@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Random;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
@@ -12,18 +13,22 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
     //required fields
     private String[] authors;
     @NotNull
+    @Length(min = 2, max = 140)
     private String title;
     @NotNull
+    @Length(min = 2, max = 140)
     private String bookTitle;
     @NotNull
     private int publishYear;
+    //helper building the array
+    @NotNull
+    @Length(min = 2, max = 140)
+    private String givenAuthors;
+
     private String referenceKey;
     //optional fields
     private String editor, address, pages, organization, publisher, series, note;
     private int volume, publishMonth;
-    //helper building the array
-    @NotNull
-    private String givenAuthors;
 
     public String getEditor() {
         return editor;
@@ -194,7 +199,7 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
         optionalFields.put("note", note);
         return optionalFields;
     }
-    
+
     @Override
     public void generateReferenceKey() {
         this.referenceKey = title.substring(0, 2).trim() + this.publishYear + this.authorString().substring(0, 2).trim() + super.getId() + new Random().nextInt(1000);
