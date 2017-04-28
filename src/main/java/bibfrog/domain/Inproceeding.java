@@ -158,15 +158,6 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
         this.referenceKey = referenceKey;
     }
 
-    @Override
-    public String authorString() {
-        String printBuilder = "";
-        for (String author : authors) {
-            printBuilder += author + ", ";
-        }
-        return printBuilder.substring(0, printBuilder.length() - 2);
-    }
-
     public String[] getAuthors() {
         return authors;
     }
@@ -183,6 +174,15 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
             helper[0] = this.givenAuthors.trim();
             this.authors = helper;
         }
+    }
+    
+    @Override
+    public String authorString() {
+        String printBuilder = "";
+        for (String author : authors) {
+            printBuilder += author + ", ";
+        }
+        return printBuilder.substring(0, printBuilder.length() - 2);
     }
     
     @Override
