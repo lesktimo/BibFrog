@@ -145,7 +145,7 @@ public class Article extends AbstractPersistable<Long> implements Reference {
         optionalFields.put("note", note);
         return optionalFields;
     }
-
+    
     @Override
     public void generateReferenceKey() {
         this.referenceKey = title.substring(0, 2).trim() + this.publishYear + this.authorString().substring(0, 2).trim() + super.getId() + new Random().nextInt(1000);
