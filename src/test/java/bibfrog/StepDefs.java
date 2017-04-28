@@ -1,5 +1,6 @@
 package bibfrog;
 
+import com.gargoylesoftware.htmlunit.SilentCssErrorHandler;
 import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -7,6 +8,8 @@ import cucumber.api.java.en.When;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import javax.annotation.PostConstruct;
 import static org.junit.Assert.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
@@ -152,6 +155,7 @@ public class StepDefs {
         element.click();
 
     }
+
     @When("^confirm all button is pressed$")
     public void confirm_all_button_is_pressed() throws InterruptedException {
         driver.switchTo().activeElement();
@@ -282,7 +286,6 @@ public class StepDefs {
 //        assertTrue(driver.getPageSource().contains("field3"));
 //
 //    }
-
     @Then("^page contains \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\"$")
     public void added_references_shown(String article, String book, String inproceeding) throws Throwable {
         assertTrue(driver.getPageSource().contains(article));
@@ -317,4 +320,5 @@ public class StepDefs {
     public void tearDown() {
         driver.quit();
     }
+
 }
