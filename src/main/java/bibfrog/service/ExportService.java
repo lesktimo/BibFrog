@@ -183,32 +183,26 @@ public class ExportService {
                 case 'ö':
                     newScandicBibtex += bibtex.substring(j, i) + "\\\"o";
                     j = i + 1;
-                    //replace with \"o        
                     break;
                 case 'ä':
                     newScandicBibtex += bibtex.substring(j, i) + "\\\"a";
                     j = i + 1;
-                    //replace with \"a     
                     break;
                 case 'å':
                     newScandicBibtex += bibtex.substring(j, i) + "\\aa";
                     j = i + 1;
-                    //replace with \aa
                     break;
                 case 'Ö':
                     newScandicBibtex += bibtex.substring(j, i) + "\\\"O";
                     j = i + 1;
-                    //replace with \"O    
                     break;
                 case 'Ä':
                     newScandicBibtex += bibtex.substring(j, i) + "\\\"A";
                     j = i + 1;
-                    //replace with \"a
                     break;
                 case 'Å':
                     newScandicBibtex += bibtex.substring(j, i) + "\\AA";
                     j = i + 1;
-                    //replace with \AA
                     break;
                 default:
                     break;
