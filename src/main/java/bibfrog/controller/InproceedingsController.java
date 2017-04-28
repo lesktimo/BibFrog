@@ -3,6 +3,7 @@ package bibfrog.controller;
 import bibfrog.domain.Inproceeding;
 import bibfrog.repositories.InproceedingsRepo;
 import bibfrog.service.ExportService;
+import bibfrog.service.FileService;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -30,6 +31,9 @@ public class InproceedingsController {
 
     @Autowired
     private ExportService exportService;
+    
+    @Autowired
+    private FileService fileService;
 
     @RequestMapping(value = "/inpro/add", method = RequestMethod.GET)
     public String addInproceeding(Model model) {
@@ -87,18 +91,18 @@ public class InproceedingsController {
             fileName = "fugyou";
         }
         createFileForDownloading(id);
-        File inproFile = getFilePathForBytes("src/bibtex.bib");
-        byte[] bytes = Files.readAllBytes(createPath(inproFile));
-        return new HttpEntity<>(bytes, createHeaders(inproFile, fileName));
+        File inproFile = fileService.getFilePathForBytes("src/bibtex.bib");
+        byte[] bytes = Files.readAllBytes(fileService.createPath(inproFile));
+        return new HttpEntity<>(bytes, fileService.createHeaders(inproFile, fileName));
     }
 
     @RequestMapping(value = "/inpros/all/download", method = RequestMethod.GET)
     public HttpEntity<byte[]> downloadAllInpros(@RequestParam String fileName) throws IOException {
         String bibtex = exportService.createBibtexFromAllInproceedings(inproRepo.findAll());
         exportService.createFile(bibtex);
-        File inproFile = getFilePathForBytes("src/bibtex.bib");
-        byte[] bytes = Files.readAllBytes(createPath(inproFile));
-        return new HttpEntity<>(bytes, createHeaders(inproFile, fileName));
+        File inproFile = fileService.getFilePathForBytes("src/bibtex.bib");
+        byte[] bytes = Files.readAllBytes(fileService.createPath(inproFile));
+        return new HttpEntity<>(bytes, fileService.createHeaders(inproFile, fileName));
     }
     
     private void createFileForDownloading(Long id) throws IOException {
@@ -107,21 +111,4 @@ public class InproceedingsController {
         exportService.createFile(bibtex);
     }
 
-    private File getFilePathForBytes(String filePath) {
-        return new File(filePath);
-
-    }
-
-    private Path createPath(File file) {
-        return Paths.get(file.getPath());
-    }
-
-    private HttpHeaders createHeaders(File file, String fileName) {
-        final HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.TEXT_PLAIN);
-        headers.set(HttpHeaders.CONTENT_DISPOSITION,
-                "attachment; filename=" + fileName + ".bib".replace(".txt", ""));
-        headers.setContentLength(file.length());
-        return headers;
-    }
 }
