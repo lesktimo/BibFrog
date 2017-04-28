@@ -81,8 +81,17 @@ public class BooksController {
     }
 
     @RequestMapping(value = "/book/{id}/download", method = RequestMethod.GET)
-    public HttpEntity<byte[]> downloadInpro(@PathVariable Long id, @RequestParam String fileName) throws IOException {
+    public HttpEntity<byte[]> downloadBook(@PathVariable Long id, @RequestParam String fileName) throws IOException {
         createFileForDownloading(id);
+        File bookFile = getFilePathForBytes("src/bibtex.bib");
+        byte[] bytes = Files.readAllBytes(createPath(bookFile));
+        return new HttpEntity<>(bytes, createHeaders(bookFile, fileName));
+    }
+    
+    @RequestMapping(value = "/books/all/download", method = RequestMethod.GET)
+    public HttpEntity<byte[]> downloadAllBooks(@RequestParam String fileName) throws IOException {
+        String bibtex = exportService.createBibtexFromAllBooks(booksRepo.findAll());
+        exportService.createFile(bibtex);
         File bookFile = getFilePathForBytes("src/bibtex.bib");
         byte[] bytes = Files.readAllBytes(createPath(bookFile));
         return new HttpEntity<>(bytes, createHeaders(bookFile, fileName));
@@ -94,16 +103,16 @@ public class BooksController {
         exportService.createFile(bibtex);
     }
 
-    protected File getFilePathForBytes(String filePath) {
+    private File getFilePathForBytes(String filePath) {
         return new File(filePath);
 
     }
 
-    protected Path createPath(File file) {
+    private Path createPath(File file) {
         return Paths.get(file.getPath());
     }
 
-    protected HttpHeaders createHeaders(File file, String fileName) {
+    private HttpHeaders createHeaders(File file, String fileName) {
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.TEXT_PLAIN);
         headers.set(HttpHeaders.CONTENT_DISPOSITION,
@@ -111,14 +120,4 @@ public class BooksController {
         headers.setContentLength(file.length());
         return headers;
     }
-
-    @RequestMapping(value = "/books/all/download", method = RequestMethod.GET)
-    public HttpEntity<byte[]> downloadAllBooks(@RequestParam String fileName) throws IOException {
-        String bibtex = exportService.createBibtexFromAllBooks(booksRepo.findAll());
-        exportService.createFile(bibtex);
-        File bookFile = getFilePathForBytes("src/bibtex.bib");
-        byte[] bytes = Files.readAllBytes(createPath(bookFile));
-        return new HttpEntity<>(bytes, createHeaders(bookFile, fileName));
-    }
-
 }

@@ -88,17 +88,6 @@ public class ArticlesController {
         return new HttpEntity<>(bytes, createHeaders(articleFile, fileName));
     }
 
-    private void createFileForDownloading(Long id) throws IOException {
-        Article article = articleRepo.findOne(id);
-        String bibtex = exportService.createBibtexFromArticle(article);
-        exportService.createFile(bibtex);
-    }
-
-    protected File getFilePathForBytes(String filePath) {
-        return new File(filePath);
-
-    }
-
     @RequestMapping(value = "/articles/all/download", method = RequestMethod.GET)
     public HttpEntity<byte[]> downloadAllArticles(@RequestParam String fileName) throws IOException {
         String bibtex = exportService.createBibtexFromAllArticles(articleRepo.findAll());
@@ -108,11 +97,11 @@ public class ArticlesController {
         return new HttpEntity<>(bytes, createHeaders(articleFile, fileName));
     }
 
-    protected Path createPath(File file) {
+    private Path createPath(File file) {
         return Paths.get(file.getPath());
     }
 
-    protected HttpHeaders createHeaders(File file, String fileName) {
+    private HttpHeaders createHeaders(File file, String fileName) {
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.TEXT_PLAIN);
         headers.set(HttpHeaders.CONTENT_DISPOSITION,
@@ -120,5 +109,15 @@ public class ArticlesController {
         headers.setContentLength(file.length());
         return headers;
     }
+    
+    private void createFileForDownloading(Long id) throws IOException {
+        Article article = articleRepo.findOne(id);
+        String bibtex = exportService.createBibtexFromArticle(article);
+        exportService.createFile(bibtex);
+    }
 
+    private File getFilePathForBytes(String filePath) {
+        return new File(filePath);
+
+    }
 }

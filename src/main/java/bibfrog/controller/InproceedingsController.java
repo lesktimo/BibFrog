@@ -92,12 +92,6 @@ public class InproceedingsController {
         return new HttpEntity<>(bytes, createHeaders(inproFile, fileName));
     }
 
-    private void createFileForDownloading(Long id) throws IOException {
-        Inproceeding inpro = inproRepo.findOne(id);
-        String bibtex = exportService.createBibtexFromInproceeding(inpro);
-        exportService.createFile(bibtex);
-    }
-
     @RequestMapping(value = "/inpros/all/download", method = RequestMethod.GET)
     public HttpEntity<byte[]> downloadAllInpros(@RequestParam String fileName) throws IOException {
         String bibtex = exportService.createBibtexFromAllInproceedings(inproRepo.findAll());
@@ -106,17 +100,23 @@ public class InproceedingsController {
         byte[] bytes = Files.readAllBytes(createPath(inproFile));
         return new HttpEntity<>(bytes, createHeaders(inproFile, fileName));
     }
+    
+    private void createFileForDownloading(Long id) throws IOException {
+        Inproceeding inpro = inproRepo.findOne(id);
+        String bibtex = exportService.createBibtexFromInproceeding(inpro);
+        exportService.createFile(bibtex);
+    }
 
-    protected File getFilePathForBytes(String filePath) {
+    private File getFilePathForBytes(String filePath) {
         return new File(filePath);
 
     }
 
-    protected Path createPath(File file) {
+    private Path createPath(File file) {
         return Paths.get(file.getPath());
     }
 
-    protected HttpHeaders createHeaders(File file, String fileName) {
+    private HttpHeaders createHeaders(File file, String fileName) {
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.TEXT_PLAIN);
         headers.set(HttpHeaders.CONTENT_DISPOSITION,
