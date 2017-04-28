@@ -26,7 +26,7 @@ public class StepDefs {
     @Given("^BibFrog link to frontpage is clicked$")
     public void navBar_bibfrog_frontpage() {
         driver.get(baseUrl);
-        WebElement element = driver.findElement(By.linkText("BibFrog"));
+        WebElement element = driver.findElement(By.name("frontpage"));
         element.click();
     }
 
