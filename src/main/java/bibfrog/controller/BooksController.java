@@ -3,6 +3,7 @@ package bibfrog.controller;
 import bibfrog.domain.Book;
 import bibfrog.repositories.BooksRepo;
 import bibfrog.service.ExportService;
+import bibfrog.service.FileService;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -30,6 +31,9 @@ public class BooksController {
 
     @Autowired
     private ExportService exportService;
+    
+    @Autowired
+    private FileService fileService;
 
     @RequestMapping(value = "/book/add", method = RequestMethod.GET)
     public String addBook(Model model) {
@@ -83,18 +87,18 @@ public class BooksController {
     @RequestMapping(value = "/book/{id}/download", method = RequestMethod.GET)
     public HttpEntity<byte[]> downloadBook(@PathVariable Long id, @RequestParam String fileName) throws IOException {
         createFileForDownloading(id);
-        File bookFile = getFilePathForBytes("src/bibtex.bib");
-        byte[] bytes = Files.readAllBytes(createPath(bookFile));
-        return new HttpEntity<>(bytes, createHeaders(bookFile, fileName));
+        File bookFile = fileService.getFilePathForBytes("src/bibtex.bib");
+        byte[] bytes = Files.readAllBytes(fileService.createPath(bookFile));
+        return new HttpEntity<>(bytes, fileService.createHeaders(bookFile, fileName));
     }
     
     @RequestMapping(value = "/books/all/download", method = RequestMethod.GET)
     public HttpEntity<byte[]> downloadAllBooks(@RequestParam String fileName) throws IOException {
         String bibtex = exportService.createBibtexFromAllBooks(booksRepo.findAll());
         exportService.createFile(bibtex);
-        File bookFile = getFilePathForBytes("src/bibtex.bib");
-        byte[] bytes = Files.readAllBytes(createPath(bookFile));
-        return new HttpEntity<>(bytes, createHeaders(bookFile, fileName));
+        File bookFile = fileService.getFilePathForBytes("src/bibtex.bib");
+        byte[] bytes = Files.readAllBytes(fileService.createPath(bookFile));
+        return new HttpEntity<>(bytes, fileService.createHeaders(bookFile, fileName));
     }
 
     private void createFileForDownloading(Long id) throws IOException {
@@ -103,21 +107,5 @@ public class BooksController {
         exportService.createFile(bibtex);
     }
 
-    private File getFilePathForBytes(String filePath) {
-        return new File(filePath);
-
-    }
-
-    private Path createPath(File file) {
-        return Paths.get(file.getPath());
-    }
-
-    private HttpHeaders createHeaders(File file, String fileName) {
-        final HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.TEXT_PLAIN);
-        headers.set(HttpHeaders.CONTENT_DISPOSITION,
-                "attachment; filename=" + fileName + ".bib".replace(".txt", ""));
-        headers.setContentLength(file.length());
-        return headers;
-    }
+    
 }
