@@ -1,4 +1,3 @@
-
 package bibfrog.service;
 
 import java.io.File;
@@ -10,17 +9,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class FileService {
-    
-    
+
     public File getFilePathForBytes(String filePath) {
         return new File(filePath);
 
     }
-    
+
     public Path createPath(File file) {
         return Paths.get(file.getPath());
     }
-    
+
     public HttpHeaders createHeaders(File file, String fileName) {
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.TEXT_PLAIN);
@@ -30,5 +28,4 @@ public class FileService {
         return headers;
     }
 
-    
 }

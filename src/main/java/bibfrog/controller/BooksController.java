@@ -7,13 +7,9 @@ import bibfrog.service.FileService;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,7 +27,7 @@ public class BooksController {
 
     @Autowired
     private ExportService exportService;
-    
+
     @Autowired
     private FileService fileService;
 
@@ -91,7 +87,7 @@ public class BooksController {
         byte[] bytes = Files.readAllBytes(fileService.createPath(bookFile));
         return new HttpEntity<>(bytes, fileService.createHeaders(bookFile, fileName));
     }
-    
+
     @RequestMapping(value = "/books/all/download", method = RequestMethod.GET)
     public HttpEntity<byte[]> downloadAllBooks(@RequestParam String fileName) throws IOException {
         String bibtex = exportService.createBibtexFromAllBooks(booksRepo.findAll());
@@ -107,5 +103,4 @@ public class BooksController {
         exportService.createFile(bibtex);
     }
 
-    
 }

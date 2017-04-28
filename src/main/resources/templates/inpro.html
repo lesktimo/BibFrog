@@ -10,7 +10,6 @@
                     <div class="image-holder"></div>
                     <form method="post" th:object="${inproceeding}">
                         <h2 class="text-center"><strong>Create</strong> an inproceeding.</h2>
-
                         <div class="form-group">
                             <label class="lbl">Title: <a class="requiredField">*</a><input class="form-control" type="text" th:field="*{title}" name="title" placeholder="Results from a Three-Year Transition to the Extreme Apprenticeship Method" /></label>
                             <a th:if="${#fields.hasErrors('title')}" th:errors="*{title}">title errors</a>

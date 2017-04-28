@@ -27,7 +27,7 @@ public class ArticlesController {
 
     @Autowired
     private ExportService exportService;
-    
+
     @Autowired
     private FileService fileService;
 
@@ -97,15 +97,10 @@ public class ArticlesController {
         return new HttpEntity<>(bytes, fileService.createHeaders(articleFile, fileName));
     }
 
-    
-
-    
-    
     private void createFileForDownloading(Long id) throws IOException {
         Article article = articleRepo.findOne(id);
         String bibtex = exportService.createBibtexFromArticle(article);
         exportService.createFile(bibtex);
     }
 
-    
 }

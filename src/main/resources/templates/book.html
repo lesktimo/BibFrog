@@ -10,7 +10,6 @@
                     <div class="image-holder"></div>
                     <form method="post" th:object="${book}">
                         <h2 class="text-center"><strong>Create</strong> a book.</h2>
-
                         <div class="form-group">
                             <label class="lbl">Title: <a class="requiredField">*</a><input class="form-control" type="text" th:field="*{title}" name="title" placeholder="Operating Systems: Internal Design and Principles" /></label>
                             <a th:if="${#fields.hasErrors('title')}" th:errors="*{title}">title errors</a>

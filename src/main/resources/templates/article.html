@@ -10,7 +10,6 @@
                     <div class="image-holder"></div>
                     <form method="post" th:object="${article}">
                         <h2 class="text-center"><strong>Create</strong> an article.</h2>
-
                         <div class="form-group">
                             <label class="lbl">Title: <a class="requiredField">*</a><input class="form-control" type="text" th:field="*{title}" name="title" placeholder="Diagnosed autism linked to maternal grandmother's smoking in pregnancy" /></label>
                             <a th:if="${#fields.hasErrors('title')}" th:errors="*{title}">title errors</a>
@@ -25,7 +24,7 @@
                             <a th:if="${#fields.hasErrors('journal')}" th:errors="*{journal}">journal errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Year: <a class="requiredField">*</a><input class="form-control" type="number" th:field="*{publishYear}" name="publishYear" placeholder="2017" /></label>
+                            <label class="lbl">Year: <a class="requiredField">*</a><input class="form-control" type="number" th:field="*{publishYear}" name="publishYear" placeholder="2017"/></label>
                             <a th:if="${#fields.hasErrors('publishYear')}" th:errors="*{publishYear}">year errors</a>
                         </div>
                         <div class="form-group">
