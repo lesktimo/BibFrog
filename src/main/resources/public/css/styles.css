@@ -69,30 +69,30 @@
     margin-bottom:20px;
 }
 
-#downloadForm{
+#downloadForm {
     position: relative;
     left: 30%;
     max-width: 200px;
 }
 
-#confirmForm{
+#confirmForm {
     position: static
 }
 
-.listingRow{
+.listingRow {
     max-width: 70px;
 }
 
-.requiredField{
+.requiredField {
     color: red;
 }
 
-.leftButton{
+.leftButton {
     position: absolute;
     left: 0%;
 }
 
-.manageButton{
+.manageButton {
     width: 108px;
 }
 
@@ -104,8 +104,9 @@
     margin-bottom:20px;
 }
 
-.col-md-12{
+.col-md-12 {
     margin-top: 50px;
+    padding-left: 5%;
     padding-bottom: 50px;
     background-color: #fff;
     box-shadow: 2px 2px 2px #ddd;
@@ -115,6 +116,11 @@
     box-shadow: 2px 2px 2px #ddd;
 }
 
-.navbar{
+.navbar {
     box-shadow: 2px 2px 2px #ddd;
+}
+
+.title2 {
+    position: relative;
+    margin-left: 2.5%;
 }
