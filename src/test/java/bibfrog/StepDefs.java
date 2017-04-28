@@ -171,7 +171,7 @@ public class StepDefs {
 
     @When("^BibFrog in NavBar is clicked$")
     public void navBar_bibfrog() {
-        WebElement element = driver.findElement(By.linkText("BibFrog"));
+        WebElement element = driver.findElement(By.name("frontpage"));
         element.click();
     }
 
