@@ -20,41 +20,41 @@ public class ExportService {
         fileWriter.flush();
         fileWriter.close();
     }
-        
-    public String createBibtexFromAll(List<Inproceeding> inpros, List<Book> books, List<Article> articles){
+
+    public String createBibtexFromAll(List<Inproceeding> inpros, List<Book> books, List<Article> articles) {
         String bibtex = "";
-        
+
         bibtex += createBibtexFromAllInproceedings(inpros);
         bibtex += createBibtexFromAllBooks(books);
         bibtex += createBibtexFromAllArticles(articles);
-        
+
         return bibtex;
     }
-    
-    public String createBibtexFromAllInproceedings(List<Inproceeding> inpros){
+
+    public String createBibtexFromAllInproceedings(List<Inproceeding> inpros) {
         String inprotex = "";
         for (Inproceeding inpro : inpros) {
             inprotex += createBibtexFromInproceeding(inpro) + "\n\n";
         }
-        
+
         return inprotex.trim();
     }
-    
-    public String createBibtexFromAllBooks(List<Book> books){
+
+    public String createBibtexFromAllBooks(List<Book> books) {
         String booktex = "";
         for (Book book : books) {
             booktex += createBibtexFromBook(book) + "\n\n";
         }
-        
+
         return booktex.trim();
     }
-        
-    public String createBibtexFromAllArticles(List<Article> articles){
+
+    public String createBibtexFromAllArticles(List<Article> articles) {
         String articletex = "";
         for (Article article : articles) {
             articletex += createBibtexFromArticle(article) + "\n\n";
         }
-        
+
         return articletex.trim();
     }
 
