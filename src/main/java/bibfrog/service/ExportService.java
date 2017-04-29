@@ -178,38 +178,30 @@ public class ExportService {
         int j = 0;
         String newScandicBibtex = "";
         for (char c : bibtex.toCharArray()) {
-
-            switch (c) {
-                case 'ö':
-                    newScandicBibtex += bibtex.substring(j, i) + "\\\"o";
-                    j = i + 1;
-                    break;
-                case 'ä':
-                    newScandicBibtex += bibtex.substring(j, i) + "\\\"a";
-                    j = i + 1;
-                    break;
-                case 'å':
-                    newScandicBibtex += bibtex.substring(j, i) + "\\aa";
-                    j = i + 1;
-                    break;
-                case 'Ö':
-                    newScandicBibtex += bibtex.substring(j, i) + "\\\"O";
-                    j = i + 1;
-                    break;
-                case 'Ä':
-                    newScandicBibtex += bibtex.substring(j, i) + "\\\"A";
-                    j = i + 1;
-                    break;
-                case 'Å':
-                    newScandicBibtex += bibtex.substring(j, i) + "\\AA";
-                    j = i + 1;
-                    break;
-                default:
-                    break;
+            if (convertScandicLetter(c) != null) {
+                newScandicBibtex += bibtex.substring(j, i) + convertScandicLetter(c);
+                j = i + 1;
             }
             i++;
         }
         newScandicBibtex += bibtex.substring(j);
         return newScandicBibtex;
+    }
+    
+    private String convertScandicLetter(char c) {
+        if (c == 'ö') {
+            return "\\\"o";
+        } else if (c == 'ä') {
+            return "\\\"a";
+        } else if (c == 'å') {
+            return "\\aa";
+        } else if (c == 'Ö') {
+            return "\\\"O";
+        } else if (c == 'Ä') {
+            return "\\\"A";
+        } else if (c == 'Å') {
+            return "\\AA";
+        }
+        return null;
     }
 }
