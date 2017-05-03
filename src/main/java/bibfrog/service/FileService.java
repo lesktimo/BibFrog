@@ -1,8 +1,11 @@
 package bibfrog.service;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -47,6 +50,12 @@ public class FileService {
                 "attachment; filename=" + fileName + ".bib".replace(".txt", ""));
         headers.setContentLength(file.length());
         return headers;
+    }
+    
+    public HttpEntity<byte[]> createBibFile(String fileName) throws IOException {
+        File referenceFile = getFilePathForBytes("src/bibtex.bib");
+        byte[] bytes = Files.readAllBytes(createPath(referenceFile));
+        return new HttpEntity<>(bytes, createHeaders(referenceFile, fileName));
     }
 
 }
