@@ -1,11 +1,17 @@
 package bibfrog.service;
 
+import bibfrog.domain.Inproceeding;
 import java.io.File;
+
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.springframework.http.HttpEntity;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -15,11 +21,31 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class FileService {
-    
+
+    public Inproceeding createInproceedingFromFile(File inpro) throws FileNotFoundException {
+        Scanner fileReader = new Scanner(inpro);
+        Inproceeding newInpro = new Inproceeding();
+        String inprotex = "";
+
+        while (fileReader.hasNextLine()) {
+            inprotex += fileReader.nextLine();
+        }
+
+        String[] attributes = inprotex.split(",");
+
+        for (String attribute : attributes) {
+            System.out.println(attribute);
+        }
+
+        return newInpro;
+
+    }
+
     public HttpEntity<byte[]> createBibFile(String fileName) throws IOException {
         File referenceFile = getFilePathForBytes("src/bibtex.bib");
         byte[] bytes = Files.readAllBytes(createPath(referenceFile));
         return new HttpEntity<>(bytes, createHeaders(referenceFile, fileName));
+
     }
 
     /**
