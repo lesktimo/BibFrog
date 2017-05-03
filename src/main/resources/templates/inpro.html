@@ -66,7 +66,7 @@
                             <label class="lbl">Note:<input class="form-control" type="text" th:field="*{note}" name="note" placeholder="Additional notes" /></label>
                             <a th:if="${#fields.hasErrors('note')}" th:errors="*{note}">note errors</a>
                             <div class="form-group">
-                                <button class="btn btn-primary btn-block" type="submit">Add</button>
+                                <button class="btn btn-success btn-block" type="submit">Add</button>
                             </div>
                         </div>
                     </form>
