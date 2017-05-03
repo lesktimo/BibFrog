@@ -124,3 +124,12 @@
     position: relative;
     margin-left: 2.5%;
 }
+
+.search-btn {
+    position: relative;
+    margin-top: 10px;
+}
+
+.modal-body {
+    background-color: #eef4f7;
+}
