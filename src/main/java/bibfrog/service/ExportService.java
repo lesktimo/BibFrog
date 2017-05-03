@@ -189,19 +189,21 @@ public class ExportService {
     }
     
     private String convertScandicLetter(char c) {
-        if (c == 'ö') {
-            return "\\\"o";
-        } else if (c == 'ä') {
-            return "\\\"a";
-        } else if (c == 'å') {
-            return "\\aa";
-        } else if (c == 'Ö') {
-            return "\\\"O";
-        } else if (c == 'Ä') {
-            return "\\\"A";
-        } else if (c == 'Å') {
-            return "\\AA";
+        switch (c) {
+            case 'ö':
+                return "\\\"o";
+            case 'ä':
+                return "\\\"a";
+            case 'å':
+                return "\\aa";
+            case 'Ö':
+                return "\\\"O";
+            case 'Ä':
+                return "\\\"A";
+            case 'Å':
+                return "\\AA";
+            default:
+                return null;
         }
-        return null;
     }
 }

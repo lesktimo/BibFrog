@@ -7,6 +7,9 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
+/**
+ * Book model.
+ */
 @Entity
 public class Book extends AbstractPersistable<Long> implements Reference {
 
@@ -106,7 +109,7 @@ public class Book extends AbstractPersistable<Long> implements Reference {
     public void setNote(String note) {
         this.note = note;
     }
-    
+
     public String getReferenceKey() {
         return referenceKey;
     }
@@ -114,7 +117,7 @@ public class Book extends AbstractPersistable<Long> implements Reference {
     public void setReferenceKey(String referenceKey) {
         this.referenceKey = referenceKey;
     }
-    
+
     public String[] getAuthors() {
         return authors;
     }

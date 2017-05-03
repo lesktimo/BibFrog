@@ -3,9 +3,7 @@ package bibfrog.controller;
 import bibfrog.domain.Inproceeding;
 import bibfrog.repositories.InproceedingsRepo;
 import bibfrog.service.*;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -26,7 +24,7 @@ public class InproceedingsController {
 
     @Autowired
     private ExportService exportService;
-    
+
     @Autowired
     private FileService fileService;
 
@@ -86,20 +84,18 @@ public class InproceedingsController {
             fileName = "fugyou";
         }
         createFileForDownloading(id);
-        File inproFile = fileService.getFilePathForBytes("src/bibtex.bib");
-        byte[] bytes = Files.readAllBytes(fileService.createPath(inproFile));
-        return new HttpEntity<>(bytes, fileService.createHeaders(inproFile, fileName));
+        return fileService.createBibFile(fileName);
+
     }
 
     @RequestMapping(value = "/inpros/all/download", method = RequestMethod.GET)
     public HttpEntity<byte[]> downloadAllInpros(@RequestParam String fileName) throws IOException {
         String bibtex = exportService.createBibtexFromAllInproceedings(inproRepo.findAll());
         exportService.createFile(bibtex);
-        File inproFile = fileService.getFilePathForBytes("src/bibtex.bib");
-        byte[] bytes = Files.readAllBytes(fileService.createPath(inproFile));
-        return new HttpEntity<>(bytes, fileService.createHeaders(inproFile, fileName));
+        return fileService.createBibFile(fileName);
+
     }
-    
+
     private void createFileForDownloading(Long id) throws IOException {
         Inproceeding inpro = inproRepo.findOne(id);
         String bibtex = exportService.createBibtexFromInproceeding(inpro);

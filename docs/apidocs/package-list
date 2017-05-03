@@ -1,0 +1,6 @@
+bibfrog
+bibfrog.config
+bibfrog.controller
+bibfrog.domain
+bibfrog.repositories
+bibfrog.service
