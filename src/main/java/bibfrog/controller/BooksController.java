@@ -3,9 +3,7 @@ package bibfrog.controller;
 import bibfrog.domain.Book;
 import bibfrog.repositories.BooksRepo;
 import bibfrog.service.*;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -80,20 +78,14 @@ public class BooksController {
     @RequestMapping(value = "/book/{id}/download", method = RequestMethod.GET)
     public HttpEntity<byte[]> downloadBook(@PathVariable Long id, @RequestParam String fileName) throws IOException {
         createFileForDownloading(id);
-        return createBibFile(fileName);
+        return fileService.createBibFile(fileName);
     }
 
     @RequestMapping(value = "/books/all/download", method = RequestMethod.GET)
     public HttpEntity<byte[]> downloadAllBooks(@RequestParam String fileName) throws IOException {
         String bibtex = exportService.createBibtexFromAllBooks(booksRepo.findAll());
         exportService.createFile(bibtex);
-        return createBibFile(fileName);
-    }
-
-    private HttpEntity<byte[]> createBibFile(String fileName) throws IOException {
-        File bookFile = fileService.getFilePathForBytes("src/bibtex.bib");
-        byte[] bytes = Files.readAllBytes(fileService.createPath(bookFile));
-        return new HttpEntity<>(bytes, fileService.createHeaders(bookFile, fileName));
+        return fileService.createBibFile(fileName);
     }
 
     private void createFileForDownloading(Long id) throws IOException {
