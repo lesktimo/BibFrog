@@ -32,6 +32,7 @@
                                 </div>
                             </div>
                             <div class="table-responsive">
+                                <div th:if="${!results.empty}">
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -55,6 +56,8 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                </div>
+                                <div th:unless="${!results.empty}"><p>No results</p></div>
                             </div> 
                         </div>
                     </div>
