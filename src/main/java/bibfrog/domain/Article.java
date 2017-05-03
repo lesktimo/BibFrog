@@ -7,6 +7,9 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
+/**
+ * Article model.
+ */
 @Entity
 public class Article extends AbstractPersistable<Long> implements Reference {
 
@@ -107,7 +110,7 @@ public class Article extends AbstractPersistable<Long> implements Reference {
     public void setNumber(int number) {
         this.number = number;
     }
-    
+
     public String[] getAuthors() {
         return authors;
     }
@@ -145,7 +148,7 @@ public class Article extends AbstractPersistable<Long> implements Reference {
         optionalFields.put("note", note);
         return optionalFields;
     }
-    
+
     @Override
     public void generateReferenceKey() {
         this.referenceKey = title.substring(0, 2).trim() + this.publishYear + this.authorString().substring(0, 2).trim() + super.getId() + new Random().nextInt(1000);

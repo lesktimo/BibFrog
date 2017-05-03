@@ -3,9 +3,7 @@ package bibfrog.controller;
 import bibfrog.domain.Article;
 import bibfrog.repositories.ArticleRepo;
 import bibfrog.service.*;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -82,20 +80,16 @@ public class ArticlesController {
     @RequestMapping(value = "/article/{id}/download", method = RequestMethod.GET)
     public HttpEntity<byte[]> downloadArticle(@PathVariable Long id, @RequestParam String fileName) throws IOException {
         createFileForDownloading(id);
-        File articleFile = fileService.getFilePathForBytes("src/bibtex.bib");
-        byte[] bytes = Files.readAllBytes(fileService.createPath(articleFile));
-        return new HttpEntity<>(bytes, fileService.createHeaders(articleFile, fileName));
+        return fileService.createBibFile(fileName);
     }
 
     @RequestMapping(value = "/articles/all/download", method = RequestMethod.GET)
     public HttpEntity<byte[]> downloadAllArticles(@RequestParam String fileName) throws IOException {
         String bibtex = exportService.createBibtexFromAllArticles(articleRepo.findAll());
         exportService.createFile(bibtex);
-        File articleFile = fileService.getFilePathForBytes("src/bibtex.bib");
-        byte[] bytes = Files.readAllBytes(fileService.createPath(articleFile));
-        return new HttpEntity<>(bytes, fileService.createHeaders(articleFile, fileName));
+        return fileService.createBibFile(fileName);
     }
-
+    
     private void createFileForDownloading(Long id) throws IOException {
         Article article = articleRepo.findOne(id);
         String bibtex = exportService.createBibtexFromArticle(article);

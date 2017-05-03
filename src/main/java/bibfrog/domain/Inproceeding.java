@@ -7,6 +7,9 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
+/**
+ * Inproceeding model.
+ */
 @Entity
 public class Inproceeding extends AbstractPersistable<Long> implements Reference {
 
@@ -141,7 +144,7 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
     public void setSeries(String series) {
         this.series = series;
     }
-    
+
     public int getPublishYear() {
         return publishYear;
     }
@@ -175,7 +178,7 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
             this.authors = helper;
         }
     }
-    
+
     @Override
     public String authorString() {
         String printBuilder = "";
@@ -184,7 +187,7 @@ public class Inproceeding extends AbstractPersistable<Long> implements Reference
         }
         return printBuilder.substring(0, printBuilder.length() - 2);
     }
-    
+
     @Override
     public LinkedHashMap<String, String> optionalFields() {
         LinkedHashMap<String, String> optionalFields = new LinkedHashMap();
