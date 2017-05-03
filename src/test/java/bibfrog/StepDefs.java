@@ -248,7 +248,7 @@ public class StepDefs {
     // THEN_______________________________________________________________________
     @Then("^frontpage is shown$")
     public void frontpage_shown() {
-        assertTrue(driver.getPageSource().contains("Create and manage article references"));
+        assertTrue(driver.getPageSource().contains("Create article references"));
     }
 
     @Then("^a file with correct author \"([^\"]*)\" is exported$")
