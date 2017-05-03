@@ -50,14 +50,14 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Search</h4>
+                        <a href="index.html"></a>
                     </div>
                     <div class="modal-body">
                         <form th:action="@{/search}" method="GET">
                             <div class="form-group">
                                 <input class="form-control"  type="text" name="query" placeholder="Search this site"/>
                             </div>
-                            <input class="btn btn-success btn-block" type="submit"/>
-                            <!--value="Search" name="confirmSearch"/>-->
+                            <input class="btn btn-success btn-block" type="submit" value="Search" name="confirmSearch" />
                         </form>
                         <br/>
                         <form action="#" method="GET">

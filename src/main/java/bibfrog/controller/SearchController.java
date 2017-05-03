@@ -5,8 +5,9 @@ import bibfrog.repositories.ArticleRepo;
 import bibfrog.repositories.BooksRepo;
 import bibfrog.repositories.InproceedingsRepo;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,8 +28,37 @@ public class SearchController {
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String searchSite(@RequestParam String query, Model model) {
         List<Reference> results = new ArrayList<>();
-        results.addAll(aRepo.findByTitleContainingIgnoringCase(query));
-        model.addAttribute("results", results);
+        if (!aRepo.findAll().isEmpty()) {
+            results.addAll(aRepo.findByTitleContainingIgnoringCase(query));
+            results.addAll(aRepo.findByGivenAuthorsContainingIgnoringCase(query));
+            results.addAll(aRepo.findByJournalContainingIgnoringCase(query));
+            if (query.matches("[0-9+]")) {
+                results.addAll(aRepo.findByPublishYear(Integer.parseInt(query)));
+            }
+        }
+        if (!bRepo.findAll().isEmpty()) {
+            results.addAll(bRepo.findByTitleContainingIgnoringCase(query));
+            results.addAll(bRepo.findByGivenAuthorsContainingIgnoringCase(query));
+            results.addAll(bRepo.findByPublisherContainingIgnoringCase(query));
+            if (query.matches("[0-9+]")) {
+                results.addAll(bRepo.findByPublishYear(Integer.parseInt(query)));
+            }
+        }
+        if (!iRepo.findAll().isEmpty()) {
+            results.addAll(iRepo.findByTitleContainingIgnoringCase(query));
+            results.addAll(iRepo.findByGivenAuthorsContainingIgnoringCase(query));
+            results.addAll(iRepo.findByPublisherContainingIgnoringCase(query));
+            results.addAll(iRepo.findByBookTitleContainingIgnoringCase(query));
+            results.addAll(iRepo.findByEditorContainingIgnoringCase(query));
+            if (query.matches("[0-9+]")) {
+                results.addAll(iRepo.findByPublishYear(Integer.parseInt(query)));
+            }
+        }
+        Set<Reference> s = new HashSet<>();
+        s.addAll(results);
+        results.clear();
+        results.addAll(s);
+        model.addAttribute("results", s);
         return "results";
     }
 }
