@@ -9,4 +9,11 @@ import org.springframework.stereotype.Repository;
 public interface ArticleRepo extends JpaRepository<Article, Long> {
 
     Collection<Article> findByTitleContainingIgnoringCase(String title);
+
+    Collection<Article> findByJournalContainingIgnoringCase(String journal);
+
+    Collection<Article> findByGivenAuthorsContainingIgnoringCase(String author);
+
+    Collection<Article> findByPublishYear(Integer year);
+
 }
