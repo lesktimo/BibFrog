@@ -326,6 +326,10 @@ public class StepDefs {
     public void books_shown() throws Throwable {
         assertTrue(driver.getPageSource().contains("Books"));
     }
+    @Then("^no results list page shown$")
+    public void no_results() throws Throwable {
+        assertTrue(driver.getPageSource().contains("No results"));
+    }
 
     @Then("^a list of articles is shown$")
     public void articles_shown() throws Throwable {
