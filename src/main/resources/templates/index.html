@@ -30,6 +30,9 @@
                             <li role="presentation"><a th:href="@{/articles}">Articles</a></li>
                             <li role="presentation"><a th:href="@{/books}">Books</a></li>
                             <li role="presentation"><a th:href="@{/inpros}">Inproceedings</a></li>
+                            <li role="presentation">
+                                <button type="button" name="searchButton" class="btn search-btn btn-sm" data-toggle="modal" data-target="#searchTools">Search</button>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -41,6 +44,35 @@
                 <a href="https://www.github.com/lesktimo/BibFrog"><p class="copyright">BibFrog 2017</p></a>
                 <p class="copyright"><img class="z" src="/img/pepe.jpg" id="pepefrog" width="950" height="700" alt="pepehere"/></p>
             </footer>
+        </div>
+        <div class="modal fade" id="searchTools" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Search</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form th:action="@{/search}" method="GET">
+                            <div class="form-group">
+                                <input class="form-control"  type="text" name="query" placeholder="Search this site"/>
+                            </div>
+                            <input class="btn btn-success btn-block" type="submit"/>
+                            <!--value="Search" name="confirmSearch"/>-->
+                        </form>
+                        <br/>
+                        <form action="#" method="GET">
+                            <div class="form-group">
+                                <input class="form-control"  type="text" name="queryACM" value="Search from ACM Digital Library"/>
+                            </div>
+                            <input class="btn btn-success btn-block" type="submit" value="Search" name="confirmSearchACM"/>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <script src="/js/jquery.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>

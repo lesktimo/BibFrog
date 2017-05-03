@@ -1,17 +1,13 @@
 package bibfrog.controller;
 
 import bibfrog.service.FileService;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Scanner;
-import javax.servlet.http.HttpServlet;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,10 +22,10 @@ public class AcmController {
     @Autowired
     private FileService fileService;
 
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String searchAcmReferences() {
-        return "searchPage";
-    }
+//    @RequestMapping(value = "/search", method = RequestMethod.GET)
+//    public String searchAcmReferences() {
+//        return "searchPage";
+//    }
 
     @RequestMapping(value = "/testaus", method = RequestMethod.GET)
     public String createBibtexFromAcm(@RequestParam String searchUrl) throws MalformedURLException, IOException {
