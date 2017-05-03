@@ -12,7 +12,8 @@ List<Inproceeding> findByAuthors(String author);
 List<Inproceeding> findByBookTitle(String booktitle);
 List<Inproceeding> findByTitle(String title);
 List<Inproceeding> findByPublishYear(int year);
-
+List<Inproceeding> findByEditor(String editor);
+List<Inproceeding> findByPublisher(String publisher);
 
 
 }

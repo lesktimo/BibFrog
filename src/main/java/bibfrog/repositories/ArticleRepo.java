@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface ArticleRepo extends JpaRepository<Article, Long> {
 
 List<Article> findByAuthors(String author);
-List<Article> findByPublisher(String publisher);
+List<Article> findByJournal(String journal);
 List<Article> findByTitle(String title);
 List<Article> findByPublishYear(int year);
 

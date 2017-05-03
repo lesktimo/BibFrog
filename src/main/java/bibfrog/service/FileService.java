@@ -15,6 +15,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class FileService {
+    
+    public HttpEntity<byte[]> createBibFile(String fileName) throws IOException {
+        File referenceFile = getFilePathForBytes("src/bibtex.bib");
+        byte[] bytes = Files.readAllBytes(createPath(referenceFile));
+        return new HttpEntity<>(bytes, createHeaders(referenceFile, fileName));
+    }
 
     /**
      * Return file with specified filepath.
@@ -22,7 +28,7 @@ public class FileService {
      * @param filePath
      * @return specified file
      */
-    public File getFilePathForBytes(String filePath) {
+    private File getFilePathForBytes(String filePath) {
         return new File(filePath);
     }
 
@@ -32,7 +38,7 @@ public class FileService {
      * @param file
      * @return filepath
      */
-    public Path createPath(File file) {
+    private Path createPath(File file) {
         return Paths.get(file.getPath());
     }
 
@@ -43,19 +49,13 @@ public class FileService {
      * @param fileName
      * @return HttpHeaders
      */
-    public HttpHeaders createHeaders(File file, String fileName) {
+    private HttpHeaders createHeaders(File file, String fileName) {
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.TEXT_PLAIN);
         headers.set(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment; filename=" + fileName + ".bib".replace(".txt", ""));
         headers.setContentLength(file.length());
         return headers;
-    }
-    
-    public HttpEntity<byte[]> createBibFile(String fileName) throws IOException {
-        File referenceFile = getFilePathForBytes("src/bibtex.bib");
-        byte[] bytes = Files.readAllBytes(createPath(referenceFile));
-        return new HttpEntity<>(bytes, createHeaders(referenceFile, fileName));
     }
 
 }
