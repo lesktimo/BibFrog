@@ -205,10 +205,50 @@ public class StepDefs {
         element.click();
     }
 
+    @When("^correct input for title \"([^\"]*)\", correct journal \"([^\"]*)\", correct year \"([^\"]*)\" and correct Authors \"([^\"]*)\" and inputs for optional fields \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" are entered$")
+    public void add_optionals_article(String title, String journal, String year, String authors, String volume, String number, String pages, String publishMonth, String note) {
+        WebElement element = driver.findElement(By.name("title"));
+        element.sendKeys(title);
+        element = driver.findElement(By.name("journal"));
+        element.sendKeys(journal);
+        element = driver.findElement(By.name("publishYear"));
+        element.sendKeys(year);
+        element = driver.findElement(By.name("givenAuthors"));
+        element.sendKeys(authors);
+        element = driver.findElement(By.name("volume"));
+        element.sendKeys(volume);
+        element = driver.findElement(By.name("number"));
+        element.sendKeys(number);
+        element = driver.findElement(By.name("pages"));
+        element.sendKeys(pages);
+        element = driver.findElement(By.name("publishMonth"));
+        element.sendKeys(publishMonth);
+        element = driver.findElement(By.name("note"));
+        element.sendKeys(note);
+        element = driver.findElement(By.className("btn"));
+        element.submit();
+    }
+
+    @When("^search is clicked$")
+    public void search_clicked() {
+        WebElement element = driver.findElement(By.name("searchTools"));
+        element.click();
+    }
+
+    @When("^\"([^\"]*)\" is entered to the search bar$")
+    public void searchWordEntered(String word) throws InterruptedException {
+        driver.switchTo().activeElement();
+        sleep(1000);
+        WebElement element = driver.findElement(By.name("querySite"));
+        element.sendKeys(word);
+        element = driver.findElement(By.name("confirmSearch"));
+        element.click();
+    }
+
     // THEN_______________________________________________________________________
     @Then("^frontpage is shown$")
     public void frontpage_shown() {
-        assertTrue(driver.getPageSource().contains("Create and manage article references"));
+        assertTrue(driver.getPageSource().contains("Create article references"));
     }
 
     @Then("^a file with correct author \"([^\"]*)\" is exported$")
@@ -262,14 +302,48 @@ public class StepDefs {
         assertTrue(driver.getPageSource().contains("an inproceeding."));
     }
 
+    @Then("^a file with correct fields \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\" is exported$")
+    public void optional_fields_check(String arg1, String arg2, String arg3, String arg4, String arg5) throws FileNotFoundException {
+        String fileData = readFile();
+        System.out.println(fileData);
+        assertTrue(fileData.contains(arg1));
+        assertTrue(fileData.contains(arg2));
+        assertTrue(fileData.contains(arg3));
+        assertTrue(fileData.contains(arg4));
+        assertTrue(fileData.contains(arg5));
+    }
+
     @Then("^a list of all references is shown$")
     public void references_shown() throws Throwable {
         assertTrue(driver.getPageSource().contains("References"));
     }
 
+    @Then("^list page contains \"([^\"]*)\" and \"([^\"]*)\"")
+    public void search_tool_works(String arg1, String arg2) {
+        assertTrue(driver.getPageSource().contains(arg1));
+        assertTrue(driver.getPageSource().contains(arg2));
+
+    }
+
+    @Then("^list page does not contain \"([^\"]*)\" and \"([^\"]*)\"$")
+    public void search_tool_limits_correctly(String arg1, String arg2) {
+        assertTrue(!driver.getPageSource().contains(arg1));
+        assertTrue(!driver.getPageSource().contains(arg2));
+    }
+
     @Then("^a list of inproceedings is shown$")
     public void inproceedings_shown() throws Throwable {
         assertTrue(driver.getPageSource().contains("Inproceedings"));
+    }
+
+    @Then("^page contains \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\"$")
+    public void optionalfields_are_shown(String arg1, String arg2, String arg3, String arg4, String arg5) {
+        assertTrue(driver.getPageSource().contains(arg1));
+        assertTrue(driver.getPageSource().contains(arg2));
+        assertTrue(driver.getPageSource().contains(arg3));
+        assertTrue(driver.getPageSource().contains(arg4));
+        assertTrue(driver.getPageSource().contains(arg5));
+
     }
 
     @Then("^a list of books is shown$")
