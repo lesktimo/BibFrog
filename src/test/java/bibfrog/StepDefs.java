@@ -59,7 +59,7 @@ public class StepDefs {
         element.sendKeys(year);
         element = driver.findElement(By.name("givenAuthors"));
         element.sendKeys(authors);
-        element = driver.findElement(By.className("btn"));
+        element = driver.findElement(By.name("addButton"));
         element.submit();
     }
 
@@ -73,7 +73,7 @@ public class StepDefs {
         element.sendKeys(year);
         element = driver.findElement(By.name("givenAuthors"));
         element.sendKeys(authors);
-        element = driver.findElement(By.className("btn"));
+        element = driver.findElement(By.name("addButton"));
         element.submit();
     }
 
@@ -87,7 +87,7 @@ public class StepDefs {
         element.sendKeys(year);
         element = driver.findElement(By.name("givenAuthors"));
         element.sendKeys(authors);
-        element = driver.findElement(By.className("btn"));
+        element = driver.findElement(By.name("addButton"));
         element.submit();
     }
 
@@ -101,7 +101,7 @@ public class StepDefs {
         element.sendKeys(year);
         element = driver.findElement(By.name("givenAuthors"));
         element.sendKeys(authors);
-        element = driver.findElement(By.className("btn"));
+        element = driver.findElement(By.name("addButton"));
         element.submit();
     }
 
@@ -115,7 +115,7 @@ public class StepDefs {
         element.sendKeys(year);
         element = driver.findElement(By.name("givenAuthors"));
         element.sendKeys(authors);
-        element = driver.findElement(By.className("btn"));
+        element = driver.findElement(By.name("addButton"));
         element.submit();
     }
 
@@ -133,7 +133,7 @@ public class StepDefs {
         element = driver.findElement(By.name("givenAuthors"));
         element.clear();
         element.sendKeys(authors);
-        element = driver.findElement(By.className("btn"));
+        element = driver.findElement(By.name("addButton"));
         element.submit();
     }
 
@@ -205,33 +205,9 @@ public class StepDefs {
         element.click();
     }
 
-    @When("^correct input for title \"([^\"]*)\", correct journal \"([^\"]*)\", correct year \"([^\"]*)\" and correct Authors \"([^\"]*)\" and inputs for optional fields \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" are entered$")
-    public void add_optionals_article(String title, String journal, String year, String authors, String volume, String number, String pages, String publishMonth, String note) {
-        WebElement element = driver.findElement(By.name("title"));
-        element.sendKeys(title);
-        element = driver.findElement(By.name("journal"));
-        element.sendKeys(journal);
-        element = driver.findElement(By.name("publishYear"));
-        element.sendKeys(year);
-        element = driver.findElement(By.name("givenAuthors"));
-        element.sendKeys(authors);
-        element = driver.findElement(By.name("volume"));
-        element.sendKeys(volume);
-        element = driver.findElement(By.name("number"));
-        element.sendKeys(number);
-        element = driver.findElement(By.name("pages"));
-        element.sendKeys(pages);
-        element = driver.findElement(By.name("publishMonth"));
-        element.sendKeys(publishMonth);
-        element = driver.findElement(By.name("note"));
-        element.sendKeys(note);
-        element = driver.findElement(By.className("btn"));
-        element.submit();
-    }
-
     @When("^search is clicked$")
     public void search_clicked() {
-        WebElement element = driver.findElement(By.name("searchTools"));
+        WebElement element = driver.findElement(By.name("searchButton"));
         element.click();
     }
 
@@ -239,7 +215,7 @@ public class StepDefs {
     public void searchWordEntered(String word) throws InterruptedException {
         driver.switchTo().activeElement();
         sleep(1000);
-        WebElement element = driver.findElement(By.name("querySite"));
+        WebElement element = driver.findElement(By.name("query"));
         element.sendKeys(word);
         element = driver.findElement(By.name("confirmSearch"));
         element.click();
