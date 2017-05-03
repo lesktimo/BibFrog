@@ -229,6 +229,22 @@ public class StepDefs {
         element.submit();
     }
 
+    @When("^search is clicked$")
+    public void search_clicked() {
+        WebElement element = driver.findElement(By.name("searchTools"));
+        element.click();
+    }
+
+    @When("^\"([^\"]*)\" is entered to the search bar$")
+    public void searchWordEntered(String word) throws InterruptedException {
+        driver.switchTo().activeElement();
+        sleep(1000);
+        WebElement element = driver.findElement(By.name("querySite"));
+        element.sendKeys(word);
+        element = driver.findElement(By.name("confirmSearch"));
+        element.click();
+    }
+
     // THEN_______________________________________________________________________
     @Then("^frontpage is shown$")
     public void frontpage_shown() {
@@ -300,6 +316,19 @@ public class StepDefs {
     @Then("^a list of all references is shown$")
     public void references_shown() throws Throwable {
         assertTrue(driver.getPageSource().contains("References"));
+    }
+
+    @Then("^list page contains \"([^\"]*)\" and \"([^\"]*)\"")
+    public void search_tool_works(String arg1, String arg2) {
+        assertTrue(driver.getPageSource().contains(arg1));
+        assertTrue(driver.getPageSource().contains(arg2));
+
+    }
+
+    @Then("^list page does not contain \"([^\"]*)\" and \"([^\"]*)\"$")
+    public void search_tool_limits_correctly(String arg1, String arg2) {
+        assertTrue(!driver.getPageSource().contains(arg1));
+        assertTrue(!driver.getPageSource().contains(arg2));
     }
 
     @Then("^a list of inproceedings is shown$")
