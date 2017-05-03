@@ -49,6 +49,10 @@ public class BooksController {
         if (bindingResult.hasErrors()) {
             return "book_edit";
         }
+        return setBookAttributes(book);
+    }
+
+    private String setBookAttributes(Book book) {
         book = booksRepo.save(book);
         book.setAuthors();
         if (book.getReferenceKey() == null || book.getReferenceKey().isEmpty()) {
@@ -64,13 +68,7 @@ public class BooksController {
         if (bindingResult.hasErrors()) {
             return "book";
         }
-        book = booksRepo.save(book);
-        book.setAuthors();
-        if (book.getReferenceKey() == null || book.getReferenceKey().isEmpty()) {
-            book.generateReferenceKey();
-        }
-        booksRepo.save(book);
-        return "redirect:/books";
+        return setBookAttributes(book);
     }
 
     @RequestMapping(value = "/books", method = RequestMethod.GET)
@@ -82,15 +80,17 @@ public class BooksController {
     @RequestMapping(value = "/book/{id}/download", method = RequestMethod.GET)
     public HttpEntity<byte[]> downloadBook(@PathVariable Long id, @RequestParam String fileName) throws IOException {
         createFileForDownloading(id);
-        File bookFile = fileService.getFilePathForBytes("src/bibtex.bib");
-        byte[] bytes = Files.readAllBytes(fileService.createPath(bookFile));
-        return new HttpEntity<>(bytes, fileService.createHeaders(bookFile, fileName));
+        return createBibFile(fileName);
     }
 
     @RequestMapping(value = "/books/all/download", method = RequestMethod.GET)
     public HttpEntity<byte[]> downloadAllBooks(@RequestParam String fileName) throws IOException {
         String bibtex = exportService.createBibtexFromAllBooks(booksRepo.findAll());
         exportService.createFile(bibtex);
+        return createBibFile(fileName);
+    }
+
+    private HttpEntity<byte[]> createBibFile(String fileName) throws IOException {
         File bookFile = fileService.getFilePathForBytes("src/bibtex.bib");
         byte[] bytes = Files.readAllBytes(fileService.createPath(bookFile));
         return new HttpEntity<>(bytes, fileService.createHeaders(bookFile, fileName));
