@@ -215,7 +215,7 @@ public class StepDefs {
     public void searchWordEntered(String word) throws InterruptedException {
         driver.switchTo().activeElement();
         sleep(1000);
-        WebElement element = driver.findElement(By.name("querySite"));
+        WebElement element = driver.findElement(By.name("query"));
         element.sendKeys(word);
         element = driver.findElement(By.name("confirmSearch"));
         element.click();
