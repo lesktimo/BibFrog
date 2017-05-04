@@ -217,6 +217,16 @@ public class StepDefs {
         element.click();
     }
 
+    @When("^\"([^\"]*)\" is entered to ACMquery$")
+    public void ACMsearchWordEntered(String url) throws InterruptedException {
+        driver.switchTo().activeElement();
+        sleep(1000);
+        WebElement element = driver.findElement(By.name("queryACM"));
+        element.sendKeys(url);
+        element = driver.findElement(By.name("confirmSearchACM"));
+        element.click();
+    }
+
     // THEN_______________________________________________________________________
     @Then("^frontpage is shown$")
     public void frontpage_shown() {
@@ -285,6 +295,11 @@ public class StepDefs {
         assertTrue(fileData.contains(arg5));
     }
 
+    @Then("^list all does not contain \"([^\"]*)\"$")
+    public void unimplemented_reference(String title) {
+        assertTrue(driver.getPageSource().contains(title));
+    }
+
     @Then("^a list of all references is shown$")
     public void references_shown() throws Throwable {
         assertTrue(driver.getPageSource().contains("References"));
@@ -322,6 +337,7 @@ public class StepDefs {
     public void books_shown() throws Throwable {
         assertTrue(driver.getPageSource().contains("Books"));
     }
+
     @Then("^no results list page shown$")
     public void no_results() throws Throwable {
         assertTrue(driver.getPageSource().contains("No results"));
