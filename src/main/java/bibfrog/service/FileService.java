@@ -28,16 +28,16 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class FileService {
-    
+
     @Autowired
     private InproceedingsRepo iRepo;
-    
+
     @Autowired
     private BooksRepo bRepo;
-    
+
     @Autowired
     private ArticleRepo aRepo;
-    
+
     public Boolean parseACMResponse(InputStream iS) throws FileNotFoundException {
         Scanner s = new Scanner(iS);
         if (!s.hasNext()) {
@@ -54,18 +54,21 @@ public class FileService {
         }
         return false;
     }
-    
+
     public void createInproceedingFromACM(Scanner s) throws FileNotFoundException {
         Inproceeding inpro = new Inproceeding();
         inpro.setAuthors(parseInfoFromBib(s.nextLine()));
         inpro.setTitle(parseInfoFromBib(s.nextLine()));
         inpro.setBookTitle(parseInfoFromBib(s.nextLine()));
-        s.nextLine();
-        inpro.setPublishYear(Integer.parseInt(parseInfoFromBib(s.nextLine())));
+        String year = "";
+        while (!year.contains("year =")) {
+            year = s.nextLine();
+        }
+        inpro.setPublishYear(Integer.parseInt(parseInfoFromBib(year)));
         inpro.generateReferenceKey();
         iRepo.save(inpro);
     }
-    
+
     public void createBookFromACM(Scanner s) throws FileNotFoundException {
         Book book = new Book();
         book.setAuthors(parseInfoFromBib(s.nextLine()));
@@ -76,25 +79,26 @@ public class FileService {
         book.generateReferenceKey();
         bRepo.save(book);
     }
-    
+
     public void createArticleFromACM(Scanner s) throws FileNotFoundException {
         Article article = new Article();
         article.setAuthors(parseInfoFromBib(s.nextLine()));
         article.setTitle(parseInfoFromBib(s.nextLine()));
         article.setJournal(parseInfoFromBib(s.nextLine()));
-        s.nextLine();
-        s.nextLine();
-        s.nextLine();
-        article.setPublishYear(Integer.parseInt(parseInfoFromBib(s.nextLine())));
+        String year = "";
+        while (!year.contains("year =")) {
+            year = s.nextLine();
+        }
+        article.setPublishYear(Integer.parseInt(parseInfoFromBib(year)));
         article.generateReferenceKey();
         aRepo.save(article);
     }
-    
+
     public HttpEntity<byte[]> createBibFile(String fileName) throws IOException {
         File referenceFile = getFilePathForBytes("src/bibtex.bib");
         byte[] bytes = Files.readAllBytes(createPath(referenceFile));
         return new HttpEntity<>(bytes, createHeaders(referenceFile, fileName));
-        
+
     }
 
     /**
@@ -132,7 +136,7 @@ public class FileService {
         headers.setContentLength(file.length());
         return headers;
     }
-    
+
     private String parseInfoFromBib(String bib) {
         String[] halved = bib.split("=");
         String parse = halved[1];

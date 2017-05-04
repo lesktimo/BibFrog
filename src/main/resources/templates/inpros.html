@@ -68,10 +68,10 @@
                                                                 </form>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <form th:action="@{inpro/{inproId}/edit(inproId=${inpro.id})}" method="GET">
+                                                                <form class='sideBySideForm' th:action="@{inpro/{inproId}/edit(inproId=${inpro.id})}" method="GET">
                                                                     <input class="btn btn-success" type="submit" value="Edit" name='editButton'/>
                                                                 </form>
-                                                                <form th:action="@{inpro/{inproId}/delete(inproId=${inpro.id})}" th:method="DELETE">
+                                                                <form class='sideBySideForm' th:action="@{inpro/{inproId}/delete(inproId=${inpro.id})}" th:method="DELETE">
                                                                     <input class="btn btn-danger" type="submit" value="Delete" name='deleteButton'/>
                                                                 </form>
                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
