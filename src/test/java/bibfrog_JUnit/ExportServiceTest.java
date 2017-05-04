@@ -145,41 +145,41 @@ public class ExportServiceTest {
         Article article = setArticle();
         List<Article> articles = new ArrayList<>();
         articles.add(article);
-        
+
         Book book = setBook();
         List<Book> books = new ArrayList<>();
         books.add(book);
-        
+
         Inproceeding inpro = setInproceeding();
         List<Inproceeding> inpros = new ArrayList<>();
         inpros.add(inpro);
-        
+
         String bibtex = es.createBibtexFromAll(inpros, books, articles);
-        
-        String expected = es.createBibtexFromAllInproceedings(inpros) +
-                es.createBibtexFromAllBooks(books) + 
-                es.createBibtexFromAllArticles(articles);
-        
+
+        String expected = es.createBibtexFromAllInproceedings(inpros) + "\n\n"
+                + es.createBibtexFromAllBooks(books) + "\n\n"
+                + es.createBibtexFromAllArticles(articles);
+
         assertEquals(expected, bibtex);
     }
-    
+
     @Test
     public void bibtexIsCreatedCorrectlyFromEveryArticleAndBook() {
         Article article = setArticle();
         List<Article> articles = new ArrayList<>();
         articles.add(article);
-        
+
         Book book = setBook();
         List<Book> books = new ArrayList<>();
         books.add(book);
-        
+
         List<Inproceeding> inpros = new ArrayList<>();
-        
+
         String bibtex = es.createBibtexFromAll(inpros, books, articles);
-        
-        String expected = es.createBibtexFromAllBooks(books) + 
-                es.createBibtexFromAllArticles(articles);
-        
+
+        String expected = es.createBibtexFromAllBooks(books) + "\n\n"
+                + es.createBibtexFromAllArticles(articles);
+
         assertEquals(expected, bibtex);
     }
 

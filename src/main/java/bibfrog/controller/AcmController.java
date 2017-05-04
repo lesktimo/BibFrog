@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-//http://dl.acm.org/downformats.cfm?id=2485620&parent_id=&expformat=bibtex
 @Controller
 public class AcmController {
 
