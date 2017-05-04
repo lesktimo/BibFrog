@@ -7,7 +7,15 @@ Feature: As a user I want to be able to edit inproceedings after adding them to 
     When manage button is pressed
     When edit button is pressed
     When correct input for title "editedInproceeding", correct booktitle "editedBooktitle", correct year "2015" and correct Authors "Arton muokatut lasit" are given
-    Then a list of articles is shown
+    Then a list of inproceedings is shown
+
+  Scenario: User can delete an inproceeding
+    Given BibFrog link to frontpage is clicked
+    When add inproceeding is selected
+    When correct input for title "inproceeding", correct booktitle "booktitle", correct year "2016" and correct Authors "Arton lasit" are given
+    When manage button is pressed
+    When delete button is pressed
+    Then a list of inproceedings is shown
 
   Scenario: User can add an inproceeding and cannot edit it with incorrect inputs afterwards
     Given BibFrog link to frontpage is clicked

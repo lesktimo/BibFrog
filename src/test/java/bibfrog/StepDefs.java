@@ -217,6 +217,14 @@ public class StepDefs {
         element.click();
     }
 
+    @When("^delete button is pressed$")
+    public void delete_button() throws InterruptedException {
+        driver.switchTo().activeElement();
+        sleep(1000);
+        WebElement element = driver.findElement(By.name("deleteButton"));
+        element.click();
+    }
+
     @When("^\"([^\"]*)\" is entered to ACMquery$")
     public void ACMsearchWordEntered(String url) throws InterruptedException {
         driver.switchTo().activeElement();
