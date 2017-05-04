@@ -16,37 +16,6 @@ public class InproceedingTest {
     }
     
     @Test
-    public void setAuthorsWorksWithMultipleAuthors() {
-        inpro.setGivenAuthors("Kermit The Frog, Saku Sammakko, Pepe The Frog");
-        inpro.setAuthors();
-        String[] expected = {"Kermit The Frog", "Saku Sammakko", "Pepe The Frog"};
-        assertArrayEquals(expected, inpro.getAuthors());
-    }
-    
-    @Test
-    public void setAuthorsWorksWithOneAuthor() {
-        inpro.setGivenAuthors("Kermit The Frog");
-        inpro.setAuthors();
-        String[] expected = {"Kermit The Frog"};
-        assertArrayEquals(expected, inpro.getAuthors());
-    }
-    
-    @Test
-    public void authorsStringWorksWithMultipleAuthors() {
-        inpro.setGivenAuthors("Kermit The Frog, Saku Sammakko, Pepe The Frog");
-        inpro.setAuthors();
-        String expected = "Kermit The Frog, Saku Sammakko, Pepe The Frog";
-        assertEquals(expected, inpro.authorString());
-    }
-    
-    @Test
-    public void authorsStringWorksWithOneAuthor() {
-        inpro.setGivenAuthors("Kermit The Frog");
-        inpro.setAuthors();
-        assertEquals("Kermit The Frog", inpro.authorString());
-    }
-    
-    @Test
     public void optionalFieldsReturnsOptionalValuesInCorrectOrder() {
         inpro.setEditor("test1");
         inpro.setVolume(1);
@@ -75,8 +44,7 @@ public class InproceedingTest {
     
     @Test
     public void generateReferenceKeyWorks() {
-        inpro.setGivenAuthors("Author");
-        inpro.setAuthors();
+        inpro.setAuthors("Author");
         inpro.setTitle("Title");
         inpro.setPublishYear(2017);
         inpro.generateReferenceKey();

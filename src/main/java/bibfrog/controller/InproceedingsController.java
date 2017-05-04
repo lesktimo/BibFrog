@@ -48,14 +48,7 @@ public class InproceedingsController {
         if (bindingResult.hasErrors()) {
             return "inpro_edit";
         }
-        inpro = inproRepo.save(inpro);
-        inpro.setAuthors();
-        if (inpro.getReferenceKey() == null || inpro.getReferenceKey().isEmpty()) {
-            inpro.generateReferenceKey();
-        }
-
-        inproRepo.save(inpro);
-        return "redirect:/inpros";
+        return setInproAttributes(inpro);
     }
 
     @RequestMapping(value = "/inpro/add", method = RequestMethod.POST)
@@ -63,13 +56,7 @@ public class InproceedingsController {
         if (bindingResult.hasErrors()) {
             return "inpro";
         }
-        inpro = inproRepo.save(inpro);
-        inpro.setAuthors();
-        if (inpro.getReferenceKey() == null || inpro.getReferenceKey().isEmpty()) {
-            inpro.generateReferenceKey();
-        }
-        inproRepo.save(inpro);
-        return "redirect:/inpros";
+        return setInproAttributes(inpro);
     }
 
     @RequestMapping(value = "/inpros", method = RequestMethod.GET)
@@ -100,6 +87,15 @@ public class InproceedingsController {
         Inproceeding inpro = inproRepo.findOne(id);
         String bibtex = exportService.createBibtexFromInproceeding(inpro);
         exportService.createFile(bibtex);
+    }
+
+    private String setInproAttributes(Inproceeding inpro) {
+        inpro = inproRepo.save(inpro);
+        if (inpro.getReferenceKey() == null || inpro.getReferenceKey().isEmpty()) {
+            inpro.generateReferenceKey();
+            inproRepo.save(inpro);
+        }
+        return "redirect:/inpros";
     }
 
 }

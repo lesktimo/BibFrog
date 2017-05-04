@@ -50,17 +50,6 @@ public class BooksController {
         return setBookAttributes(book);
     }
 
-    private String setBookAttributes(Book book) {
-        book = booksRepo.save(book);
-        book.setAuthors();
-        if (book.getReferenceKey() == null || book.getReferenceKey().isEmpty()) {
-            book.generateReferenceKey();
-        }
-
-        booksRepo.save(book);
-        return "redirect:/books";
-    }
-
     @RequestMapping(value = "/book/add", method = RequestMethod.POST)
     public String postBook(@Valid @ModelAttribute Book book, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -94,4 +83,12 @@ public class BooksController {
         exportService.createFile(bibtex);
     }
 
+    private String setBookAttributes(Book book) {
+        book = booksRepo.save(book);
+        if (book.getReferenceKey() == null || book.getReferenceKey().isEmpty()) {
+            book.generateReferenceKey();
+            booksRepo.save(book);
+        }
+        return "redirect:/books";
+    }
 }

@@ -48,7 +48,7 @@
                                     <tbody>
                                         <tr th:each="result : ${results}">
                                             <td class="listingRow"><b th:text="${result.title}">title</b></td>
-                                            <td class="listingRow"><b th:text="${result.authorString()}">authors</b></td>
+                                            <td class="listingRow"><b th:text="${result.authors}">authors</b></td>
                                             <td class="listingRow"><b th:text="${result.publishYear}">year</b></td>
                                             <td class="listingRow"><b th:text="${result.referenceKey}">reference key</b></td>
                                             <td class="listingRow">

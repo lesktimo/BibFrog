@@ -47,7 +47,7 @@
                                     <tbody>
                                         <tr th:each="book : ${bookList}">
                                             <td class="listingRow"><b th:text="${book.title}">title</b></td>
-                                            <td class="listingRow"><b th:text="${book.authorString()}">authors</b></td>
+                                            <td class="listingRow"><b th:text="${book.authors}">authors</b></td>
                                             <td class="listingRow"><b th:text="${book.publisher}">publisher</b></td>
                                             <td class="listingRow"><b th:text="${book.publishYear}">year</b></td>
                                             <td class="listingRow">

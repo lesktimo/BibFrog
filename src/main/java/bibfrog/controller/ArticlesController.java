@@ -47,14 +47,7 @@ public class ArticlesController {
         if (bindingResult.hasErrors()) {
             return "article_edit";
         }
-        article = articleRepo.save(article);
-        article.setAuthors();
-        if (article.getReferenceKey() == null || article.getReferenceKey().isEmpty()) {
-            article.generateReferenceKey();
-        }
-
-        articleRepo.save(article);
-        return "redirect:/articles";
+        return setArticleAttributes(article);
     }
 
     @RequestMapping(value = "/article/add", method = RequestMethod.POST)
@@ -62,13 +55,7 @@ public class ArticlesController {
         if (bindingResult.hasErrors()) {
             return "article";
         }
-        article = articleRepo.save(article);
-        article.setAuthors();
-        if (article.getReferenceKey() == null || article.getReferenceKey().isEmpty()) {
-            article.generateReferenceKey();
-        }
-        articleRepo.save(article);
-        return "redirect:/articles";
+        return setArticleAttributes(article);
     }
 
     @RequestMapping(value = "/articles", method = RequestMethod.GET)
@@ -89,11 +76,20 @@ public class ArticlesController {
         exportService.createFile(bibtex);
         return fileService.createBibFile(fileName);
     }
-    
+
     private void createFileForDownloading(Long id) throws IOException {
         Article article = articleRepo.findOne(id);
         String bibtex = exportService.createBibtexFromArticle(article);
         exportService.createFile(bibtex);
+    }
+    
+    private String setArticleAttributes(Article article) {
+        article = articleRepo.save(article);
+        if (article.getReferenceKey() == null || article.getReferenceKey().isEmpty()) {
+            article.generateReferenceKey();
+            articleRepo.save(article);
+        }
+        return "redirect:/articles";
     }
 
 }

@@ -16,37 +16,6 @@ public class ArticleTest {
     }
     
     @Test
-    public void setAuthorsWorksWithMultipleAuthors() {
-        article.setGivenAuthors("Kermit The Frog, Saku Sammakko, Pepe The Frog");
-        article.setAuthors();
-        String[] expected = {"Kermit The Frog", "Saku Sammakko", "Pepe The Frog"};
-        assertArrayEquals(expected, article.getAuthors());
-    }
-    
-    @Test
-    public void setAuthorsWorksWithOneAuthor() {
-        article.setGivenAuthors("Kermit The Frog");
-        article.setAuthors();
-        String[] expected = {"Kermit The Frog"};
-        assertArrayEquals(expected, article.getAuthors());
-    }
-    
-    @Test
-    public void authorsStringWorksWithMultipleAuthors() {
-        article.setGivenAuthors("Kermit The Frog, Saku Sammakko, Pepe The Frog");
-        article.setAuthors();
-        String expected = "Kermit The Frog, Saku Sammakko, Pepe The Frog";
-        assertEquals(expected, article.authorString());
-    }
-    
-    @Test
-    public void authorsStringWorksWithOneAuthor() {
-        article.setGivenAuthors("Kermit The Frog");
-        article.setAuthors();
-        assertEquals("Kermit The Frog", article.authorString());
-    }
-    
-    @Test
     public void optionalFieldsReturnsOptionalValuesInCorrectOrder() {
         article.setVolume(1);
         article.setNumber(1);
@@ -67,8 +36,7 @@ public class ArticleTest {
     
     @Test
     public void generateReferenceKeyWorks() {
-        article.setGivenAuthors("Author");
-        article.setAuthors();
+        article.setAuthors("Author");
         article.setTitle("Title");
         article.setPublishYear(2017);
         article.generateReferenceKey();

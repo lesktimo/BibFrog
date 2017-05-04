@@ -11,19 +11,19 @@
                     <form method="post" th:object="${book}">
                         <h2 class="text-center"><strong>Edit</strong> a book.</h2>
                         <div class="form-group">
-                            <label class="lbl">Title: <a class="requiredField">*</a><input class="form-control" type="text" th:field="*{title}" name="title" placeholder="Operating Systems: Internal Design and Principles" /></label>
+                            <label class="lbl">Title: <a class="requiredField">*</a><input class="form-control" type="text" th:field="*{title}" name="title" /></label>
                             <a th:if="${#fields.hasErrors('title')}" th:errors="*{title}">title errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Author(s): <a class="requiredField">*</a><input class="form-control" type="text" th:field="*{givenAuthors}" name="givenAuthors" placeholder="William Stallings" /></label>
-                            <a th:if="${#fields.hasErrors('givenAuthors')}" th:errors="*{givenAuthors}">authors errors</a>
+                            <label class="lbl">Author(s): <a class="requiredField">*</a><input class="form-control" type="text" th:field="*{authors}" name="authors" /></label>
+                            <a th:if="${#fields.hasErrors('authors')}" th:errors="*{authors}">authors errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Publisher: <a class="requiredField">*</a><input class="form-control" type="text" th:field="*{publisher}" name="publisher" placeholder="IEEE" /></label>
+                            <label class="lbl">Publisher: <a class="requiredField">*</a><input class="form-control" type="text" th:field="*{publisher}" name="publisher" /></label>
                             <a th:if="${#fields.hasErrors('publisher')}" th:errors="*{publisher}">publisher errors</a>
                         </div>
                         <div class="form-group">
-                            <label class="lbl">Year: <a class="requiredField">*</a><input class="form-control" type="number" th:field="*{publishYear}" name="publishYear" placeholder="2013" /></label>
+                            <label class="lbl">Year: <a class="requiredField">*</a><input class="form-control" type="number" th:field="*{publishYear}" name="publishYear" /></label>
                             <a th:if="${#fields.hasErrors('publishYear')}" th:errors="*{publishYear}">year errors</a>
                         </div>
                         <div class="form-group">

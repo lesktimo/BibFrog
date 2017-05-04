@@ -48,7 +48,7 @@
                                         <tr th:each="inpro : ${inproList}">
                                             <td class="listingRow"><b th:text="${inpro.title}">title</b></td>
                                             <td class="listingRow"><b th:text="${inpro.bookTitle}">book title</b></td>
-                                            <td class="listingRow"><b th:text="${inpro.authorString()}">authors</b></td>
+                                            <td class="listingRow"><b th:text="${inpro.authors}">authors</b></td>
                                             <td class="listingRow"><b th:text="${inpro.publishYear}">year</b></td>
                                             <td class="listingRow">
                                                 <button id="downloadForm" type="button" name="downloadBibtex" class="btn btn-success manageButton" data-toggle="modal" th:attr="data-target='#singleDownload'+${inpro.id}">Manage</button>

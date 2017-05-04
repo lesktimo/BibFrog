@@ -22,11 +22,6 @@ public class AcmController {
     @Autowired
     private FileService fileService;
 
-//    @RequestMapping(value = "/search", method = RequestMethod.GET)
-//    public String searchAcmReferences() {
-//        return "searchPage";
-//    }
-
     @RequestMapping(value = "/testaus", method = RequestMethod.GET)
     public String createBibtexFromAcm(@RequestParam String searchUrl) throws MalformedURLException, IOException {
         searchUrl = URLEncoder.encode(searchUrl, "utf-8");

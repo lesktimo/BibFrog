@@ -12,7 +12,7 @@ public interface ArticleRepo extends JpaRepository<Article, Long> {
 
     Collection<Article> findByJournalContainingIgnoringCase(String journal);
 
-    Collection<Article> findByGivenAuthorsContainingIgnoringCase(String author);
+    Collection<Article> findByAuthorsContainingIgnoringCase(String author);
 
     Collection<Article> findByPublishYear(Integer year);
 

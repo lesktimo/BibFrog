@@ -41,11 +41,11 @@ public class ExportService {
     public String createBibtexFromAll(List<Inproceeding> inpros, List<Book> books, List<Article> articles) {
         String bibtex = "";
 
-        bibtex += createBibtexFromAllInproceedings(inpros);
-        bibtex += createBibtexFromAllBooks(books);
+        bibtex += createBibtexFromAllInproceedings(inpros) + "\n\n";
+        bibtex += createBibtexFromAllBooks(books) + "\n\n";
         bibtex += createBibtexFromAllArticles(articles);
 
-        return bibtex;
+        return bibtex.trim();
     }
 
     /**
@@ -101,7 +101,7 @@ public class ExportService {
      */
     public String createBibtexFromInproceeding(Inproceeding inpro) {
         String bibtex = "@inproceedings{" + scandicChecker(inpro.getReferenceKey()) + ","
-                + "\nauthor = {" + scandicChecker(inpro.authorString()) + "},"
+                + "\nauthor = {" + scandicChecker(inpro.getAuthors()) + "},"
                 + "\ntitle = {" + scandicChecker(inpro.getTitle()) + "},"
                 + "\nbooktitle = {" + scandicChecker(inpro.getBookTitle()) + "},"
                 + "\nyear = {" + inpro.getPublishYear() + "}";
@@ -118,7 +118,7 @@ public class ExportService {
      */
     public String createBibtexFromBook(Book book) {
         String bibtex = "@book{" + scandicChecker(book.getReferenceKey()) + ","
-                + "\nauthor = {" + scandicChecker(book.authorString()) + "},"
+                + "\nauthor = {" + scandicChecker(book.getAuthors()) + "},"
                 + "\ntitle = {" + scandicChecker(book.getTitle()) + "},"
                 + "\npublisher = {" + scandicChecker(book.getPublisher()) + "},"
                 + "\nyear = {" + book.getPublishYear() + "}";
@@ -137,7 +137,7 @@ public class ExportService {
      */
     public String createBibtexFromArticle(Article article) {
         String bibtex = "@article{" + scandicChecker(article.getReferenceKey()) + ","
-                + "\nauthor = {" + scandicChecker(article.authorString()) + "},"
+                + "\nauthor = {" + scandicChecker(article.getAuthors()) + "},"
                 + "\ntitle = {" + scandicChecker(article.getTitle()) + "},"
                 + "\njournal = {" + scandicChecker(article.getJournal()) + "},"
                 + "\nyear = {" + article.getPublishYear() + "}";

@@ -14,7 +14,6 @@ import org.hibernate.validator.constraints.Length;
 public class Article extends AbstractPersistable<Long> implements Reference {
 
     //required fields
-    private String[] authors;
     @NotNull
     @Length(min = 2, max = 140)
     private String title;
@@ -25,18 +24,18 @@ public class Article extends AbstractPersistable<Long> implements Reference {
     private int publishYear;
     @NotNull
     @Length(min = 2, max = 140)
-    private String givenAuthors;
+    private String authors;
 
     //optional fields
     private String note, pages, referenceKey;
     private int volume, number, publishMonth;
 
-    public String getGivenAuthors() {
-        return givenAuthors;
+    public String getAuthors() {
+        return authors;
     }
 
-    public void setGivenAuthors(String givenAuthors) {
-        this.givenAuthors = givenAuthors;
+    public void setAuthors(String authors) {
+        this.authors = authors;
     }
 
     public int getPublishMonth() {
@@ -111,33 +110,6 @@ public class Article extends AbstractPersistable<Long> implements Reference {
         this.number = number;
     }
 
-    public String[] getAuthors() {
-        return authors;
-    }
-
-    @Override
-    public void setAuthors() {
-        if (this.givenAuthors.contains(",")) {
-            this.authors = this.givenAuthors.trim().split(",");
-            for (int i = 0; i < authors.length; i++) {
-                authors[i] = authors[i].trim();
-            }
-        } else {
-            String[] helper = {""};
-            helper[0] = this.givenAuthors.trim();
-            this.authors = helper;
-        }
-    }
-
-    @Override
-    public String authorString() {
-        String printBuilder = "";
-        for (String author : authors) {
-            printBuilder += author + ", ";
-        }
-        return printBuilder.substring(0, printBuilder.length() - 2);
-    }
-
     @Override
     public LinkedHashMap<String, String> optionalFields() {
         LinkedHashMap<String, String> optionalFields = new LinkedHashMap();
@@ -151,6 +123,6 @@ public class Article extends AbstractPersistable<Long> implements Reference {
 
     @Override
     public void generateReferenceKey() {
-        this.referenceKey = title.substring(0, 2).trim() + this.publishYear + this.authorString().substring(0, 2).trim() + super.getId() + new Random().nextInt(1000);
+        this.referenceKey = title.substring(0, 2).trim() + this.publishYear + this.authors.substring(0, 2).trim() + super.getId() + new Random().nextInt(1000);
     }
 }

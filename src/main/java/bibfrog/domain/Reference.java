@@ -19,13 +19,4 @@ public interface Reference {
      * @return
      */
     LinkedHashMap<String, String> optionalFields();
-
-    /**
-     * Return all authors in correct format.
-     *
-     * @return all authors
-     */
-    String authorString();
-
-    void setAuthors();
 }

@@ -1,6 +1,5 @@
 package bibfrog;
 
-import com.gargoylesoftware.htmlunit.SilentCssErrorHandler;
 import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -8,12 +7,9 @@ import cucumber.api.java.en.When;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-import java.util.logging.Level;
-import javax.annotation.PostConstruct;
 import static org.junit.Assert.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
@@ -57,7 +53,7 @@ public class StepDefs {
         element.sendKeys(book);
         element = driver.findElement(By.name("publishYear"));
         element.sendKeys(year);
-        element = driver.findElement(By.name("givenAuthors"));
+        element = driver.findElement(By.name("authors"));
         element.sendKeys(authors);
         element = driver.findElement(By.name("addButton"));
         element.submit();
@@ -71,7 +67,7 @@ public class StepDefs {
         element.sendKeys(book);
         element = driver.findElement(By.name("publishYear"));
         element.sendKeys(year);
-        element = driver.findElement(By.name("givenAuthors"));
+        element = driver.findElement(By.name("authors"));
         element.sendKeys(authors);
         element = driver.findElement(By.name("addButton"));
         element.submit();
@@ -85,7 +81,7 @@ public class StepDefs {
         element.sendKeys(book);
         element = driver.findElement(By.name("publishYear"));
         element.sendKeys(year);
-        element = driver.findElement(By.name("givenAuthors"));
+        element = driver.findElement(By.name("authors"));
         element.sendKeys(authors);
         element = driver.findElement(By.name("addButton"));
         element.submit();
@@ -99,7 +95,7 @@ public class StepDefs {
         element.sendKeys(book);
         element = driver.findElement(By.name("publishYear"));
         element.sendKeys(year);
-        element = driver.findElement(By.name("givenAuthors"));
+        element = driver.findElement(By.name("authors"));
         element.sendKeys(authors);
         element = driver.findElement(By.name("addButton"));
         element.submit();
@@ -113,7 +109,7 @@ public class StepDefs {
         element.sendKeys(book);
         element = driver.findElement(By.name("publishYear"));
         element.sendKeys(year);
-        element = driver.findElement(By.name("givenAuthors"));
+        element = driver.findElement(By.name("authors"));
         element.sendKeys(authors);
         element = driver.findElement(By.name("addButton"));
         element.submit();
@@ -130,7 +126,7 @@ public class StepDefs {
         element = driver.findElement(By.name("publishYear"));
         element.clear();
         element.sendKeys(year);
-        element = driver.findElement(By.name("givenAuthors"));
+        element = driver.findElement(By.name("authors"));
         element.clear();
         element.sendKeys(authors);
         element = driver.findElement(By.name("addButton"));

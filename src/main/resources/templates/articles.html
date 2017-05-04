@@ -47,7 +47,7 @@
                                     <tbody>
                                         <tr th:each="article : ${articleList}">
                                             <td class="listingRow"><b th:text="${article.title}">title</b></td>
-                                            <td class="listingRow"><b th:text="${article.authorString()}">authors</b></td>
+                                            <td class="listingRow"><b th:text="${article.authors}">authors</b></td>
                                             <td class="listingRow"><b th:text="${article.journal}">journal</b></td>
                                             <td class="listingRow"><b th:text="${article.publishYear}">year</b></td>
                                             <td class="listingRow">

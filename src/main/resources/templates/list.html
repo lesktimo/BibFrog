@@ -47,7 +47,7 @@
                                     <tbody>
                                         <tr th:each="reference : ${list}">
                                             <td class="listingRow"><b th:text="${reference.title}">title</b></td>
-                                            <td class="listingRow"><b th:text="${reference.authorString()}">authors</b></td>
+                                            <td class="listingRow"><b th:text="${reference.authors}">authors</b></td>
                                             <td class="listingRow"><b th:text="${reference.publishYear}">year</b></td>
                                             <td class="listingRow"><b th:text="${reference.referenceKey}">reference key</b></td>
                                             <td class="listingRow">

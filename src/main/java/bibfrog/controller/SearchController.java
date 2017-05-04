@@ -28,13 +28,13 @@ public class SearchController {
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String searchSite(@RequestParam String query, Model model) {
         List<Reference> results = new ArrayList<>();
-        if (query == "") {
+        if (query.isEmpty()) {
             model.addAttribute("results", results);
             return "results";
         }
         if (!aRepo.findAll().isEmpty()) {
             results.addAll(aRepo.findByTitleContainingIgnoringCase(query));
-            results.addAll(aRepo.findByGivenAuthorsContainingIgnoringCase(query));
+            results.addAll(aRepo.findByAuthorsContainingIgnoringCase(query));
             results.addAll(aRepo.findByJournalContainingIgnoringCase(query));
             if (query.matches("[0-9]+")) {
                 results.addAll(aRepo.findByPublishYear(Integer.parseInt(query)));
@@ -42,7 +42,7 @@ public class SearchController {
         }
         if (!bRepo.findAll().isEmpty()) {
             results.addAll(bRepo.findByTitleContainingIgnoringCase(query));
-            results.addAll(bRepo.findByGivenAuthorsContainingIgnoringCase(query));
+            results.addAll(bRepo.findByAuthorsContainingIgnoringCase(query));
             results.addAll(bRepo.findByPublisherContainingIgnoringCase(query));
             if (query.matches("[0-9]+")) {
                 results.addAll(bRepo.findByPublishYear(Integer.parseInt(query)));
@@ -50,7 +50,7 @@ public class SearchController {
         }
         if (!iRepo.findAll().isEmpty()) {
             results.addAll(iRepo.findByTitleContainingIgnoringCase(query));
-            results.addAll(iRepo.findByGivenAuthorsContainingIgnoringCase(query));
+            results.addAll(iRepo.findByAuthorsContainingIgnoringCase(query));
             results.addAll(iRepo.findByPublisherContainingIgnoringCase(query));
             results.addAll(iRepo.findByBookTitleContainingIgnoringCase(query));
             results.addAll(iRepo.findByEditorContainingIgnoringCase(query));

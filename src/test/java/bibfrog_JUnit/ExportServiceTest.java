@@ -124,8 +124,7 @@ public class ExportServiceTest {
         Inproceeding inpro1 = setInproceeding();
         Inproceeding inpro2 = new Inproceeding();
         inpro2.setReferenceKey("KEY2");
-        inpro2.setGivenAuthors("Author2");
-        inpro2.setAuthors();
+        inpro2.setAuthors("Author2");
         inpro2.setTitle("Title2");
         inpro2.setBookTitle("Booktitle2");
         inpro2.setPublishYear(2017);
@@ -202,8 +201,7 @@ public class ExportServiceTest {
     private Article setArticle() {
         Article article = new Article();
         article.setReferenceKey("KEY");
-        article.setGivenAuthors("Author");
-        article.setAuthors();
+        article.setAuthors("Author");
         article.setTitle("Title");
         article.setJournal("Journal");
         article.setPublishYear(2017);
@@ -214,8 +212,7 @@ public class ExportServiceTest {
     private Inproceeding setInproceeding() {
         Inproceeding inpro = new Inproceeding();
         inpro.setReferenceKey("KEY");
-        inpro.setGivenAuthors("Author");
-        inpro.setAuthors();
+        inpro.setAuthors("Author");
         inpro.setTitle("Title");
         inpro.setBookTitle("Booktitle");
         inpro.setPublishYear(2017);
@@ -226,8 +223,7 @@ public class ExportServiceTest {
     private Book setBook() {
         Book book = new Book();
         book.setReferenceKey("KEY");
-        book.setGivenAuthors("Author");
-        book.setAuthors();
+        book.setAuthors("Author");
         book.setTitle("Title");
         book.setPublisher("Publisher");
         book.setPublishYear(2017);
