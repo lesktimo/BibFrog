@@ -61,9 +61,9 @@
                             <input class="btn btn-success btn-block" type="submit" value="Search" name="confirmSearch" />
                         </form>
                         <br/>
-                        <form action="#" method="GET">
+                        <form th:action="@{/acm}" method="GET">
                             <div class="form-group">
-                                <input class="form-control"  type="text" name="queryACM" value="Search from ACM Digital Library"/>
+                                <input class="form-control"  type="text" name="queryACM" placeholder="Import from ACM Digital Library"/>
                             </div>
                             <input class="btn btn-success btn-block" type="submit" value="Search" name="confirmSearchACM"/>
                         </form>

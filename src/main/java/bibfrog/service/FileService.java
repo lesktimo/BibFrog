@@ -1,15 +1,22 @@
 package bibfrog.service;
 
+import bibfrog.domain.Article;
+import bibfrog.domain.Book;
 import bibfrog.domain.Inproceeding;
+import bibfrog.repositories.ArticleRepo;
+import bibfrog.repositories.BooksRepo;
+import bibfrog.repositories.InproceedingsRepo;
 import java.io.File;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 
 import org.springframework.http.HttpHeaders;
@@ -21,31 +28,73 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class FileService {
-
-    public Inproceeding createInproceedingFromFile(File inpro) throws FileNotFoundException {
-        Scanner fileReader = new Scanner(inpro);
-        Inproceeding newInpro = new Inproceeding();
-        String inprotex = "";
-
-        while (fileReader.hasNextLine()) {
-            inprotex += fileReader.nextLine();
+    
+    @Autowired
+    private InproceedingsRepo iRepo;
+    
+    @Autowired
+    private BooksRepo bRepo;
+    
+    @Autowired
+    private ArticleRepo aRepo;
+    
+    public Boolean parseACMResponse(InputStream iS) throws FileNotFoundException {
+        Scanner s = new Scanner(iS);
+        if (!s.hasNext()) {
+            return false;
         }
-
-        String[] attributes = inprotex.split(",");
-
-        for (String attribute : attributes) {
-            System.out.println(attribute);
+        String rivi = s.nextLine();
+        if (rivi.contains("@book")) {
+            createBookFromACM(s);
+        } else if (rivi.contains("@article")) {
+            createArticleFromACM(s);
+        } else if (rivi.contains("@inproceedings")) {
+            createInproceedingFromACM(s);
+            return true;
         }
-
-        return newInpro;
-
+        return false;
     }
-
+    
+    public void createInproceedingFromACM(Scanner s) throws FileNotFoundException {
+        Inproceeding inpro = new Inproceeding();
+        inpro.setAuthors(parseInfoFromBib(s.nextLine()));
+        inpro.setTitle(parseInfoFromBib(s.nextLine()));
+        inpro.setBookTitle(parseInfoFromBib(s.nextLine()));
+        s.nextLine();
+        inpro.setPublishYear(Integer.parseInt(parseInfoFromBib(s.nextLine())));
+        inpro.generateReferenceKey();
+        iRepo.save(inpro);
+    }
+    
+    public void createBookFromACM(Scanner s) throws FileNotFoundException {
+        Book book = new Book();
+        book.setAuthors(parseInfoFromBib(s.nextLine()));
+        book.setTitle(parseInfoFromBib(s.nextLine()));
+        book.setPublishYear(Integer.parseInt(parseInfoFromBib(s.nextLine())));
+        s.nextLine();
+        book.setPublisher(parseInfoFromBib(s.nextLine()));
+        book.generateReferenceKey();
+        bRepo.save(book);
+    }
+    
+    public void createArticleFromACM(Scanner s) throws FileNotFoundException {
+        Article article = new Article();
+        article.setAuthors(parseInfoFromBib(s.nextLine()));
+        article.setTitle(parseInfoFromBib(s.nextLine()));
+        article.setJournal(parseInfoFromBib(s.nextLine()));
+        s.nextLine();
+        s.nextLine();
+        s.nextLine();
+        article.setPublishYear(Integer.parseInt(parseInfoFromBib(s.nextLine())));
+        article.generateReferenceKey();
+        aRepo.save(article);
+    }
+    
     public HttpEntity<byte[]> createBibFile(String fileName) throws IOException {
         File referenceFile = getFilePathForBytes("src/bibtex.bib");
         byte[] bytes = Files.readAllBytes(createPath(referenceFile));
         return new HttpEntity<>(bytes, createHeaders(referenceFile, fileName));
-
+        
     }
 
     /**
@@ -83,5 +132,11 @@ public class FileService {
         headers.setContentLength(file.length());
         return headers;
     }
-
+    
+    private String parseInfoFromBib(String bib) {
+        String[] halved = bib.split("=");
+        String parse = halved[1];
+        parse = parse.substring(2, parse.length() - 2);
+        return parse;
+    }
 }
