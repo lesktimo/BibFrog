@@ -31,10 +31,10 @@
                             <li role="presentation"><a th:href="@{/books}">Books</a></li>
                             <li role="presentation"><a th:href="@{/inpros}">Inproceedings</a></li>
                             <li role="presentation">
-                                <button type="button" name="searchButton" class="btn create-btn btn-sm" data-toggle="modal" data-target="#createTools">Create</button>
+                                <button type="button" name="createButton" class="btn create-btn btn-sm" data-toggle="modal" data-target="#createTools">Create</button>
                             </li>
                             <li role="presentation">
-                                <button type="button" name="createButton" class="btn search-btn btn-sm" data-toggle="modal" data-target="#searchTools">Search</button>
+                                <button type="button" name="searchButton" class="btn search-btn btn-sm" data-toggle="modal" data-target="#searchTools">Search</button>
                             </li>
                         </ul>
                     </div>
@@ -63,6 +63,13 @@
                             </div>
                             <input class="btn btn-success btn-block" type="submit" value="Search" name="confirmSearch" />
                         </form>
+                        <br/>
+                        <form th:action="@{/acm}" method="GET">
+                            <div class="form-group">
+                                <input class="form-control"  type="text" name="queryACM" placeholder="Import from ACM Digital Library"/>
+                            </div>
+                            <input class="btn btn-success btn-block" type="submit" value="Search" name="confirmSearchACM"/>
+                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -82,6 +89,7 @@
                         <a th:href="@{/article/add}" class="btn btn-success btn-block" name='indexCreateArticle'>Article »</a>
                         <a th:href="@{/book/add}" class="btn btn-success btn-block" name='indexCreateBook'>Book »</a>
                         <a th:href="@{/inpro/add}" class="btn btn-success btn-block" name='indexCreateInpro'>Inproceeding »</a>
+>>>>>>> e007737674f9a8c673ecb10b95968a9fd0fad7cc
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
