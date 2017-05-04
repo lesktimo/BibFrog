@@ -57,6 +57,12 @@ public class BooksController {
         }
         return setBookAttributes(book);
     }
+    
+    @RequestMapping(value = "/book/{id}/delete", method = RequestMethod.DELETE)
+    public String deleteBook(@PathVariable Long id) {
+        booksRepo.delete(id);
+        return "redirect:/books";
+    }
 
     @RequestMapping(value = "/books", method = RequestMethod.GET)
     public String listBooks(Model model) {

@@ -49,6 +49,12 @@ public class ArticlesController {
         }
         return setArticleAttributes(article);
     }
+    
+    @RequestMapping(value = "/article/{id}/delete", method = RequestMethod.DELETE)
+    public String deleteArticle(@PathVariable Long id) {
+        articleRepo.delete(id);
+        return "redirect:/articles";
+    }
 
     @RequestMapping(value = "/article/add", method = RequestMethod.POST)
     public String postArticle(@Valid @ModelAttribute Article article, BindingResult bindingResult) {
