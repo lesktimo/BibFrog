@@ -68,7 +68,10 @@
     margin-top:15px;
     margin-bottom:20px;
 }
-
+#pepefrog{
+    width: 100%;
+    height: auto;    
+}
 #downloadForm {
     position: relative;
     left: 30%;
