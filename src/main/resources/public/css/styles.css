@@ -133,6 +133,13 @@
     margin-top: 10px;
 }
 
+.create-btn {
+    position: relative;
+    margin-top: 10px;
+    margin-right: 15px;
+}
+
+
 .modal-body {
     background-color: #eef4f7;
 }
