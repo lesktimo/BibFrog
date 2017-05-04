@@ -50,6 +50,12 @@ public class InproceedingsController {
         }
         return setInproAttributes(inpro);
     }
+    
+    @RequestMapping(value = "/inpro/{id}/delete", method = RequestMethod.DELETE)
+    public String deleteInpro(@PathVariable Long id) {
+        inproRepo.delete(id);
+        return "redirect:/inpros";
+    }
 
     @RequestMapping(value = "/inpro/add", method = RequestMethod.POST)
     public String postInproceeding(@Valid @ModelAttribute Inproceeding inpro, BindingResult bindingResult) {
