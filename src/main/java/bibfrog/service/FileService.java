@@ -40,14 +40,14 @@ public class FileService {
         if (!s.hasNext()) {
             return false;
         }
-        String rivi = s.nextLine();
-        if (rivi.contains("@book")) {
+        String line = s.nextLine();
+        if (line.contains("@book")) {
             createBookFromACM(s);
             return true;
-        } else if (rivi.contains("@article")) {
+        } else if (line.contains("@article")) {
             createArticleFromACM(s);
             return true;
-        } else if (rivi.contains("@inproceedings")) {
+        } else if (line.contains("@inproceedings")) {
             createInproceedingFromACM(s);
             return true;
         }
@@ -142,7 +142,6 @@ public class FileService {
     private String parseInfoFromBib(String bib) {
         String[] halved = bib.split("=");
         String parse = halved[1];
-        parse = parse.substring(2, parse.length() - 2);
-        return parse;
+        return parse.substring(2, parse.length() - 2);
     }
 }
