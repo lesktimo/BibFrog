@@ -17,8 +17,5 @@ Feature: As a user I want to add articles to the site
     When add article is selected
     When correct input for title "article", correct journal "journal", correct year "2016" and correct Authors "Arton lasit" and inputs for optional fields "17", "72", "6-7", "8", "This is a note" are entered
     When manage button is pressed
-    # Aikaisemmin luotu artikkeli tulee poistaa, jotta voidaan klikata oikeaa manage-nappia
-    When delete button is pressed
-    When manage button is pressed
     When edit button is pressed
     Then page contains "17", "72", "6-7", "8" and "This is a note"

@@ -4,6 +4,7 @@ import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import cucumber.api.java.Before;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -128,7 +129,7 @@ public class StepDefs {
         driver.findElement(By.name("note")).sendKeys(note);
         driver.findElement(By.name("addButton")).submit();
     }
-    
+
     @When("^incorrect input for title \"([^\"]*)\", correct journal \"([^\"]*)\", incorrect year \"([^\"]*)\" and correct Authors \"([^\"]*)\" are given$")
     public void incorrect_year_for_article_is_entered(String inproceeding, String book, String year, String authors) throws Throwable {
         WebElement element = driver.findElement(By.name("title"));
@@ -383,12 +384,25 @@ public class StepDefs {
         assertTrue(fileData.contains(title2));
         assertTrue(fileData.contains(title3));
     }
+    
+    @After
+    public void tearDown() {
+        driver.quit();
+    }
 
-    public void sleep(int ms) throws InterruptedException {
+    // Vanhat viitteet rikkoo jotkin testit, eli ne pitää poistaa ensin
+    @Before
+    public void deleteAllReferences() throws InterruptedException {
+        deleteReferencesFrom("/articles");
+        deleteReferencesFrom("/books");
+        deleteReferencesFrom("/inpros");
+    }
+
+    private void sleep(int ms) throws InterruptedException {
         Thread.sleep(ms);
     }
 
-    public String readFile() throws FileNotFoundException {
+    private String readFile() throws FileNotFoundException {
         File file = new File("src/bibtex.bib");
         Scanner reader = new Scanner(file);
         String fileData = "";
@@ -397,10 +411,14 @@ public class StepDefs {
         }
         return fileData;
     }
-
-    @After
-    public void tearDown() {
-        driver.quit();
+    
+    private void deleteReferencesFrom(String loppuUrl) throws InterruptedException {
+        driver.get(baseUrl + loppuUrl);
+        while (driver.getPageSource().contains("downloadBibtex")) {
+            driver.findElement(By.name("downloadBibtex")).click();
+            driver.switchTo().activeElement();
+            sleep(1000);
+            driver.findElement(By.name("deleteButton")).click();
+        }
     }
-
 }

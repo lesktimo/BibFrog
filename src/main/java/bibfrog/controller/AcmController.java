@@ -1,14 +1,10 @@
 package bibfrog.controller;
 
 import bibfrog.service.FileService;
-import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.util.Scanner;
-import org.apache.commons.io.FileUtils;
 import org.eclipse.jetty.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.springframework.http.HttpHeaders.USER_AGENT;
@@ -31,10 +27,8 @@ public class AcmController {
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setRequestProperty("User-Agent", USER_AGENT);
-        Boolean isOk;
         if (conn.getResponseCode() != HttpStatus.NOT_FOUND_404) {
-            isOk = fileService.parseACMResponse(conn.getInputStream());
-            if (isOk == true) {
+            if (fileService.parseACMResponse(conn.getInputStream())) {
                 return "redirect:/list";
             }
             return "redirect:/search?query=";

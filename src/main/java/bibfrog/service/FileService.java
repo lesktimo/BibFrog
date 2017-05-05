@@ -7,10 +7,8 @@ import bibfrog.repositories.ArticleRepo;
 import bibfrog.repositories.BooksRepo;
 import bibfrog.repositories.InproceedingsRepo;
 import java.io.File;
-
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -18,7 +16,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -46,8 +43,10 @@ public class FileService {
         String rivi = s.nextLine();
         if (rivi.contains("@book")) {
             createBookFromACM(s);
+            return true;
         } else if (rivi.contains("@article")) {
             createArticleFromACM(s);
+            return true;
         } else if (rivi.contains("@inproceedings")) {
             createInproceedingFromACM(s);
             return true;
@@ -65,6 +64,7 @@ public class FileService {
             year = s.nextLine();
         }
         inpro.setPublishYear(Integer.parseInt(parseInfoFromBib(year)));
+        iRepo.save(inpro);
         inpro.generateReferenceKey();
         iRepo.save(inpro);
     }
@@ -76,6 +76,7 @@ public class FileService {
         book.setPublishYear(Integer.parseInt(parseInfoFromBib(s.nextLine())));
         s.nextLine();
         book.setPublisher(parseInfoFromBib(s.nextLine()));
+        bRepo.save(book);
         book.generateReferenceKey();
         bRepo.save(book);
     }
@@ -90,6 +91,7 @@ public class FileService {
             year = s.nextLine();
         }
         article.setPublishYear(Integer.parseInt(parseInfoFromBib(year)));
+        aRepo.save(article);
         article.generateReferenceKey();
         aRepo.save(article);
     }
