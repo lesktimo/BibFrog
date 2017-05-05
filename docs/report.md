@@ -1,4 +1,13 @@
-Loppuraportti
+**Loppuraportti**
+
+ryhmä: Nimetön sammakko
+
+jäsenet: Ollipekka Väänänen,
+Timo leskinen,
+Santeri Juslenius,
+Matias Isosaari,
+Kim Toivonen,
+Joel Petro
 
 Aloitimme projektin luomalla backlogin Taiga palveluun. Taiga vaikutti aluksi sekavalta, mutta sprinttien myötä opimme käyttämään palvelua.
 Miniprojekti lähti aluksi hyvin käyntiin, mutta ensimmäisellä viikolla gradle aiheutti päänvaivaa. Koska emme löytäneet siihen ratkaisua, korjasimme tilanteen käyttämälle Mavenia. Tämän takia ensimmäisen viikon sprintti oli ryhmällemme vaativa ja aikaa vievä. Ensimmäisen viikon sprintti sujui muuten hyvin: laitoimme palveluamme samantien nettiin Java Springillä. Ensimmäisen sprintin jälkeen meillä oli toimiva palvelu netissä, johon pystyi lisäämään inproceeding-artikkeleita ja listata niitä.
@@ -18,4 +27,3 @@ Opimme projektissa Scrumin alkeet. Projektissa ryhmätapaamiset ja yhteistyö su
 kerrataan jokaisen sprintin aikana kohdatut ongelmat (prosessiin-, projektityöskentelyyn- ja teknisiin asioihin liittyvät)
 mikä sujui projektissa hyvin, mitä pitäisi parantaa seuraavaa kertaa varten
 mitä asioita opitte, mitä asioita olisitte halunneet oppia, mikä tuntui turhalta
-
