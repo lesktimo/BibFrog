@@ -412,8 +412,8 @@ public class StepDefs {
         return fileData;
     }
     
-    private void deleteReferencesFrom(String loppuUrl) throws InterruptedException {
-        driver.get(baseUrl + loppuUrl);
+    private void deleteReferencesFrom(String endUrl) throws InterruptedException {
+        driver.get(baseUrl + endUrl);
         while (driver.getPageSource().contains("downloadBibtex")) {
             driver.findElement(By.name("downloadBibtex")).click();
             driver.switchTo().activeElement();
