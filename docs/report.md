@@ -3,7 +3,7 @@
 ryhmä: Nimetön sammakko
 
 jäsenet: Ollipekka Väänänen,
-Timo leskinen,
+Timo Leskinen,
 Santeri Juslenius,
 Matias Isosaari,
 Kim Toivonen,
