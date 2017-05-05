@@ -102,9 +102,9 @@ public class StepDefs {
     }
 
     @When("^correct input for title \"([^\"]*)\", correct journal \"([^\"]*)\", correct year \"([^\"]*)\" and correct Authors \"([^\"]*)\" are given$")
-    public void correct_inputs_for_article_are_given(String inproceeding, String book, String year, String authors) throws Throwable {
+    public void correct_inputs_for_article_are_given(String title, String book, String year, String authors) throws Throwable {
         WebElement element = driver.findElement(By.name("title"));
-        element.sendKeys(inproceeding);
+        element.sendKeys(title);
         element = driver.findElement(By.name("journal"));
         element.sendKeys(book);
         element = driver.findElement(By.name("publishYear"));
@@ -115,6 +115,20 @@ public class StepDefs {
         element.submit();
     }
 
+    @When("^correct input for title \"([^\"]*)\", correct journal \"([^\"]*)\", correct year \"([^\"]*)\" and correct Authors \"([^\"]*)\" and inputs for optional fields \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" are entered$")
+    public void correct_inputs_and_optional_fields_are_given(String title, String journal, String year, String authors, String volume, String number, String pages, String month, String note) {
+        driver.findElement(By.name("title")).sendKeys(title);
+        driver.findElement(By.name("journal")).sendKeys(journal);
+        driver.findElement(By.name("publishYear")).sendKeys(year);
+        driver.findElement(By.name("authors")).sendKeys(authors);
+        driver.findElement(By.name("volume")).sendKeys(volume);
+        driver.findElement(By.name("number")).sendKeys(number);
+        driver.findElement(By.name("pages")).sendKeys(pages);
+        driver.findElement(By.name("publishMonth")).sendKeys(month);
+        driver.findElement(By.name("note")).sendKeys(note);
+        driver.findElement(By.name("addButton")).submit();
+    }
+    
     @When("^incorrect input for title \"([^\"]*)\", correct journal \"([^\"]*)\", incorrect year \"([^\"]*)\" and correct Authors \"([^\"]*)\" are given$")
     public void incorrect_year_for_article_is_entered(String inproceeding, String book, String year, String authors) throws Throwable {
         WebElement element = driver.findElement(By.name("title"));
@@ -295,7 +309,6 @@ public class StepDefs {
     @Then("^a file with correct fields \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\" is exported$")
     public void optional_fields_check(String arg1, String arg2, String arg3, String arg4, String arg5) throws FileNotFoundException {
         String fileData = readFile();
-        System.out.println(fileData);
         assertTrue(fileData.contains(arg1));
         assertTrue(fileData.contains(arg2));
         assertTrue(fileData.contains(arg3));
@@ -338,7 +351,6 @@ public class StepDefs {
         assertTrue(driver.getPageSource().contains(arg3));
         assertTrue(driver.getPageSource().contains(arg4));
         assertTrue(driver.getPageSource().contains(arg5));
-
     }
 
     @Then("^a list of books is shown$")
@@ -356,14 +368,6 @@ public class StepDefs {
         assertTrue(driver.getPageSource().contains("Articles"));
     }
 
-//    @Then("^listing page contains fields \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\"$")
-//    public void successful_edit(String field1, String field2, int year, String field3) {
-//        assertTrue(driver.getPageSource().contains("field1"));
-//        assertTrue(driver.getPageSource().contains("field2"));
-//        assertTrue(driver.getPageSource().contains("year"));
-//        assertTrue(driver.getPageSource().contains("field3"));
-//
-//    }
     @Then("^page contains \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\"$")
     public void added_references_shown(String article, String book, String inproceeding) throws Throwable {
         assertTrue(driver.getPageSource().contains(article));

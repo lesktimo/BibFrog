@@ -31,7 +31,7 @@ public class AcmController {
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setRequestProperty("User-Agent", USER_AGENT);
-        Boolean isOk = false;
+        Boolean isOk;
         if (conn.getResponseCode() != HttpStatus.NOT_FOUND_404) {
             isOk = fileService.parseACMResponse(conn.getInputStream());
             if (isOk == true) {
